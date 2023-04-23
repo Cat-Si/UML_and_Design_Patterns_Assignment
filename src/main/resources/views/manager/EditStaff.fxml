@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane  xmlns:fx="http://javafx.com/fxml/1"
+             fx:controller="controllers.EditStaff"
+             styleClass="Window">
+    <top>
+        <HBox>
+            <Label styleClass="Heading" text="View/Edit Staff"/>
+        </HBox>
+    </top>
+    <left>
+        <fx:include source="NavBarManager.fxml"/>
+    </left>
+    <center>
+    </center>
+</BorderPane>

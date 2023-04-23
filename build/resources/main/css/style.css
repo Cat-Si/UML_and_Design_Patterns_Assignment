@@ -1,0 +1,17 @@
+BorderPane{
+    -fx-padding: 10 10 10 10;
+}
+HBox{
+    -fx-alignment: center;
+    -fx-padding: 10 10 10 10;
+    -fx-spacing: 30;
+}
+.Window{
+    -fx-pref-width:600;
+    -fx-pref-height:400;
+}
+.Heading{
+    -fx-font-size:16;
+    -fx-font-weight:bold;
+    -fx-alignment: center;
+}

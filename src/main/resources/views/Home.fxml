@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane styleClass="Window" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="controllers.HomeController">
+    <top>
+        <HBox>
+            <Label styleClass="Heading" text="Please Log In Below" />
+        </HBox>
+    </top>
+    <left>
+    </left>
+    <center>
+        <HBox>
+            <Button text="Manager"  onAction="#clickManager"  />
+            <Button text="Staff" onAction="#clickStaff" />
+        </HBox>
+    </center>
+</BorderPane>
