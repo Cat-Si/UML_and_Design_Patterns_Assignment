@@ -31,7 +31,7 @@ public class UserSkill extends Validator {
         this.expiry = expiry;
     }
 
-    public final void addSkill(Skill skill) {
+    public void addSkill(Skill skill) {
         if (!currentSkills.contains(skill)) {
             currentSkills.add(skill);
         }
@@ -41,6 +41,10 @@ public class UserSkill extends Validator {
         if (currentSkills.contains(skill)) {
             currentSkills.remove(skill);
         }
+    }
+
+    public Skill[] viewCurrentSkills(){
+        return currentSkills.toArray(new Skill[currentSkills.size()]);
     }
 
     @Override
@@ -59,7 +63,7 @@ public class UserSkill extends Validator {
 
     @Override
     public String toString(){
-        return String.format("%s: (number enrolled: %d)",
+        return String.format("%s: (current number of skills: %d)",
                 staff, currentSkills.size());
     }
 }
