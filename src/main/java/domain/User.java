@@ -10,6 +10,17 @@ public abstract class User extends Validator{
     private FullName fullName;
     private systemRole userRole;
 
+    public String getUsername() {
+        return username;
+    }
+
+
+    public String getPassword() {
+        return password;
+    }
+
+
+
 
     public User(UUID id, String username, String password, FullName fullName, systemRole userRole) {
         this.id = id;
@@ -20,9 +31,7 @@ public abstract class User extends Validator{
         validate();
     }
 
-    public User() {
 
-    }
 
     private final void validate(){
         isNull(id,"id must not be null");
@@ -39,7 +48,7 @@ public abstract class User extends Validator{
     enum systemRole {
     ADMINISTRATOR,
         MANAGER,
-        STAFFUSER;
+        STAFF_USER;
 
     }
 

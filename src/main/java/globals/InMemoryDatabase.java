@@ -14,7 +14,7 @@ public class InMemoryDatabase implements DataProvider {
     private static List<StaffUser> staffUser;
     private static List<UserSkill> userSkill;
 
-    private final ArrayList<Skill> currentSkills = new ArrayList<>();
+
 
 
     public InMemoryDatabase(List<Skill> skill, List<StaffUser> staffUser, List<UserSkill> userSkill) {

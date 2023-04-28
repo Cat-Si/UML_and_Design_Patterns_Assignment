@@ -5,15 +5,14 @@ import java.util.UUID;
 
 public class Manager extends User{
 
-        private ArrayList<StaffUser> staffGroup;
-
     public Manager(UUID id, String username, String password, FullName fullName, systemRole userRole) {
         super(id, username, password, fullName, userRole);
     }
 
-    public Manager() {
-        super();
-    }
+        private ArrayList<StaffUser> staffGroup;
+
+
+
 
     public void addStaff(StaffUser staffUser) {staffGroup.add(staffUser);};
 
