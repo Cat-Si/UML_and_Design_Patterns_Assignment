@@ -2,12 +2,15 @@ package globals.interfaces;
 
 import domain.Skill;
 import domain.StaffUser;
+import domain.UserSkill;
 
 import java.util.List;
 
 public interface DataProvider {
-    List<Skill> getSkills();
+    List<Skill> getSkill();
 
-    List<StaffUser> getStaffUsers();
+    List<StaffUser> getStaffUser();
+
+    List<UserSkill> getUserSkill();
 
 }

@@ -3,6 +3,7 @@ package domain;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 public class UserSkill extends Validator {
@@ -14,11 +15,15 @@ public class UserSkill extends Validator {
 
     private SkillLevel strenghtOfSkills;
 
-    private LocalDate expiry;
+    private Optional<LocalDate> expiry = Optional.empty();
+
+    private String notes;
 
     private final ArrayList<Skill> currentSkills = new ArrayList<>();
 
-    public UserSkill(UUID id, Skill skill, Skill skill1, StaffUser staff, SkillLevel strenghtOfSkills, LocalDate expiry) {
+    public final ArrayList<Skill> getCurrentSkills() {return currentSkills; }
+
+    public UserSkill(UUID id, Skill skill, Skill skill1, StaffUser staff, SkillLevel strenghtOfSkills, Optional<LocalDate> expiry) {
         this.id = id;
         this.skill = skill1;
         this.staff = staff;
@@ -43,15 +48,14 @@ public class UserSkill extends Validator {
         if (this == o) return true;
         if (!(o instanceof UserSkill)) return false;
         UserSkill userSkill = (UserSkill) o;
-        return  Objects.equals(id, userSkill.id);
+        return  Objects.equals(skill, userSkill.skill) &&
+                Objects.equals(staff, userSkill.staff);
     }
 
     public UUID getID(){ return id;}
 
     public final Skill getSkill() {
         return skill; }
-
-    public final ArrayList<Skill> getCurrentSkills() {return currentSkills; }
 
     @Override
     public String toString(){
