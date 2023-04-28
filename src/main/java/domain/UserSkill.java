@@ -9,13 +9,13 @@ import java.util.UUID;
 public class UserSkill extends Validator {
     private UUID id;
 
-    private Skill skill;
+    private Skill mySkill;
 
     private StaffUser staff;
 
-    private SkillLevel strenghtOfSkills;
+    private SkillLevel strengthOfSkills;
 
-    private Optional<LocalDate> expiry = Optional.empty();
+    private Optional<LocalDate> expiry;
 
     private String notes;
 
@@ -23,23 +23,24 @@ public class UserSkill extends Validator {
 
     public final ArrayList<Skill> getCurrentSkills() {return currentSkills; }
 
-    public UserSkill(UUID id, Skill skill, Skill skill1, StaffUser staff, SkillLevel strenghtOfSkills, Optional<LocalDate> expiry) {
+    public UserSkill(UUID id, Skill mySkill, StaffUser staff, SkillLevel strengthOfSkills, Optional<LocalDate> expiry, String notes) {
         this.id = id;
-        this.skill = skill1;
+        this.mySkill = mySkill;
         this.staff = staff;
-        this.strenghtOfSkills = strenghtOfSkills;
+        this.strengthOfSkills = strengthOfSkills;
         this.expiry = expiry;
+        this.notes = notes;
     }
 
-    public void addSkill(Skill skill) {
-        if (!currentSkills.contains(skill)) {
-            currentSkills.add(skill);
+    public void addSkill(Skill mySkill) {
+        if (!currentSkills.contains(mySkill)) {
+            currentSkills.add(mySkill);
         }
     }
 
-    public void removeSkill(Skill skill) {
-        if (currentSkills.contains(skill)) {
-            currentSkills.remove(skill);
+    public void removeSkill(Skill mySkill) {
+        if (currentSkills.contains(mySkill)) {
+            currentSkills.remove(mySkill);
         }
     }
 
@@ -47,19 +48,19 @@ public class UserSkill extends Validator {
         return currentSkills.toArray(new Skill[currentSkills.size()]);
     }
 
+    public final Skill getSkill() {
+        return mySkill; }
+
+    public UUID getID(){ return id;}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof UserSkill)) return false;
         UserSkill userSkill = (UserSkill) o;
-        return  Objects.equals(skill, userSkill.skill) &&
+        return  Objects.equals(mySkill, userSkill.mySkill) &&
                 Objects.equals(staff, userSkill.staff);
     }
-
-    public UUID getID(){ return id;}
-
-    public final Skill getSkill() {
-        return skill; }
 
     @Override
     public String toString(){

@@ -41,9 +41,7 @@ public abstract class User extends Validator{
         isNull(password, "Password cannot be blank");
         isBlank(password, "password must not to empty");
         isNull(userRole, "Please select a role for the user");
-        isBlank(String.valueOf(userRole), "Role cannot be empty");
         isNull(fullName, "Please Enter a name");
-        isBlank(String.valueOf(fullName), "Please enter a full name");
     }
     enum systemRole {
     ADMINISTRATOR,

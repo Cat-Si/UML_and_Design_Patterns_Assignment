@@ -9,21 +9,29 @@ public class Skill extends Validator{
     private String description;
 
 
-    public Skill(Category category, UUID id, String description, String notes, LocalDate expiry, SkillLevel strengthOfSkills){
+    public Skill(Category category, UUID id, String description){
         this.category = category;
         this.id = id;
         this.description = description;
+
 
         validate();
     }
 
 
     public UUID getId(){
+
         return id;
     }
 
     public String getDescription(){
+
         return description;
+    }
+
+    public Category getCategory() {
+
+        return category;
     }
 
     public void setDescription(String description){
