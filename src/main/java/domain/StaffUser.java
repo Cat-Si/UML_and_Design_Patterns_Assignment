@@ -1,23 +1,28 @@
 package domain;
 
+import java.util.Objects;
 import java.util.UUID;
 
+
+
 public class StaffUser extends User {
+    private FullName fullName;
     private Manager currentManager;
 
-    private jobRole staffRole;
+    private JobRole staffRole;
 
-    public StaffUser(UUID id, String username, String password, FullName fullName, systemRole userRole, jobRole staffRole, Manager currentManager) {
-        super(id, username, password, fullName, userRole);
+    public StaffUser(UUID id, String username, String password, String forename, String surname, SystemRole STAFF_USER, JobRole staffRole, Manager currentManager) {
+        super(id, username, password, forename, surname, STAFF_USER);
         this.staffRole = staffRole;
         this.currentManager = currentManager;
+         this.fullName = new FullName(forename, surname);
     }
 
-
-
-    public jobRole getStaffRole() {
+    public JobRole getStaffRole() {
         return staffRole;
+
     }
+
 
     public Manager getCurrentManager() {
         return currentManager;
@@ -28,7 +33,7 @@ public class StaffUser extends User {
         this.currentManager = currentManager;
     }
 
-    enum jobRole {
+    public enum JobRole {
         JUNIOR_DEVELOPER,
         MIDLEVEL_DEVELOPER,
         SENIOR_DEVELOPER;
@@ -36,4 +41,14 @@ public class StaffUser extends User {
 
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s(%s)",
+                                    fullName, staffRole) ;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), fullName, staffRole);
+    }
 }

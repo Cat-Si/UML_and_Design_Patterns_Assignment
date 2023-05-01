@@ -1,30 +1,65 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.Objects;
 import java.util.UUID;
 
-public class Category {
+public class Category extends Validator {
 
-    private List<String> description;
-    public Category () {
-        description = new ArrayList<>();
-        description.add("OFFICE365");
-        description.add("PROGRAMMING");
-        description.add("TESTING_TOOLS");
-        description.add("VERSION_CONTROL");
-    }
-
-public List<String> getDescription(){
-        return description;
-}
+    private String categoryName;
     private UUID id;
 
-    public Category(UUID id) {
+    public Category(UUID id, String categoryName) {
+        this.categoryName = categoryName;
         this.id = id;
+        validate();
     }
 
-    public UUID getId(){
-        return id;
+
+    private final void validate(){
+        isNull(id,"id must not be null");
+        isNull(categoryName,"Category must not be null");
+        isBlank(categoryName,"Category must not be blank");
     }
+
+    public UUID getId() { return id; }
+
+    public String getCategoryName() { return categoryName; }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+        validate();
+    }
+
+    public String toString(){
+        return String.format("%s", categoryName);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Category)) return false;
+        Category category = (Category) o;
+        return Objects.equals(categoryName, category.categoryName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, categoryName);
+    }
+
 }
+
+    /*    private List<String> categoryName;
+        public Category () {
+            categoryName = new ArrayList<>();
+            categoryName.add("OFFICE365");
+            categoryName.add("PROGRAMMING");
+            categoryName.add("TESTING_TOOLS");
+            categoryName.add("VERSION_CONTROL");
+        }
+
+    public List<String> getCategoryName(){
+            return categoryName;
+    }*/
+

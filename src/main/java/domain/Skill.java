@@ -6,14 +6,13 @@ public class Skill extends Validator{
 
     private Category category;
     private UUID id;
-    private String description;
+    private String skillName;
 
 
-    public Skill(Category category, UUID id, String description){
+    public Skill(Category category, UUID id, String skillName){
         this.category = category;
         this.id = id;
-        this.description = description;
-
+        this.skillName = skillName;
 
         validate();
     }
@@ -24,9 +23,9 @@ public class Skill extends Validator{
         return id;
     }
 
-    public String getDescription(){
+    public String getSkillName(){
 
-        return description;
+        return skillName;
     }
 
     public Category getCategory() {
@@ -34,20 +33,21 @@ public class Skill extends Validator{
         return category;
     }
 
-    public void setDescription(String description){
-        this.description = description;
+
+    public void setSkillName(String skillName){
+        this.skillName = skillName;
         validate();
     }
 
 
     private final void validate(){
         isNull(id,"id must not be null");
-        isNull(description,"name must not be null");
-        isBlank(description,"name must not be blank");
+        isNull(skillName,"name must not be null");
+        isBlank(skillName,"name must not be blank");
     }
 
     public String toString(){
-        return String.format("%s", description);
+        return String.format("%s", skillName);
     }
 
     @Override
@@ -55,12 +55,14 @@ public class Skill extends Validator{
         if (this == o) return true;
         if (!(o instanceof Skill)) return false;
         Skill skill = (Skill) o;
-        return Objects.equals(description, skill.description);
+        return Objects.equals(skillName, skill.skillName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description);
+        return Objects.hash(id, skillName);
     }
+
+
 }
 

@@ -38,6 +38,16 @@ public class UserSkill extends Validator {
         }
     }
 
+    public void removeSkill(String skillDescription) {
+        for (Skill s : currentSkills) {
+            if (s.getSkillName().equals(skillDescription)) {
+                currentSkills.remove(s);
+            }
+        }
+    }
+
+
+
     public void removeSkill(Skill mySkill) {
         if (currentSkills.contains(mySkill)) {
             currentSkills.remove(mySkill);
@@ -48,7 +58,7 @@ public class UserSkill extends Validator {
         return currentSkills.toArray(new Skill[currentSkills.size()]);
     }
 
-    public final Skill getSkill() {
+    public final Skill getMySkill() {
         return mySkill; }
 
     public UUID getID(){ return id;}

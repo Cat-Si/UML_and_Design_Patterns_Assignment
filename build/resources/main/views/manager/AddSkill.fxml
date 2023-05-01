@@ -14,6 +14,18 @@
     <left>
         <fx:include source="NavBarManager.fxml"/>
     </left>
+    <right>
+    </right>
     <center>
+        <ScrollPane>
+            <content>
+                <ListView fx:id="output" />
+            </content>
+        </ScrollPane>
     </center>
+    <bottom>
+    </bottom>
 </BorderPane>
+
+
+
