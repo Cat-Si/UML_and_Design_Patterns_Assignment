@@ -11,7 +11,7 @@ public abstract class User extends Validator{
 
     private String password;
     private FullName fullName;
-    private SystemRole userRole;
+    private SystemRole systemRole;
 
     public FullName getFullName() {
         return fullName;
@@ -21,12 +21,12 @@ public abstract class User extends Validator{
         this.fullName = fullName;
     }
 
-    public User(UUID id, String username, String password, String forename, String surname, SystemRole userRole) {
+    public User(UUID id, String username, String password, String forename, String surname, SystemRole systemRole) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.fullName = new FullName(forename, surname);
-        this.userRole = userRole;
+        this.systemRole = systemRole;
         validate();
     }
     public UUID getId() {
@@ -38,12 +38,12 @@ public abstract class User extends Validator{
     }
 
 
-    public SystemRole getUserRole() {
-        return userRole;
+    public SystemRole getSystemRole() {
+        return systemRole;
     }
 
-    public void setUserRole(SystemRole userRole) {
-        this.userRole = userRole;
+    public void setSystemRole(SystemRole systemRole) {
+        this.systemRole = systemRole;
     }
 
     public String getPassword() {
@@ -67,7 +67,7 @@ public abstract class User extends Validator{
         isBlank(username, "username must not be empty");
         isNull(password, "Password cannot be blank");
         isBlank(password, "password must not to empty");
-        isNull(userRole, "Please select a role for the user");
+        isNull(systemRole, "Please select a role for the user");
         isNull(fullName, "Please Enter a name");
     }
 
@@ -79,7 +79,7 @@ public abstract class User extends Validator{
     }
     @Override
     public String toString() {
-        return String.format("Name: %s \n JobRole: %s", fullName, userRole);
+        return String.format("Name: %s \n JobRole: %s", fullName, systemRole);
     }
 
     @Override
@@ -92,6 +92,6 @@ public abstract class User extends Validator{
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, fullName, userRole);
+        return Objects.hash(id, fullName, systemRole);
     }
 }

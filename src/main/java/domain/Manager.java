@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Manager extends User{
@@ -12,10 +13,7 @@ public class Manager extends User{
         this.fullName = new FullName(forename, surname);
         staffGroup =  new ArrayList<>();
         addStaff(staffMember);
-
-
     }
-
 
 
     private ArrayList<StaffUser> staffGroup;
@@ -30,8 +28,13 @@ public class Manager extends User{
     }
 
     public String toString() {
-        return String.format("%s",
-                fullName) ;
+        return String.format("%s (%s)",
+                fullName, getSystemRole()) ;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), fullName, getSystemRole());
     }
 
 

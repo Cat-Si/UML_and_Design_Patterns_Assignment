@@ -1,5 +1,4 @@
 package domain;
-
 import java.util.Objects;
 import java.util.UUID;
 
@@ -44,11 +43,11 @@ public class StaffUser extends User {
     @Override
     public String toString() {
         return String.format("%s(%s)",
-                                    fullName, staffRole) ;
+                                    fullName, getSystemRole()) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), fullName, staffRole);
+        return Objects.hash(getId(), fullName, getSystemRole());
     }
 }

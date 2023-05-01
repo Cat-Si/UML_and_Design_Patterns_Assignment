@@ -19,7 +19,7 @@
     <center>
         <ScrollPane>
             <content>
-                <ListView fx:id="output" />
+                <ListView fx:id="" />
             </content>
         </ScrollPane>
     </center>

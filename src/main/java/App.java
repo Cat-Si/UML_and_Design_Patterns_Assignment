@@ -6,12 +6,13 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class App extends Application {
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         launch(args);
-    }
+    }*/
 
     @Override
     public void start(Stage stage) throws Exception {
+        new InitialiseSetUp();
         Parent root = FXMLLoader.load(getClass().getResource("/views/Home.fxml"));
         root.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
         stage.initStyle(StageStyle.UNDECORATED); //Remove min, max and close buttons

@@ -8,7 +8,7 @@ import javax.swing.text.html.ListView;
 
 public class AddSkill {
 
-    private final Skill newskill = new Skill();
+    //private final Skill newSkill = new Skill();
 
     @FXML
     private ListView output;

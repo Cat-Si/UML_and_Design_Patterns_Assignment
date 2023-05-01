@@ -15,6 +15,10 @@ public class UserSkill extends Validator {
 
     private SkillLevel strengthOfSkills;
 
+    public Optional<LocalDate> getExpiry() {
+        return expiry;
+    }
+
     private Optional<LocalDate> expiry;
 
     private String notes;
@@ -61,7 +65,11 @@ public class UserSkill extends Validator {
     public final Skill getMySkill() {
         return mySkill; }
 
-    public UUID getID(){ return id;}
+    public void setMySkill(Skill mySkill) {
+        this.mySkill = mySkill;
+    }
+
+    public UUID getId(){ return id;}
 
     @Override
     public boolean equals(Object o) {
