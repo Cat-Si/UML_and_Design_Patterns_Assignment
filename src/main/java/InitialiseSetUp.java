@@ -1,4 +1,5 @@
 import domain.*;
+import domain.StaffUser;
 import domain.utility.UUIDGenerator;
 import globals.InMemoryDatabase;
 import globals.Ioc_Container;
@@ -7,10 +8,9 @@ import repositories.*;
 import repositories.interfaces.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
+
 import static domain.User.SystemRole;
 
 public class InitialiseSetUp {
@@ -18,6 +18,7 @@ public class InitialiseSetUp {
     private static List<Category> catagories = new ArrayList<>();
     private static List<StaffUser> staffUsers = new ArrayList<>();
     private static List<Manager> managers = new ArrayList<>();
+    private static List<UserSkill> userSkills = new ArrayList<>();
 
     public InitialiseSetUp() {
         DataProvider dataProvider = new InMemoryDatabase(populateSkills(),
@@ -71,15 +72,25 @@ public class InitialiseSetUp {
         Manager st = new Manager(UUIDGenerator.generate(), "Manager1", "password", "Ben", "Smith", SystemRole.MANAGER, staffUsers.get(0));
         managers.add(st); st.addStaff(staffUsers.get(1)); st.addStaff(staffUsers.get(2));
 
+
+/*        Map<Manager, List<StaffUser>> staffByManager = staffUsers.stream()
+                .collect(Collectors.groupingBy(StaffUser::getCurrentManager));
+
+        // Add staffUsers to their respective managers
+        staffByManager.forEach((manager, staffUsers) -> {
+            manager.addStaff((StaffUser) staffUsers);
+            managers.add(manager);
+        });*/
+
         //managers.add(new Manager(UUIDGenerator.generate(), "Manager1", "password", "Ben", "Smith", SystemRole.MANAGER, staffUsers.get(0)));
         return managers;
     }
 
     public static List<UserSkill> populateUserSkill() {
-        List<UserSkill> userSkills = new ArrayList<>();
-        Optional<LocalDate> expiry =  new LocalDate(2023, 02, 01);
-        userSkills.add(new UserSkill(UUIDGenerator.generate(), skills.get(0), staffUsers.get(0), SkillLevel.ADVANCED, expiry, "" ));
 
+        LocalDate expiry = LocalDate.now();
+        Optional.ofNullable(expiry);
+        userSkills.add(new UserSkill(UUIDGenerator.generate(), skills.get(0), staffUsers.get(0), SkillLevel.ADVANCED, expiry, "" ));
         return userSkills;
     }
 }

@@ -4,7 +4,6 @@ import domain.Category;
 import domain.Skill;
 import repositories.interfaces.BaseSkillRepository;
 import useCases.BaseUseCase;
-
 import java.util.UUID;
 
 public class EditSkill extends BaseUseCase {

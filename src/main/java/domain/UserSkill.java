@@ -27,12 +27,21 @@ public class UserSkill extends Validator {
 
     public final ArrayList<Skill> getCurrentSkills() {return currentSkills; }
 
-    public UserSkill(UUID id, Skill mySkill, StaffUser staff, SkillLevel strengthOfSkills, Optional<LocalDate> expiry, String notes) {
+    public StaffUser getStaff() {
+        return staff;
+    }
+
+    public void setStaff(StaffUser staff) {
+        this.staff = staff;
+    }
+
+    public UserSkill(UUID id, Skill mySkill, StaffUser staff, SkillLevel strengthOfSkills, LocalDate expiry, String notes) {
         this.id = id;
         this.mySkill = mySkill;
         this.staff = staff;
         this.strengthOfSkills = strengthOfSkills;
-        this.expiry = expiry;
+        LocalDate.now();
+        this.expiry = Optional.ofNullable(expiry);
         this.notes = notes;
     }
 

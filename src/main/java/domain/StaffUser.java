@@ -5,17 +5,18 @@ import java.util.UUID;
 
 
 public class StaffUser extends User {
-    private FullName fullName;
+
     private Manager currentManager;
 
     private JobRole staffRole;
 
-    public StaffUser(UUID id, String username, String password, String forename, String surname, SystemRole STAFF_USER, JobRole staffRole, Manager currentManager) {
-        super(id, username, password, forename, surname, STAFF_USER);
+    public StaffUser(UUID id, String username, String password, String forename, String surname, SystemRole systemRole, JobRole staffRole, Manager currentManager) {
+        super(id, username, password, forename, surname, systemRole);
         this.staffRole = staffRole;
         this.currentManager = currentManager;
-         this.fullName = new FullName(forename, surname);
     }
+
+
 
     public JobRole getStaffRole() {
         return staffRole;
@@ -43,11 +44,11 @@ public class StaffUser extends User {
     @Override
     public String toString() {
         return String.format("%s(%s)",
-                                    fullName, getSystemRole()) ;
+                                    getFullName(), getSystemRole()) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), fullName, getSystemRole());
+        return Objects.hash(getId(), getFullName(), getSystemRole());
     }
 }

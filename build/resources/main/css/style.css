@@ -15,7 +15,7 @@ HBox{
     -fx-font-weight:bold;
     -fx-alignment: center;
 }
-.ScrollPane{
+ScrollPane{
     -fx-fit-to-height: true;
     -fx-fit-to-width: true;
 }

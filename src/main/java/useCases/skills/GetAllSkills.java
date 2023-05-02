@@ -3,7 +3,6 @@ package useCases.skills;
 import domain.Skill;
 import repositories.interfaces.BaseSkillRepository;
 import useCases.BaseUseCase;
-
 import java.util.List;
 
 public class GetAllSkills extends BaseUseCase {

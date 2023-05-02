@@ -47,7 +47,7 @@ public class Skill extends Validator{
     }
 
     public String toString(){
-        return String.format("%s", skillName);
+        return String.format("%s (%s)", skillName, getCategory());
     }
 
     @Override
