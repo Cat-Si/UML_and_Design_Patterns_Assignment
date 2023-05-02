@@ -9,7 +9,6 @@ import useCases.BaseUseCase;
 
 import java.util.UUID;
 
-import static Bin.GetStaffCreationInfo.getUserInfo;
 
 public class EditStaff extends BaseUseCase {
 
