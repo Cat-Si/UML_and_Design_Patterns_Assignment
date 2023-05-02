@@ -1,6 +1,6 @@
 import domain.*;
 import domain.StaffUser;
-import domain.utility.UUIDGenerator;
+import useCases.utility.UUIDGenerator;
 import globals.InMemoryDatabase;
 import globals.Ioc_Container;
 import globals.interfaces.DataProvider;
@@ -9,7 +9,6 @@ import repositories.interfaces.*;
 
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static domain.User.SystemRole;
 

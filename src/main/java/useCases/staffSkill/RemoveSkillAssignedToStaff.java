@@ -1,13 +1,9 @@
 package useCases.staffSkill;
 
 import domain.Skill;
-import domain.SkillLevel;
 import domain.StaffUser;
-import domain.utility.UUIDGenerator;
 import repositories.interfaces.BaseUserSkillRepository;
 import useCases.BaseUseCase;
-
-import java.time.LocalDate;
 
 public class RemoveSkillAssignedToStaff extends BaseUseCase {
 

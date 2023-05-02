@@ -4,7 +4,7 @@ import Exceptions.EntryAlreadyExistsException;
 import domain.Manager;
 import domain.StaffUser;
 import domain.User;
-import domain.utility.UUIDGenerator;
+import useCases.utility.UUIDGenerator;
 import repositories.interfaces.BaseStaffUserRepository;
 import useCases.BaseUseCase;
 

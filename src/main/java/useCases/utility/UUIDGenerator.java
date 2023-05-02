@@ -1,4 +1,4 @@
-package domain.utility;
+package useCases.utility;
 
 import java.util.UUID;
 

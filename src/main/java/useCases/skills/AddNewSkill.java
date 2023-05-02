@@ -3,7 +3,7 @@ package useCases.skills;
 import Exceptions.EntryAlreadyExistsException;
 import domain.Category;
 import domain.Skill;
-import domain.utility.UUIDGenerator;
+import useCases.utility.UUIDGenerator;
 import repositories.interfaces.BaseSkillRepository;
 import useCases.BaseUseCase;
 

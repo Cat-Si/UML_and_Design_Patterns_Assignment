@@ -4,8 +4,7 @@ import Exceptions.EntryAlreadyExistsException;
 import domain.Skill;
 import domain.SkillLevel;
 import domain.StaffUser;
-import domain.UserSkill;
-import domain.utility.UUIDGenerator;
+import useCases.utility.UUIDGenerator;
 import repositories.interfaces.BaseUserSkillRepository;
 import useCases.BaseUseCase;
 

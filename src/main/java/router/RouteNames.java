@@ -6,15 +6,17 @@ public enum RouteNames {
     HOME("Home.fxml"),
 
     //Manager Views
-    MANAGER_MAIN("manager/ManagerMainPageController.fxml"),
-    EDIT_SKILL("manager/EditSkillController.fxml"),
+    MANAGER_MAIN("manager/ManagerMainPage.fxml"),
+    EDIT_SKILL("manager/EditSkill.fxml"),
     ADD_SKILL("manager/AddSkill.fxml"),
-    EDIT_STAFF("manager/EditStaffController.fxml"),
+    EDIT_STAFF("manager/EditStaff.fxml"),
+
+    SHOW_SKILL("manager/ShowSkill.fxml"),
     ADD_STAFF("manager/AddStaff.fxml"),
     REMOVE_CATEGORY("manager/RemoveCategory.fxml"),
 
     //Staff Views
-    STAFF_MAIN("staff/StaffMainPageController.fxml"),
+    STAFF_MAIN("staff/StaffMainPage.fxml"),
    USER_DETAILS("staff/UserDetails.fxml"),
     USER_SKILL("staff/UserSkill.fxml");
 

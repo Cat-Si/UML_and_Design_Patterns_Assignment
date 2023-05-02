@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane  xmlns:fx="http://javafx.com/fxml/1"
-             fx:controller="controllers.EditSkill"
+             fx:controller="controllers.EditSkillController"
              styleClass="Window">
     <top>
         <HBox>
