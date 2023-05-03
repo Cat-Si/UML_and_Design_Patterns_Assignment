@@ -19,14 +19,14 @@ public class EditStaff extends BaseUseCase {
 
     public void execute() throws IllegalArgumentException {
         UUID id = (UUID) getNextRequestParameter();
-        String userName = (String) getNextRequestParameter();
-        String password = (String) getNextRequestParameter();
         String forename = (String) getNextRequestParameter();
         String surname = (String) getNextRequestParameter();
+        String userName = (String) getNextRequestParameter();
+        String password = (String) getNextRequestParameter();
         User.SystemRole systemRole = (User.SystemRole) getNextRequestParameter();
         StaffUser.JobRole staffRole = (StaffUser.JobRole) getNextRequestParameter();
         Manager manager = (Manager) getNextRequestParameter();
-        StaffUser editedStaff = new StaffUser(id, userName, password, forename,surname,
+        StaffUser editedStaff = new StaffUser(id, forename, surname,userName, password,
                 systemRole,staffRole,manager);
         STAFF_REPOSITORY.edit(editedStaff);
 

@@ -11,8 +11,8 @@ public class StaffUser extends User {
 
     private JobRole staffRole;
 
-    public StaffUser(UUID id, String username, String password, String forename, String surname, SystemRole systemRole, JobRole staffRole, Manager currentManager) {
-        super(id, username, password, forename, surname, systemRole);
+    public StaffUser(UUID id, String forename, String surname, String username, String password,  SystemRole systemRole, JobRole staffRole, Manager currentManager) {
+        super(id, forename, surname, username, password, systemRole);
         this.staffRole = staffRole;
         this.currentManager = currentManager;
     }
@@ -45,7 +45,7 @@ public class StaffUser extends User {
     @Override
     public String toString() {
         return String.format("%s(%s)",
-                                    getFullName(), getSystemRole()) ;
+                                    getFullName(), getStaffRole()) ;
     }
 
     @Override

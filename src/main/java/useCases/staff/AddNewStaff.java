@@ -12,19 +12,18 @@ public class AddNewStaff extends BaseUseCase {
      private final BaseStaffUserRepository STAFF_REPOSITORY;
 
     public AddNewStaff(BaseStaffUserRepository staffUserRepository) {
-        this.STAFF_REPOSITORY = staffUserRepository;
+        STAFF_REPOSITORY = staffUserRepository;
     }
 
     public void execute() throws IllegalArgumentException, EntryAlreadyExistsException {
-        String userName = (String) getNextRequestParameter();
-        String password = (String) getNextRequestParameter();
         String forename = (String) getNextRequestParameter();
         String surname = (String) getNextRequestParameter();
+        String userName = (String) getNextRequestParameter();
+        String password = (String) getNextRequestParameter();
         User.SystemRole systemRole = (User.SystemRole) getNextRequestParameter();
         StaffUser.JobRole staffRole = (StaffUser.JobRole) getNextRequestParameter();
         Manager manager = (Manager) getNextRequestParameter();
-        StaffUser newStaffUser = new StaffUser(UUIDGenerator.generate(), userName, password, forename, surname, systemRole, staffRole, manager);
-
+        StaffUser newStaffUser = new StaffUser(UUIDGenerator.generate(), forename, surname,userName, password, systemRole, staffRole, manager);
         try {
             STAFF_REPOSITORY.add(newStaffUser);
         } catch (EntryAlreadyExistsException e) {

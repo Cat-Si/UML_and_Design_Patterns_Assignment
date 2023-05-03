@@ -7,10 +7,10 @@ public abstract class User extends Validator{
 
     private UUID id;
 
+    private FullName fullName;
     private String username;
 
     private String password;
-    private FullName fullName;
     private SystemRole systemRole;
 
     public FullName getFullName() {
@@ -21,16 +21,23 @@ public abstract class User extends Validator{
         this.fullName = fullName;
     }
 
-    public User(UUID id, String username, String password, String forename, String surname, SystemRole systemRole) {
+    public User(UUID id, String forename, String surname, String username, String password, SystemRole systemRole) {
         this.id = id;
+        this.fullName = new FullName(forename, surname);
         this.username = username;
         this.password = password;
-        this.fullName = new FullName(forename, surname);
         this.systemRole = systemRole;
         validate();
     }
     public UUID getId() {
         return id;
+    }
+
+    public String getFirstName(){
+        return fullName.getFirstName();
+    }
+    public String getSurname(){
+        return fullName.getSurname();
     }
 
     public String getUsername() {
@@ -48,13 +55,6 @@ public abstract class User extends Validator{
 
     public String getPassword() {
         return password;
-    }
-
-    public String getFirstName(){
-        return fullName.getFirstName();
-    }
-    public String getSurname(){
-        return fullName.getSurname();
     }
 
 

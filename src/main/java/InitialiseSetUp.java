@@ -49,18 +49,18 @@ public class InitialiseSetUp {
     }
 
     public static List<StaffUser> populateStaffUser(){
-        staffUsers.add(new StaffUser(UUIDGenerator.generate(), "AW1","password",
-                                                    "Andy", "Wyatt",
+        staffUsers.add(new StaffUser(UUIDGenerator.generate(), "Andy","Wyatt",
+                                                    "AW1", "password",
                                                              SystemRole.STAFF_USER,
                                                              StaffUser.JobRole.MIDLEVEL_DEVELOPER,
                                                              managers.get(0 ) ));
-        staffUsers.add(new StaffUser(UUIDGenerator.generate(), "BR1","password",
-                                                            "Bill", "Richards",
+        staffUsers.add(new StaffUser(UUIDGenerator.generate(), "Bill","Richards",
+                                                            "BR1", "password",
                                                                      SystemRole.STAFF_USER,
                                                                       StaffUser.JobRole.JUNIOR_DEVELOPER,
                                                                         managers.get(0) ));
-        staffUsers.add(new StaffUser(UUIDGenerator.generate(), "AW1","password",
-                                                                     "Jenny", "Finney",
+        staffUsers.add(new StaffUser(UUIDGenerator.generate(), "Jenny","Finney",
+                                                                     "JF1", "password",
                                                                                SystemRole.STAFF_USER,
                                                                                 StaffUser.JobRole.SENIOR_DEVELOPER,
                                                                             managers.get(0) ));
@@ -71,7 +71,7 @@ public class InitialiseSetUp {
     }
 
     public static List<Manager> populateManager() {
-        Manager st = new Manager(UUIDGenerator.generate(), "Manager1", "password", "Ben", "Smith", SystemRole.MANAGER);
+        Manager st = new Manager(UUIDGenerator.generate(), "Ben", "Smith", "BS1m", "password", SystemRole.MANAGER);
         managers.add(st);
 
 

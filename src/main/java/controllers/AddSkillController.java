@@ -42,7 +42,6 @@ public class AddSkillController  {
     private void handleSubmitSkill() {
         String name = skillName.getText();
 
-
         try {
             addNewSkill.requestList.add(name);
             addNewSkill.requestList.add(category.getSelectionModel().getSelectedItem());

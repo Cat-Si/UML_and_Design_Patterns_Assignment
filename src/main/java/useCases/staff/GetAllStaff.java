@@ -8,7 +8,7 @@ public class GetAllStaff extends BaseUseCase {
     public final BaseStaffUserRepository STAFF_REPOSITORY;
 
     public GetAllStaff(BaseStaffUserRepository staffUserRepository) {
-        this.STAFF_REPOSITORY = staffUserRepository;
+        STAFF_REPOSITORY = staffUserRepository;
     }
 
     public List<StaffUser> execute() {

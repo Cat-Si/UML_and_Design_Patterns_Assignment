@@ -1,17 +1,26 @@
 package controllers;
 
 import controllers.interfaces.DomainObjectToEdit;
+import domain.Category;
 import domain.Skill;
 import domain.StaffUser;
 import domain.User;
+import general.AlertMessage;
 import globals.Ioc_Container;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import router.RouteNames;
+import router.Router;
 import useCases.staff.EditStaff;
 import useCases.staff.GetAllStaff;
+
+import java.io.IOException;
 
 public class EditStaffController implements DomainObjectToEdit {
 
@@ -25,27 +34,45 @@ public class EditStaffController implements DomainObjectToEdit {
     @FXML
     private TextField password;
     @FXML
-    private ListView<StaffUser.JobRole> jobRoleLst;
+    private ComboBox<StaffUser.JobRole> jobRoleLst;
     @FXML
-    private ListView<User.SystemRole> systemRoleLst;
+    private ComboBox<User.SystemRole> systemRoleLst;
+
+    @FXML
+    private ComboBox<StaffUser> usersLst;
 
 
     private final EditStaff editStaff = new EditStaff(Ioc_Container.getStaffUserRepository());
+    private final GetAllStaff getAllStaff = new GetAllStaff(Ioc_Container.getStaffUserRepository());
 
     public void initialize() {
+        showAllStaff();
         showJobRole();
         showSystemRole();
     }
 
 
-    private void showJobRole() {
-        ObservableList<StaffUser.JobRole> items = FXCollections.observableArrayList(StaffUser.JobRole.values());
-        jobRoleLst.setItems(items);
-    }
+    @FXML
+    private void handleEditStaff(ActionEvent event) throws IOException {
+        String forname = firstName.getText();
+        String surname = lastName.getText();
+        String user = username.getText();
+        String pass = password.getText();
+        User.SystemRole selectedSystemRole = systemRoleLst.getSelectionModel().getSelectedItem();
+        StaffUser.JobRole selectedJobRole = jobRoleLst.getSelectionModel().getSelectedItem();
+        try {
+            editStaff.requestList.add(selectedUser.getId());
+            editStaff.requestList.add(forname);
+            editStaff.requestList.add(surname);
+            editStaff.requestList.add(user);
+            editStaff.requestList.add(pass);
+            editStaff.requestList.add(selectedSystemRole);
+            editStaff.requestList.add(selectedJobRole);
+            editStaff.execute();
+        }catch (IllegalArgumentException e){
+            AlertMessage.showMessage(Alert.AlertType.ERROR, e.getMessage());
+        }
 
-    private void showSystemRole() {
-        ObservableList<User.SystemRole> items = FXCollections.observableArrayList(User.SystemRole.values());
-        systemRoleLst.setItems(items);
     }
 
     @Override
@@ -57,5 +84,21 @@ public class EditStaffController implements DomainObjectToEdit {
         password.setText(selectedUser.getPassword());
         systemRoleLst.getSelectionModel().select(selectedUser.getSystemRole());
         jobRoleLst.getSelectionModel().select(selectedUser.getStaffRole());
+    }
+
+    private void showJobRole() {
+        ObservableList<StaffUser.JobRole> items = FXCollections.observableArrayList(StaffUser.JobRole.values());
+        jobRoleLst.setItems(items);
+    }
+
+    private void showSystemRole() {
+        ObservableList<User.SystemRole> items = FXCollections.observableArrayList(User.SystemRole.values());
+        systemRoleLst.setItems(items);
+    }
+
+    private void showAllStaff() {
+        ObservableList<StaffUser> items = FXCollections.observableArrayList(getAllStaff.execute());
+        usersLst.setItems(items);
+        usersLst.getSelectionModel().selectFirst();
     }
 }
