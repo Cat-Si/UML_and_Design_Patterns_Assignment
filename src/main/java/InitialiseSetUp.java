@@ -10,7 +10,7 @@ import repositories.interfaces.*;
 import java.time.LocalDate;
 import java.util.*;
 
-import static domain.User.SystemRole;
+import domain.User.SystemRole;
 
 public class InitialiseSetUp {
     private static  List<Skill> skills = new ArrayList<>();
@@ -20,24 +20,16 @@ public class InitialiseSetUp {
     private static List<UserSkill> userSkills = new ArrayList<>();
 
     public InitialiseSetUp() {
-        DataProvider dataProvider = new InMemoryDatabase(populateSkills(),
-                                                           populateCategory(), populateStaffUser(), populateManager(), populateUserSkill() );
+        DataProvider dataProvider = new InMemoryDatabase(populateCategory(), populateSkills(),
+                populateManager(), populateStaffUser(), populateUserSkill() );
 
-        BaseSkillRepository skillRepository = new SkillRepository(dataProvider);
         BaseCategoryRepository categoryRepository = new CategoryRepository(dataProvider);
-        BaseUserSkillRepository userSkillRepository = new UserSkillRepository(dataProvider);
+        BaseSkillRepository skillRepository = new SkillRepository(dataProvider);
         BaseManagerRepository managerRepository = new ManagerRepository(dataProvider);
+        BaseUserSkillRepository userSkillRepository = new UserSkillRepository(dataProvider);
         BaseStaffUserRepository staffUserRepository = new StaffUserRepository(dataProvider);
 
         new Ioc_Container(skillRepository, categoryRepository, userSkillRepository, managerRepository, staffUserRepository);
-    }
-
-    public static List<Skill> populateSkills() {
-        skills.add(new Skill(catagories.get(0), UUID.randomUUID(), "Word"));
-        skills.add(new Skill(catagories.get(1), UUID.randomUUID(), "Java"));
-        skills.add(new Skill(catagories.get(2), UUID.randomUUID(), "Junit"));
-        skills.add(new Skill(catagories.get(3), UUID.randomUUID(), "Git"));
-        return skills;
     }
 
     public static List<Category> populateCategory(){
@@ -46,6 +38,14 @@ public class InitialiseSetUp {
         catagories.add(new Category(UUIDGenerator.generate(), "Testing Tools"));
         catagories.add(new Category(UUIDGenerator.generate(), "Version Control"));
         return catagories;
+    }
+
+    public static List<Skill> populateSkills() {
+        skills.add(new Skill(catagories.get(0), UUID.randomUUID(), "Word"));
+        skills.add(new Skill(catagories.get(1), UUID.randomUUID(), "Java"));
+        skills.add(new Skill(catagories.get(2), UUID.randomUUID(), "Junit"));
+        skills.add(new Skill(catagories.get(3), UUID.randomUUID(), "Git"));
+        return skills;
     }
 
     public static List<StaffUser> populateStaffUser(){
@@ -64,12 +64,15 @@ public class InitialiseSetUp {
                                                                                SystemRole.STAFF_USER,
                                                                                 StaffUser.JobRole.SENIOR_DEVELOPER,
                                                                             managers.get(0) ));
+        managers.get(0).addStaff(staffUsers.get(0));
+        managers.get(0).addStaff(staffUsers.get(1));
+        managers.get(0).addStaff(staffUsers.get(2));
         return staffUsers;
     }
 
     public static List<Manager> populateManager() {
-        Manager st = new Manager(UUIDGenerator.generate(), "Manager1", "password", "Ben", "Smith", SystemRole.MANAGER, staffUsers.get(0));
-        managers.add(st); st.addStaff(staffUsers.get(1)); st.addStaff(staffUsers.get(2));
+        Manager st = new Manager(UUIDGenerator.generate(), "Manager1", "password", "Ben", "Smith", SystemRole.MANAGER);
+        managers.add(st);
 
 
 /*        Map<Manager, List<StaffUser>> staffByManager = staffUsers.stream()

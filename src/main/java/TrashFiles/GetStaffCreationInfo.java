@@ -1,12 +1,6 @@
-package Bin;
+package TrashFiles;
 
-import domain.Manager;
-import domain.StaffUser;
-import domain.User;
 import useCases.BaseUseCase;
-
-import java.util.List;
-import java.util.UUID;
 
 public class  GetStaffCreationInfo extends BaseUseCase {
 

@@ -27,35 +27,35 @@ public class EditStaffController implements DomainObjectToEdit {
     @FXML
     private ListView<StaffUser.JobRole> jobRoleLst;
     @FXML
-    private  ListView<User.SystemRole> systemRoleLst;
-    @FXML
-    private ListView<StaffUser> staffLst;
+    private ListView<User.SystemRole> systemRoleLst;
 
-    private final GetAllStaff getAllStaff = new GetAllStaff(Ioc_Container.getStaffUserRepository());
 
     private final EditStaff editStaff = new EditStaff(Ioc_Container.getStaffUserRepository());
 
     public void initialize() {
-        showAllStaff();
         showJobRole();
         showSystemRole();
     }
 
-    private void showAllStaff() {
-        ObservableList<StaffUser> items = FXCollections.observableArrayList(getAllStaff.execute());
-        staffLst.setItems(items);
-        staffLst.getSelectionModel().selectFirst();
-    }
 
     private void showJobRole() {
         ObservableList<StaffUser.JobRole> items = FXCollections.observableArrayList(StaffUser.JobRole.values());
         jobRoleLst.setItems(items);
-        jobRoleLst.getSelectionModel().select(StaffUser.getStaffRole());
     }
 
     private void showSystemRole() {
         ObservableList<User.SystemRole> items = FXCollections.observableArrayList(User.SystemRole.values());
         systemRoleLst.setItems(items);
-        systemRoleLst.getSelectionModel().select(User.getSystemRole());
+    }
+
+    @Override
+    public void passItemToEdit(Object itemToEdit) {//Occurs after load - via Router call
+        selectedUser = (StaffUser) itemToEdit;
+        firstName.setText(selectedUser.getFirstName());//same for other fields
+        lastName.setText(selectedUser.getSurname());
+        username.setText(selectedUser.getUsername());
+        password.setText(selectedUser.getPassword());
+        systemRoleLst.getSelectionModel().select(selectedUser.getSystemRole());
+        jobRoleLst.getSelectionModel().select(selectedUser.getStaffRole());
     }
 }

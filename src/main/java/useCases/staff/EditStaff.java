@@ -1,6 +1,5 @@
 package useCases.staff;
 
-import Bin.GetStaffCreationInfo;
 import domain.Manager;
 import domain.StaffUser;
 import domain.User;

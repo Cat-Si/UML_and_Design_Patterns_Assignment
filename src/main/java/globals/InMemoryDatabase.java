@@ -17,12 +17,12 @@ public class InMemoryDatabase implements DataProvider {
 
 
 
-    public InMemoryDatabase(List<Skill> skill, List<Category> category, List<StaffUser> staffUser, List<Manager> manager, List<UserSkill> userSkill) {
-        this.skill = skill;
+    public InMemoryDatabase(List<Category> category, List<Skill> skill, List<Manager> manager, List<StaffUser> staffUser, List<UserSkill> userSkill) {
         this.category = category;
+        this.skill = skill;
+        this.manager = manager;
         this.staffUser = staffUser;
         this.userSkill = userSkill;
-        this.manager = manager;
     }
 
 

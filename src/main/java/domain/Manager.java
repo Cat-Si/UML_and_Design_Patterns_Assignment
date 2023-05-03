@@ -8,10 +8,9 @@ public class Manager extends User{
 
 
 
-    public Manager(UUID id, String username, String password, String forename, String surname, SystemRole systemRole, StaffUser staffMember) {
+    public Manager(UUID id, String username, String password, String forename, String surname, SystemRole systemRole) {
         super(id, username, password, forename, surname, systemRole);
         staffGroup =  new ArrayList<>();
-        addStaff(staffMember);
     }
 
 

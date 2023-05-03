@@ -1,4 +1,4 @@
-package Bin;
+package TrashFiles;
 
 import domain.Manager;
 import domain.StaffUser;
