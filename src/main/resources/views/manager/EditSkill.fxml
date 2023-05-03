@@ -17,7 +17,18 @@
     <right>
     </right>
     <center>
-
+        <GridPane alignment="TOP_CENTER">
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="1"
+                   text="Skill name"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1"
+                       fx:id="skillName" />
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="2"
+                   text="Catagory"/>
+            <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="2"
+                      fx:id="category" />
+         <!--   <Button GridPane.columnIndex="0" GridPane.rowIndex="3" text="Submit"
+                    onAction="#handleSubmitSkill" fx:id="submit" />-->
+        </GridPane>
     </center>
     <bottom>
     </bottom>

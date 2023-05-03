@@ -31,9 +31,9 @@
     </center>
     <bottom>
         <HBox>
-            <Button text="Add New Student"
+            <Button text="Add New Skill"
                     onAction="#handleSubmitSkill"
-                    accessibleText="Add New Student Link"/>
+                    accessibleText="Add New Skill Link"/>
         </HBox>
     </bottom>
 </BorderPane>
