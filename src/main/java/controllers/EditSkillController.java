@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import router.RouteNames;
@@ -25,7 +26,7 @@ public class EditSkillController implements DomainObjectToEdit {
 
     private Skill selectedSkill;
     @FXML
-    private ListView<Category> categoryLst;
+    private ComboBox<Category> categoryLst;
 
     @FXML
     private TextField skillName;

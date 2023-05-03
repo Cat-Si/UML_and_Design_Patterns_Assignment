@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import router.RouteNames;
 import router.Router;
-
 import java.io.IOException;
 
 public class NavBarManagerController {

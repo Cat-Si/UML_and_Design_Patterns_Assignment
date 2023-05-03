@@ -25,9 +25,9 @@
             <Label GridPane.columnIndex="0" GridPane.rowIndex="2"
                    text="Catagory"/>
             <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="2"
-                      fx:id="category" />
-         <!--   <Button GridPane.columnIndex="0" GridPane.rowIndex="3" text="Submit"
-                    onAction="#handleSubmitSkill" fx:id="submit" />-->
+                      fx:id="categoryLst" />
+            <Button GridPane.columnIndex="0" GridPane.rowIndex="3" text="Submit"
+                    onAction="#handleSubmitSkill" fx:id="submit" />
         </GridPane>
     </center>
     <bottom>

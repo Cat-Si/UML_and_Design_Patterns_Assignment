@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane  xmlns:fx="http://javafx.com/fxml/1"
-             fx:controller="controllers.AddStaff"
+             fx:controller="controllers.AddStaffController"
              styleClass="Window">
     <top>
         <HBox>
@@ -17,6 +17,27 @@
     <right>
     </right>
     <center>
+        <GridPane>
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="1"
+                   text="Firstname"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1"
+                       fx:id="firstName" />
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="2"
+                   text="Surname"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2"
+                       fx:id="lastName" />
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="3"
+                   text="Username"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3"
+                       fx:id="username" />
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="4"
+                   text="Password"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4"
+                       fx:id="password" />
+            <Button GridPane.columnIndex="0" GridPane.rowIndex="3" text="Submit"
+                    onAction="#handleAddStaff" fx:id="submit" />
+
+        </GridPane>
     </center>
     <bottom>
     </bottom>
