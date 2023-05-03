@@ -16,6 +16,10 @@ public class NavBarManagerController {
     }
 
     @FXML
+    private void showSkill (ActionEvent event) throws IOException {
+        Router.changeRoute(RouteNames.SHOW_SKILL, event);
+    }
+    @FXML
     private void addSkill(ActionEvent event)throws IOException {
         Router.changeRoute(RouteNames.ADD_SKILL, event);
     }

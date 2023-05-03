@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import useCases.skills.AddNewSkill;
@@ -25,7 +26,7 @@ public class AddSkillController  {
     private TextField skillName;
 
     @FXML
-    private ListView<Category> category;
+    private ComboBox<Category> category;
 
 
     private final AddNewSkill addNewSkill = new AddNewSkill(Ioc_Container.getSkillRepository());

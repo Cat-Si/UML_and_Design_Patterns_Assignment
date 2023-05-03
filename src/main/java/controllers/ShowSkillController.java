@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import router.RouteNames;
 import router.Router;
@@ -20,7 +21,7 @@ public class ShowSkillController {
     private  final GetAllSkills getAllSkills = new GetAllSkills(Ioc_Container.getSkillRepository());
 
     @FXML
-    private ListView<Skill> skillList;
+    private ComboBox<Skill> skillList;
 
     public void initialize() {
         showAllSkills();
