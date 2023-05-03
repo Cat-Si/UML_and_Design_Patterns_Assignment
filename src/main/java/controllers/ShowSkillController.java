@@ -12,8 +12,6 @@ import javafx.scene.control.ListView;
 import router.RouteNames;
 import router.Router;
 import useCases.skills.GetAllSkills;
-
-
 import java.io.IOException;
 
 
@@ -25,9 +23,7 @@ public class ShowSkillController {
     private ListView<Skill> skillList;
 
     public void initialize() {
-        ObservableList<Skill> items = FXCollections.observableArrayList(getAllSkills.execute());
-        skillList.setItems(items);
-        skillList.getSelectionModel().selectFirst();
+        showAllSkills();
     }
 
     @FXML
@@ -39,5 +35,11 @@ public class ShowSkillController {
         } else {
             AlertMessage.showMessage(Alert.AlertType.INFORMATION, "Please select a Skill to edit");
         }
+    }
+
+    private void showAllSkills() {
+        ObservableList<Skill> items = FXCollections.observableArrayList(getAllSkills.execute());
+        skillList.setItems(items);
+        skillList.getSelectionModel().selectFirst();
     }
 }

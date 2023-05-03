@@ -6,6 +6,7 @@ import java.util.UUID;
 
 public class StaffUser extends User {
 
+
     private Manager currentManager;
 
     private JobRole staffRole;

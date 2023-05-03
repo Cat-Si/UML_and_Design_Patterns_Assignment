@@ -33,12 +33,8 @@ public class AddStaffController {
 
     public void initialize() {
         Platform.runLater(() -> firstName.requestFocus());
-        ObservableList<StaffUser.JobRole> itemsJ = FXCollections.observableArrayList(StaffUser.JobRole.values());
-        jobRoleLst.setItems(itemsJ);
-        jobRoleLst.getSelectionModel().selectFirst();
-        ObservableList<User.SystemRole> itemsS = FXCollections.observableArrayList(User.SystemRole.values());
-        systemRoleLst.setItems(itemsS);
-        systemRoleLst.getSelectionModel().selectFirst();
+        showJobRole();
+        showSystemRole();
     }
 
     @FXML
@@ -47,14 +43,15 @@ public class AddStaffController {
         String surname = lastName.getText();
         String user = username.getText();
         String pass = password.getText();
-
+        StaffUser.JobRole selectedJobRole = jobRoleLst.getSelectionModel().getSelectedItem();
+        User.SystemRole selectedSystemRole = systemRoleLst.getSelectionModel().getSelectedItem();
         try {
             addNewStaff.requestList.add(forname);
             addNewStaff.requestList.add(surname);
             addNewStaff.requestList.add(user);
             addNewStaff.requestList.add(pass);
-            addNewStaff.requestList.add(jobRoleLst.getSelectionModel().getSelectedItem());
-            addNewStaff.requestList.add(systemRoleLst.getSelectionModel().getSelectedItem());
+            addNewStaff.requestList.add(selectedJobRole);
+            addNewStaff.requestList.add(selectedSystemRole);
             addNewStaff.execute();
             clearForm();
             AlertMessage.showMessage(Alert.AlertType.INFORMATION, "Staff member added");
@@ -74,7 +71,16 @@ public class AddStaffController {
         password.clear();
     }
 
+    private void showJobRole() {
+        ObservableList<StaffUser.JobRole> items = FXCollections.observableArrayList(StaffUser.JobRole.values());
+        jobRoleLst.setItems(items);
+        jobRoleLst.getSelectionModel().selectFirst();
+    }
 
-
+    private void showSystemRole() {
+        ObservableList<User.SystemRole> items = FXCollections.observableArrayList(User.SystemRole.values());
+        systemRoleLst.setItems(items);
+        systemRoleLst.getSelectionModel().selectFirst();
+    }
 
 }
