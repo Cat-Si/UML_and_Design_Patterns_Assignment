@@ -17,7 +17,7 @@
     <right>
     </right>
     <center>
-        <GridPane alignment="TOP_CENTER">
+        <GridPane>
             <Label GridPane.columnIndex="0" GridPane.rowIndex="1"
                    text="Skill name"/>
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="1"

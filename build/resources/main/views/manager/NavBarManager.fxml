@@ -22,9 +22,9 @@
                    onAction="#addSkill"
                    accessibleText="View Staff Skills Link"/>
 
-        <Hyperlink text="View/Edit Staff"
+        <Hyperlink text="Edit Staff"
                    onAction="#editStaff"
-                   accessibleText="View and Edit Staff Link"/>
+                   accessibleText="Edit Staff Link"/>
 
         <Hyperlink text="Add Staff"
                    onAction="#addStaff"
