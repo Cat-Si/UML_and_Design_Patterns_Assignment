@@ -15,8 +15,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import useCases.skills.AddNewSkill;
 import useCases.skills.GetAllCategories;
-import java.util.List;
-import java.util.Optional;
+
 
 
 
