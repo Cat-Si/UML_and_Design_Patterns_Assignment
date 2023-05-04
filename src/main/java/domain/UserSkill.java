@@ -14,6 +14,22 @@ public class UserSkill extends Validator {
     private Skill mySkill;
 
 
+    public SkillLevel getStrengthOfSkills() {
+        return strengthOfSkills;
+    }
+
+    public void setStrengthOfSkills(SkillLevel strengthOfSkills) {
+        this.strengthOfSkills = strengthOfSkills;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
     private SkillLevel strengthOfSkills;
 
     public Optional<LocalDate> getExpiry() {

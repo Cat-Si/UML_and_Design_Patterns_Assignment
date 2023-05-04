@@ -2,15 +2,15 @@ package controllers;
 
 import Exceptions.EntryAlreadyExistsException;
 import controllers.utility.RetrieveSkillsAssignedToStaff;
-import domain.Skill;
-import domain.StaffUser;
+import domain.*;
 import general.AlertMessage;
 import globals.Ioc_Container;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import useCases.skills.GetAllSkills;
 import useCases.staff.GetAllStaff;
 import useCases.staffSkill.AddSkillToStaff;
@@ -23,10 +23,21 @@ public class AddSkillToUserController {
     private ListView<StaffUser> staffLst;
 
     @FXML
-    private ListView<Skill> skillLst;
+    private ComboBox<Skill> skillLst;
 
     @FXML
-    private ListView<Skill> staffSkillLst;
+    private ListView<UserSkill> staffSkillLst;
+    @FXML
+    private UserSkill selectedSkill;
+    @FXML
+    private DatePicker expiry;
+    @FXML
+    private ListView<SkillLevel> skillLevelLst;
+
+    @FXML
+    private TextField skillName;
+
+
 
     private final GetAllStaff getAllStaff = new GetAllStaff(Ioc_Container.getStaffUserRepository());
 
@@ -40,8 +51,24 @@ public class AddSkillToUserController {
 
     public void initialize() {
         showSkillAssignedToStaff();
+        showStrengthOfSkill();
     }
 
+    public void passItemToEdit(ActionEvent event) {//Occurs after load - via Router call
+        selectedSkill = staffSkillLst.getSelectionModel().getSelectedItem();
+        System.out.println(selectedSkill);
+        expiry.setValue(selectedSkill.getExpiry());
+        skillLevelLst.getSelectionModel().getSelectedItem(selectedSkill.getStrengthOfSkills);
+
+
+    }
+
+    @Override
+    public void passItemToEdit(Object skillToEdit) {
+        selectedSkill = (UserSkill) skillToEdit;
+        skillName.setText(selectedSkill.getMySkill());
+        skillLevelLst.getSelectionModel().select((selectedSkill.get()));
+    }
     @FXML
     private void handleAssignSkill() {
     addSkillToStaff.requestList.add(staffLst.getSelectionModel().getSelectedItem());
@@ -80,6 +107,11 @@ public class AddSkillToUserController {
         staffLst.setItems(items);
         staffLst.getSelectionModel().select(0);
     }
+
+    private void showStrengthOfSkill() {
+        ObservableList<SkillLevel> items = FXCollections.observableArrayList(SkillLevel.values());
+        skillLevelLst.setItems(items);
+    }
     private void showAllSkill() {
         ObservableList<Skill> items = FXCollections.observableArrayList(getAllSkills.execute());
         skillLst.setItems(items);
@@ -87,7 +119,7 @@ public class AddSkillToUserController {
     }
 
     private void showSkillAssignedToStaff() {
-        RetrieveSkillsAssignedToStaff.retrieveSkillsAssignedToStaff(findSkillsAssignedToStaff, staffLst.getSelectionModel().getSelectedItem(), staffSkillLst);
+        RetrieveSkillsAssignedToStaff.retrieveSkillsAssignedToStaff(findSkillsAssignedToStaff, staffLst.getSelectionModel().getSelectedItem(), SkillLst);
     }
 
 }
