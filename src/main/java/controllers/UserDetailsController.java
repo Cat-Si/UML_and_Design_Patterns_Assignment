@@ -26,7 +26,7 @@ import java.io.IOException;
 
 public class UserDetailsController {
 
-    private StaffUser selectedUser;
+    //private StaffUser selectedUser;
     @FXML
     private TextField firstName;
     @FXML
@@ -38,6 +38,8 @@ public class UserDetailsController {
     @FXML
     private ComboBox<StaffUser.JobRole> jobRoleLst;
 
+    private  StaffUser loggedInUser = Ioc_Container.getStaffUserRepository().getAll().get(0);
+
 
 
     private final EditStaff editStaff = new EditStaff(Ioc_Container.getStaffUserRepository());
@@ -47,23 +49,23 @@ public class UserDetailsController {
         showJobRole();
 
 
+
     }
+    
 
 
     public void passItemToEdit(ActionEvent event) {//Occurs after load - via Router call
-        selectedUser = Ioc_Container.getStaffUserRepository().getAll().get(0);
-        System.out.println(selectedUser);
-        firstName.setText(selectedUser.getFirstName());
-        lastName.setText(selectedUser.getSurname());
-        username.setText(selectedUser.getUsername());
-        password.setText(selectedUser.getPassword());
-        jobRoleLst.getSelectionModel().select(selectedUser.getStaffRole());
+        System.out.println(loggedInUser);
+        firstName.setText(loggedInUser.getFirstName());
+        lastName.setText(loggedInUser.getSurname());
+        username.setText(loggedInUser.getUsername());
+        password.setText(loggedInUser.getPassword());
+        jobRoleLst.getSelectionModel().select(loggedInUser.getStaffRole());
 
     }
 
     @FXML
     private void handleEditDetails(MouseEvent mouse) throws IOException {
-        StaffUser loggedInUser = Ioc_Container.getStaffUserRepository().getAll().get(0);
         String forname = firstName.getText();
         String surname = lastName.getText();
         String user = username.getText();
@@ -72,7 +74,7 @@ public class UserDetailsController {
 
         try {
             editStaff.requestList.add(loggedInUser);
-            editStaff.requestList.add(selectedUser.getId());
+            editStaff.requestList.add(loggedInUser.getId());
             editStaff.requestList.add(forname);
             editStaff.requestList.add(surname);
             editStaff.requestList.add(user);
@@ -90,6 +92,8 @@ public class UserDetailsController {
         ObservableList<StaffUser.JobRole> items = FXCollections.observableArrayList(StaffUser.JobRole.values());
         jobRoleLst.setItems(items);
     }
+
+
 
 
 
