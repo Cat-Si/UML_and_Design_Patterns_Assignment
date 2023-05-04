@@ -26,16 +26,6 @@ public class UserSkill extends Validator {
 
     private final ArrayList<Skill> currentSkills = new ArrayList<>();
 
-    public final ArrayList<Skill> getCurrentSkills() {return currentSkills; }
-
-    public StaffUser getStaff() {
-        return staff;
-    }
-
-    public void setStaff(StaffUser staff) {
-        this.staff = staff;
-    }
-
     public UserSkill(UUID id, StaffUser staff, Skill mySkill, SkillLevel strengthOfSkills, LocalDate expiry, String notes) {
         this.id = id;
         this.staff = staff;
@@ -53,15 +43,13 @@ public class UserSkill extends Validator {
         }
     }
 
-    public void removeSkill(String skillDescription) {
+    public void removeSkill(String mySkill) {
         for (Skill s : currentSkills) {
-            if (s.getSkillName().equals(skillDescription)) {
+            if (s.getSkillName().equals(mySkill)) {
                 currentSkills.remove(s);
             }
         }
     }
-
-
 
     public void removeSkill(Skill mySkill) {
         if (currentSkills.contains(mySkill)) {
@@ -73,14 +61,22 @@ public class UserSkill extends Validator {
         return currentSkills.toArray(new Skill[currentSkills.size()]);
     }
 
+    public UUID getId(){ return id;}
+
     public final Skill getMySkill() {
         return mySkill; }
+
+    public StaffUser getStaff() {
+        return staff;
+    }
+
+    public void setStaff(StaffUser staff) {
+        this.staff = staff;
+    }
 
     public void setMySkill(Skill mySkill) {
         this.mySkill = mySkill;
     }
-
-    public UUID getId(){ return id;}
 
     @Override
     public boolean equals(Object o) {
@@ -90,6 +86,8 @@ public class UserSkill extends Validator {
         return  Objects.equals(mySkill, userSkill.mySkill) &&
                 Objects.equals(staff, userSkill.staff);
     }
+
+    public final ArrayList<Skill> getCurrentSkills() {return currentSkills; }
 
     @Override
     public String toString(){
