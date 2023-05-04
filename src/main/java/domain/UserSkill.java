@@ -44,6 +44,7 @@ public class UserSkill extends Validator {
         LocalDate.now();
         this.expiry = Optional.ofNullable(expiry);
         this.notes = notes;
+        addSkill(mySkill);
     }
 
     public void addSkill(Skill mySkill) {

@@ -123,6 +123,7 @@ public class EditStaffController  {
 
     private void showSkillsAssignedToStaff() {
         RetrieveSkillsAssignedToStaff.retrieveSkillsAssignedToStaff(findSkillsAssignedToStaff, usersLst.getSelectionModel().getSelectedItem(), staffSkillLst);
+        System.out.println(findSkillsAssignedToStaff);
 
     }
 
