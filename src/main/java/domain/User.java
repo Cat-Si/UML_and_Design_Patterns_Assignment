@@ -10,6 +10,10 @@ public abstract class User extends Validator{
     private FullName fullName;
     private String username;
 
+    private String forename;
+
+    private String surname;
+
     private String password;
     private SystemRole systemRole;
 
@@ -17,24 +21,43 @@ public abstract class User extends Validator{
         return fullName;
     }
 
-    public void setFullName(FullName fullName) {
-        this.fullName = fullName;
+    public void setForename(String forename) {
+        this.forename = forename;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public User(UUID id, String forename, String surname, String username, String password, SystemRole systemRole) {
         this.id = id;
+        this.forename = forename;
+        this.surname = surname;
         this.fullName = new FullName(forename, surname);
         this.username = username;
         this.password = password;
         this.systemRole = systemRole;
         validate();
     }
+
+    public void setFullName(FullName fullName) {
+        this.fullName = fullName;
+    }
+
+
     public UUID getId() {
         return id;
     }
-
     public String getFirstName(){
         return fullName.getFirstName();
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
     public String getSurname(){
         return fullName.getSurname();

@@ -11,12 +11,16 @@ public class StaffUser extends User {
 
     private JobRole staffRole;
 
-    public StaffUser(UUID id, String forename, String surname, String username, String password,  SystemRole systemRole, JobRole staffRole, Manager currentManager) {
+    public StaffUser(UUID id, String forename, String surname, String username, String password, SystemRole systemRole, JobRole staffRole, Manager currentManager) {
         super(id, forename, surname, username, password, systemRole);
         this.staffRole = staffRole;
         this.currentManager = currentManager;
     }
 
+
+    public void setStaffRole(JobRole staffRole) {
+        this.staffRole = staffRole;
+    }
 
 
     public JobRole getStaffRole() {
