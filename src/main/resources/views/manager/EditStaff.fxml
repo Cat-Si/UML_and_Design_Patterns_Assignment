@@ -21,9 +21,10 @@
             <Label GridPane.columnIndex="0" GridPane.rowIndex="0"
 
                    text="Current Staff Members"/>
-            <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="0"  minWidth="200"
 
-                      fx:id="usersLst"  />
+                <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="0" minWidth="200"
+                          fx:id="usersLst" onAction="#passItemToEdit"/>
+
 
             <Label GridPane.columnIndex="0" GridPane.rowIndex="1"
                    text="Firstname"/>
@@ -50,8 +51,12 @@
             <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="6"
                       fx:id="systemRoleLst" />
             <Label GridPane.columnIndex="0" GridPane.rowIndex="7"
+                   text="Manager:"/>
+            <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="7"
+                      fx:id="manager" />
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="8"
                    text="Skills Assigned to Staff Member:"/>
-            <ScrollPane GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <ScrollPane GridPane.columnIndex="1" GridPane.rowIndex="8">
                 <content>
                     <ListView fx:id="staffSkillLst"/>
                 </content>
@@ -59,7 +64,7 @@
 
             <HBox GridPane.rowIndex="9" GridPane.columnSpan="3">
                 <Button text="Edit"
-                        onAction="#handleEditStaff"  />
+                        onMouseClicked="#handleEditStaff"  />
 
             </HBox>
         </GridPane>

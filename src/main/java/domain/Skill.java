@@ -46,6 +46,7 @@ public class Skill extends Validator{
         isBlank(skillName,"name must not be blank");
     }
 
+    @Override
     public String toString(){
         return String.format("%s (%s)", skillName, getCategory());
     }

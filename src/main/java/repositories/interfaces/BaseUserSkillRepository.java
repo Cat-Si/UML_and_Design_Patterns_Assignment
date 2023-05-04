@@ -13,7 +13,7 @@ import java.util.UUID;
 
 public interface BaseUserSkillRepository {
 
-    void add(UUID UUID, Skill mySkill, StaffUser staff, SkillLevel strengthOfSkills, LocalDate expiry, String notes) throws EntryAlreadyExistsException;
+    void add(UUID UUID, StaffUser staff, Skill mySkill, SkillLevel strengthOfSkills, LocalDate expiry, String notes) throws EntryAlreadyExistsException;
 
     List<UserSkill> getAll();
 

@@ -92,7 +92,7 @@ public class InitialiseSetUp {
 
         LocalDate expiry = LocalDate.now();
         Optional.ofNullable(expiry);
-        userSkills.add(new UserSkill(UUIDGenerator.generate(), skills.get(0), staffUsers.get(0), SkillLevel.ADVANCED, expiry, "" ));
+        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(0), skills.get(0), SkillLevel.ADVANCED, expiry, "" ));
         return userSkills;
     }
 }

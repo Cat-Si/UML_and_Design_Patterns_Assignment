@@ -30,6 +30,14 @@ public class StaffUserRepository implements BaseStaffUserRepository {
     public void edit(StaffUser staffUser) {
         for (StaffUser su : getAll()) {
             if (su.getId().equals(staffUser.getId())) {
+                su.setFullName(staffUser.getFullName());
+            }
+        }
+    }
+
+/*    public void edit(StaffUser staffUser) {
+        for (StaffUser su : getAll()) {
+            if (su.getId().equals(staffUser.getId())) {
                 su.setForename(staffUser.getFirstName());
                 su.setSurname(staffUser.getSurname());
                 su.setUsername(staffUser.getUsername());
@@ -41,5 +49,5 @@ public class StaffUserRepository implements BaseStaffUserRepository {
             }
         }
 
-    }
+    }*/
 }

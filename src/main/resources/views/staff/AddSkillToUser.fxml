@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane  xmlns:fx="http://javafx.com/fxml/1"
+             fx:controller="controllers.AddSkillToUserController"
+             styleClass="Window">
+    <top>
+        <HBox>
+            <Label styleClass="Heading" text="My Skills"/>
+        </HBox>
+    </top>
+    <left>
+        <fx:include source="NavBarStaff.fxml"/>
+    </left>
+    <center>
+    </center>
+</BorderPane>

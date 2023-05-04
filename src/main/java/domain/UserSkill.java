@@ -9,9 +9,10 @@ import java.util.UUID;
 public class UserSkill extends Validator {
     private UUID id;
 
+    private StaffUser staff;
+
     private Skill mySkill;
 
-    private StaffUser staff;
 
     private SkillLevel strengthOfSkills;
 
@@ -35,10 +36,10 @@ public class UserSkill extends Validator {
         this.staff = staff;
     }
 
-    public UserSkill(UUID id, Skill mySkill, StaffUser staff, SkillLevel strengthOfSkills, LocalDate expiry, String notes) {
+    public UserSkill(UUID id, StaffUser staff, Skill mySkill, SkillLevel strengthOfSkills, LocalDate expiry, String notes) {
         this.id = id;
-        this.mySkill = mySkill;
         this.staff = staff;
+        this.mySkill = mySkill;
         this.strengthOfSkills = strengthOfSkills;
         LocalDate.now();
         this.expiry = Optional.ofNullable(expiry);

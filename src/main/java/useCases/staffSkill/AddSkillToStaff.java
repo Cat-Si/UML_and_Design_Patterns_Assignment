@@ -23,6 +23,6 @@ public class AddSkillToStaff extends BaseUseCase {
         SkillLevel skillStrength = (SkillLevel) getNextRequestParameter();
         LocalDate expiry = (LocalDate) getNextRequestParameter();
         String notes = (String) getNextRequestParameter();
-        USER_SKILL_REPOSITORY.add(UUIDGenerator.generate(), skill, staffUser, skillStrength, expiry, notes);
+        USER_SKILL_REPOSITORY.add(UUIDGenerator.generate(), staffUser, skill, skillStrength, expiry, notes);
     }
 }

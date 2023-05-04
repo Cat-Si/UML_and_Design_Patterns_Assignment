@@ -18,7 +18,7 @@ public enum RouteNames {
     //Staff Views
     STAFF_MAIN("staff/StaffMainPage.fxml"),
    USER_DETAILS("staff/UserDetails.fxml"),
-    USER_SKILL("staff/UserSkill.fxml");
+    USER_SKILL("staff/AddSkillToUserController.fxml");
 
 
 

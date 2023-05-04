@@ -22,7 +22,7 @@ public class UserSkillRepository implements BaseUserSkillRepository {
         return IN_MEMORY_DATABASE.getUserSkill();
     }
 
-   public void add(UUID uuid, Skill mySkill, StaffUser staff, SkillLevel strengthOfSkills, LocalDate expiry, String notes) throws EntryAlreadyExistsException {
+   public void add(UUID uuid, StaffUser staff, Skill mySkill, SkillLevel strengthOfSkills, LocalDate expiry, String notes) throws EntryAlreadyExistsException {
         Optional<UserSkill> userSkill = doesUserExist(staff);
 
        if (userSkill.isPresent()) {
@@ -32,7 +32,7 @@ public class UserSkillRepository implements BaseUserSkillRepository {
                userSkill.get().addSkill(mySkill);
            }
        } else {
-           getAll().add(new UserSkill(uuid, mySkill, staff, strengthOfSkills, expiry, notes));
+           getAll().add(new UserSkill(uuid, staff, mySkill, strengthOfSkills, expiry, notes));
        }
    }
 
