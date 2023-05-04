@@ -3,9 +3,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane  xmlns:fx="http://javafx.com/fxml/1"
-             fx:controller="controllers.UserDetailsController"
-             styleClass="Window">
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.UserDetailsController"
+            styleClass="Window">
     <top>
         <HBox>
             <Label styleClass="Heading" text="My Details"/>
@@ -16,7 +17,8 @@
     </left>
     <center>
         <GridPane>
-
+            <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="0"
+                      fx:id="loggedUser" />
             <Label GridPane.columnIndex="0" GridPane.rowIndex="1"
                    text="Firstname"/>
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="1"

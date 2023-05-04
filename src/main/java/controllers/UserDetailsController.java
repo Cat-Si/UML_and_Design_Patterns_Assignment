@@ -17,16 +17,22 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import repositories.interfaces.BaseStaffUserRepository;
 import useCases.staff.EditStaff;
 import useCases.staff.GetAllManagers;
 import useCases.staff.GetAllStaff;
+import useCases.staff.LoggedInUser;
 import useCases.staffSkill.FindSkillsAssignedToStaff;
 
 import java.io.IOException;
 
 public class UserDetailsController {
 
-    //private StaffUser selectedUser;
+   private StaffUser loggedInUser = Ioc_Container.getStaffUserRepository().getAll().get(0);;
+    private StaffUser selectedUser;
+
+    @FXML
+    private ComboBox loggedUser;
     @FXML
     private TextField firstName;
     @FXML
@@ -37,39 +43,44 @@ public class UserDetailsController {
     private TextField password;
     @FXML
     private ComboBox<StaffUser.JobRole> jobRoleLst;
-
-    private  StaffUser loggedInUser = Ioc_Container.getStaffUserRepository().getAll().get(0);
+    @FXML
+    private ComboBox<StaffUser> usersLst;
 
 
 
     private final EditStaff editStaff = new EditStaff(Ioc_Container.getStaffUserRepository());
-    private final GetAllStaff getAllStaff = new GetAllStaff(Ioc_Container.getStaffUserRepository());
+
 
     public void initialize() {
         showJobRole();
-
+        loggedInUser();
 
 
     }
-    
+
 
 
     public void passItemToEdit(ActionEvent event) {//Occurs after load - via Router call
-        System.out.println(loggedInUser);
-        firstName.setText(loggedInUser.getFirstName());
-        lastName.setText(loggedInUser.getSurname());
-        username.setText(loggedInUser.getUsername());
-        password.setText(loggedInUser.getPassword());
-        jobRoleLst.getSelectionModel().select(loggedInUser.getStaffRole());
+        selectedUser = loggedInUser;
+        System.out.println(selectedUser);
+        loggedUser.getSelectionModel().select(selectedUser);
+        firstName.setText(selectedUser.getFirstName());
+        lastName.setText(selectedUser.getSurname());
+        username.setText(selectedUser.getUsername());
+        password.setText(selectedUser.getPassword());
+
+        jobRoleLst.getSelectionModel().select(selectedUser.getStaffRole());
+
 
     }
 
     @FXML
-    private void handleEditDetails(MouseEvent mouse) throws IOException {
+    private void handleEditDetails() throws IOException {
         String forname = firstName.getText();
         String surname = lastName.getText();
         String user = username.getText();
         String pass = password.getText();
+
         StaffUser.JobRole selectedJobRole = jobRoleLst.getSelectionModel().getSelectedItem();
 
         try {
@@ -80,7 +91,6 @@ public class UserDetailsController {
             editStaff.requestList.add(user);
             editStaff.requestList.add(pass);
             editStaff.requestList.add(selectedJobRole);
-
             editStaff.execute();
         }catch (IllegalArgumentException e){
             AlertMessage.showMessage(Alert.AlertType.ERROR, e.getMessage());
@@ -93,7 +103,10 @@ public class UserDetailsController {
         jobRoleLst.setItems(items);
     }
 
+    private void loggedInUser() {
+        StaffUser loggedInUser = Ioc_Container.getStaffUserRepository().getAll().get(0);
 
+    }
 
 
 
