@@ -14,7 +14,7 @@ public class EditStaff extends BaseUseCase {
     private final BaseStaffUserRepository STAFF_REPOSITORY;
 
     public EditStaff(BaseStaffUserRepository staffUserRepository) {
-        STAFF_REPOSITORY = staffUserRepository;
+        this.STAFF_REPOSITORY = staffUserRepository;
     }
 
     public void execute() throws IllegalArgumentException {

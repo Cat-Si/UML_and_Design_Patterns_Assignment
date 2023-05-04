@@ -19,8 +19,11 @@ import router.RouteNames;
 import router.Router;
 import useCases.staff.EditStaff;
 import useCases.staff.GetAllStaff;
+import useCases.staffSkill.FindSkillsAssignedToStaff;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 
 public class EditStaffController implements DomainObjectToEdit {
 
@@ -41,7 +44,9 @@ public class EditStaffController implements DomainObjectToEdit {
     @FXML
     private ComboBox<StaffUser> usersLst;
 
+    @FXML ListView<Skill> staffSkillLst;
 
+    private final FindSkillsAssignedToStaff findSkillsAssignedToStaff = new FindSkillsAssignedToStaff(Ioc_Container.getUserSkillRepository());
     private final EditStaff editStaff = new EditStaff(Ioc_Container.getStaffUserRepository());
     private final GetAllStaff getAllStaff = new GetAllStaff(Ioc_Container.getStaffUserRepository());
 
@@ -49,8 +54,20 @@ public class EditStaffController implements DomainObjectToEdit {
         showAllStaff();
         showJobRole();
         showSystemRole();
+        showSkillsAssignedToStaff();
     }
 
+
+    @Override
+    public void passItemToEdit(Object itemToEdit) {//Occurs after load - via Router call
+        selectedUser = (StaffUser) itemToEdit;
+        firstName.setText(selectedUser.getFirstName());
+        lastName.setText(selectedUser.getSurname());
+        username.setText(selectedUser.getUsername());
+        password.setText(selectedUser.getPassword());
+        systemRoleLst.getSelectionModel().select(selectedUser.getSystemRole());
+        jobRoleLst.getSelectionModel().select(selectedUser.getStaffRole());
+    }
 
     @FXML
     private void handleEditStaff(ActionEvent event) throws IOException {
@@ -75,17 +92,6 @@ public class EditStaffController implements DomainObjectToEdit {
 
     }
 
-    @Override
-    public void passItemToEdit(Object itemToEdit) {//Occurs after load - via Router call
-        selectedUser = (StaffUser) itemToEdit;
-        firstName.setText(selectedUser.getFirstName());//same for other fields
-        lastName.setText(selectedUser.getSurname());
-        username.setText(selectedUser.getUsername());
-        password.setText(selectedUser.getPassword());
-        systemRoleLst.getSelectionModel().select(selectedUser.getSystemRole());
-        jobRoleLst.getSelectionModel().select(selectedUser.getStaffRole());
-    }
-
     private void showJobRole() {
         ObservableList<StaffUser.JobRole> items = FXCollections.observableArrayList(StaffUser.JobRole.values());
         jobRoleLst.setItems(items);
@@ -100,5 +106,17 @@ public class EditStaffController implements DomainObjectToEdit {
         ObservableList<StaffUser> items = FXCollections.observableArrayList(getAllStaff.execute());
         usersLst.setItems(items);
         usersLst.getSelectionModel().selectFirst();
+    }
+
+    private void showSkillsAssignedToStaff() {
+        findSkillsAssignedToStaff.requestList.add(usersLst.getSelectionModel().getSelectedItem());
+        Optional<List<Skill>> assignedSkills = findSkillsAssignedToStaff.execute();
+
+        if (assignedSkills.isPresent()) {
+            ObservableList<Skill> items = FXCollections.observableArrayList(assignedSkills.get());
+            staffSkillLst.setItems(items);
+        } else {
+            staffSkillLst.getItems().clear();
+        }
     }
 }

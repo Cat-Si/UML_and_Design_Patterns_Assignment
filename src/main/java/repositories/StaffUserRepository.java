@@ -30,8 +30,16 @@ public class StaffUserRepository implements BaseStaffUserRepository {
     public void edit(StaffUser staffUser) {
         for (StaffUser su : getAll()) {
             if (su.getId().equals(staffUser.getId())) {
-                su.setFullName(staffUser.getFullName());
+                su.getFirstName();
+                su.getSurname();
+                su.getUsername();
+                su.getPassword();
+                su.setSystemRole(staffUser.getSystemRole());
+                su.getStaffRole();
+                su.setCurrentManager(staffUser.getCurrentManager());
+
             }
         }
+
     }
 }

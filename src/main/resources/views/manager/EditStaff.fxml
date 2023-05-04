@@ -49,8 +49,15 @@
                    text="Select a System Role:"/>
             <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="6"
                       fx:id="systemRoleLst" />
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="7"
+                   text="Skills Assigned to Staff Member:"/>
+            <ScrollPane GridPane.columnIndex="1" GridPane.rowIndex="7">
+                <content>
+                    <ListView fx:id="staffSkillLst"/>
+                </content>
+            </ScrollPane>
 
-            <HBox GridPane.rowIndex="7" GridPane.columnSpan="3">
+            <HBox GridPane.rowIndex="9" GridPane.columnSpan="3">
                 <Button text="Edit"
                         onAction="#handleEditStaff"  />
 
