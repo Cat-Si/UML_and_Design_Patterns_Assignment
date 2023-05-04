@@ -41,7 +41,6 @@ public class EditStaffController  {
     @FXML
     private ComboBox<StaffUser> usersLst;
 
-
     @FXML
     private  ListView<Skill> staffSkillLst;
 
@@ -124,6 +123,7 @@ public class EditStaffController  {
 
     private void showSkillsAssignedToStaff() {
         RetrieveSkillsAssignedToStaff.retrieveSkillsAssignedToStaff(findSkillsAssignedToStaff, usersLst.getSelectionModel().getSelectedItem(), staffSkillLst);
+
     }
 
 }
