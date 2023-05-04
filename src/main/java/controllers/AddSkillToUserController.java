@@ -39,8 +39,6 @@ public class AddSkillToUserController {
     private final RemoveSkillAssignedToStaff removeSkillAssignedToStaff = new RemoveSkillAssignedToStaff(Ioc_Container.getUserSkillRepository());
 
     public void initialize() {
-        showAllStaff();
-        showAllSkill();
         showSkillAssignedToStaff();
     }
 

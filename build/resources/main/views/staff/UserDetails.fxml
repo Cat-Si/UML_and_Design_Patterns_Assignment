@@ -17,8 +17,8 @@
     </left>
     <center>
         <GridPane>
-            <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="0"
-                      fx:id="loggedUser" />
+            <ListView GridPane.columnIndex="1" GridPane.rowIndex="0" minWidth="200" maxHeight="25"
+                      fx:id="usersLst" onMouseClicked="#passItemToEdit" />
             <Label GridPane.columnIndex="0" GridPane.rowIndex="1"
                    text="Firstname"/>
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="1"
@@ -39,11 +39,19 @@
                    text="Select a Job Role:"/>
             <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="5"
                       fx:id="jobRoleLst" />
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="6"
+                   text="Select a System Role:"/>
+            <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="6"
+                      fx:id="systemRoleLst" />
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="7"
+                   text="Manager:"/>
+            <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="7"
+                      fx:id="manager" />
 
 
             <HBox GridPane.rowIndex="9" GridPane.columnSpan="3">
                 <Button text="Edit"
-                        onMouseClicked="#handleEditDetails"  />
+                        onAction="#handleEditDetails"  />
 
             </HBox>
         </GridPane>

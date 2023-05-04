@@ -3,6 +3,7 @@ package controllers;
 
 import controllers.utility.RetrieveSkillsAssignedToStaff;
 import domain.Manager;
+import router.RouteNames;
 import domain.Skill;
 import domain.StaffUser;
 import domain.User;
@@ -18,6 +19,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import repositories.interfaces.BaseStaffUserRepository;
+import router.Router;
 import useCases.staff.EditStaff;
 import useCases.staff.GetAllManagers;
 import useCases.staff.GetAllStaff;
@@ -25,14 +27,13 @@ import useCases.staff.LoggedInUser;
 import useCases.staffSkill.FindSkillsAssignedToStaff;
 
 import java.io.IOException;
+import java.util.List;
 
 public class UserDetailsController {
 
-   private StaffUser loggedInUser = Ioc_Container.getStaffUserRepository().getAll().get(0);;
+
     private StaffUser selectedUser;
 
-    @FXML
-    private ComboBox loggedUser;
     @FXML
     private TextField firstName;
     @FXML
@@ -42,60 +43,68 @@ public class UserDetailsController {
     @FXML
     private TextField password;
     @FXML
+    private ComboBox<User.SystemRole> systemRoleLst;
+
+    @FXML
     private ComboBox<StaffUser.JobRole> jobRoleLst;
     @FXML
-    private ComboBox<StaffUser> usersLst;
+    private ComboBox<Manager> manager;
+
+    @FXML
+    private ListView<StaffUser> usersLst;
 
 
 
     private final EditStaff editStaff = new EditStaff(Ioc_Container.getStaffUserRepository());
 
-
+    private final GetAllStaff getAllStaff = new GetAllStaff(Ioc_Container.getStaffUserRepository());
     public void initialize() {
         showJobRole();
-        loggedInUser();
+        showAllStaff();
+
 
 
     }
 
 
 
-    public void passItemToEdit(ActionEvent event) {//Occurs after load - via Router call
-        selectedUser = loggedInUser;
+    public void passItemToEdit(MouseEvent mouse) {//Occurs after load - via Router call
+        selectedUser = usersLst.getSelectionModel().getSelectedItem();
         System.out.println(selectedUser);
-        loggedUser.getSelectionModel().select(selectedUser);
         firstName.setText(selectedUser.getFirstName());
         lastName.setText(selectedUser.getSurname());
         username.setText(selectedUser.getUsername());
         password.setText(selectedUser.getPassword());
-
+        systemRoleLst.getSelectionModel().select(selectedUser.getSystemRole());
         jobRoleLst.getSelectionModel().select(selectedUser.getStaffRole());
-
+        manager.getSelectionModel().select(selectedUser.getCurrentManager());
 
     }
 
     @FXML
-    private void handleEditDetails() throws IOException {
+    private void handleEditDetails(ActionEvent event) throws IOException {
         String forname = firstName.getText();
         String surname = lastName.getText();
         String user = username.getText();
         String pass = password.getText();
-
+        User.SystemRole selectedSystemRole = systemRoleLst.getSelectionModel().getSelectedItem();
         StaffUser.JobRole selectedJobRole = jobRoleLst.getSelectionModel().getSelectedItem();
-
+        Manager selectedManager = manager.getSelectionModel().getSelectedItem();
         try {
-            editStaff.requestList.add(loggedInUser);
-            editStaff.requestList.add(loggedInUser.getId());
+            editStaff.requestList.add(selectedUser.getId());
             editStaff.requestList.add(forname);
             editStaff.requestList.add(surname);
             editStaff.requestList.add(user);
             editStaff.requestList.add(pass);
+            editStaff.requestList.add(selectedSystemRole);
             editStaff.requestList.add(selectedJobRole);
+            editStaff.requestList.add(selectedManager);
             editStaff.execute();
         }catch (IllegalArgumentException e){
             AlertMessage.showMessage(Alert.AlertType.ERROR, e.getMessage());
         }
 
+        Router.changeRoute(RouteNames.USER_DETAILS, event);
     }
 
     private void showJobRole() {
@@ -103,11 +112,19 @@ public class UserDetailsController {
         jobRoleLst.setItems(items);
     }
 
+/*
     private void loggedInUser() {
         StaffUser loggedInUser = Ioc_Container.getStaffUserRepository().getAll().get(0);
 
     }
+*/
 
+    private void showAllStaff() {
+        List<StaffUser> allStaff = getAllStaff.execute();
+        StaffUser firstUser = allStaff.get(0);
+        ObservableList<StaffUser> items = FXCollections.observableArrayList(firstUser);
+        usersLst.setItems(items);
+    }
 
 
 }
