@@ -33,10 +33,6 @@ public class NavBarManagerController {
         Router.changeRoute(RouteNames.ADD_STAFF, event);
     }
 
-    @FXML
-    private void removeCategory(ActionEvent event)throws IOException {
-        Router.changeRoute(RouteNames.REMOVE_CATEGORY, event);
-    }
 
     @FXML
     private void handleQuitAction(ActionEvent event) {

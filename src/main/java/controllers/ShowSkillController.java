@@ -24,9 +24,7 @@ public class ShowSkillController {
 
     private  final GetAllSkills getAllSkills = new GetAllSkills(Ioc_Container.getSkillRepository());
 
-    private final RemoveSkillAssignedToStaff removeSkillAssignedToStaff = new RemoveSkillAssignedToStaff(Ioc_Container.getUserSkillRepository());
-    private final AddSkillToStaff addSkillToStaff = new AddSkillToStaff(Ioc_Container.getUserSkillRepository());
-    private final EditSkill editSkill = new EditSkill(Ioc_Container.getSkillRepository());
+
     @FXML
     private ComboBox<Skill> skillList;
 

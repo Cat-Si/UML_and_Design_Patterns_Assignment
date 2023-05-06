@@ -19,6 +19,8 @@ import useCases.staffSkill.RemoveSkillAssignedToStaff;
 
 public class AddSkillToUserController {
 
+    //Not Working
+
     @FXML
     private ListView<StaffUser> staffLst;
 
@@ -65,12 +67,6 @@ public class AddSkillToUserController {
             AlertMessage.showMessage(Alert.AlertType.ERROR, e.getMessage());
         }
     }
-
-
-
-
-
-
 
 
 

@@ -30,8 +30,6 @@ public class EditSkillController implements DomainObjectToEdit {
 
     @FXML
     private TextField skillName;
-    @FXML
-    private ListView<Skill> skillLst;
 
     private final EditSkill editSkill = new EditSkill(Ioc_Container.getSkillRepository());
 

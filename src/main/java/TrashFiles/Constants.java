@@ -1,4 +1,4 @@
-package globals;
+package TrashFiles;
 
 public class Constants {
 //    public static final String VIEW_PATH = "/views/";

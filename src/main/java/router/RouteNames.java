@@ -1,7 +1,5 @@
 package router;
 
-import controllers.RemoveCategory;
-
 public enum RouteNames {
     HOME("Home.fxml"),
 
@@ -13,7 +11,8 @@ public enum RouteNames {
 
     SHOW_SKILL("manager/ShowSkill.fxml"),
     ADD_STAFF("manager/AddStaff.fxml"),
-    REMOVE_CATEGORY("manager/RemoveCategory.fxml"),
+
+    //REMOVE_CATEGORY("manager/RemoveCategoryController.fxml") - not used,
 
     //Staff Views
     STAFF_MAIN("staff/StaffMainPage.fxml"),

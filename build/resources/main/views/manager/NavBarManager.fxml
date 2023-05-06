@@ -30,9 +30,6 @@
                    onAction="#addStaff"
                    accessibleText="Add Staff Member Link"/>
 
-        <Hyperlink text="Remove Category"
-                   onAction="#removeCategory"
-                   accessibleText="Remove Category Link"/>
 
     </VBox>
 
