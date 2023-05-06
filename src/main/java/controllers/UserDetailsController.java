@@ -1,10 +1,8 @@
 package controllers;
 
 
-import controllers.utility.RetrieveSkillsAssignedToStaff;
 import domain.Manager;
 import router.RouteNames;
-import domain.Skill;
 import domain.StaffUser;
 import domain.User;
 import general.AlertMessage;
@@ -18,13 +16,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import repositories.interfaces.BaseStaffUserRepository;
 import router.Router;
 import useCases.staff.EditStaff;
-import useCases.staff.GetAllManagers;
 import useCases.staff.GetAllStaff;
-import useCases.staff.LoggedInUser;
-import useCases.staffSkill.FindSkillsAssignedToStaff;
 
 import java.io.IOException;
 import java.util.List;

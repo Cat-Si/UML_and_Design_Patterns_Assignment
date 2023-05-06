@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controllers.NavBarStaffController"
+      style="-fx-border-color: darkgrey">
+
+    <VBox styleClass="MenuBar"
+          accessibleText="Links to Other Pages">
+
+        <Hyperlink text="My Details"
+                   onAction="#userDetails"
+                   accessibleText="View and Edit My Details Link"/>
+
+        <Hyperlink text="My Skills"
+                   onAction="#userSkill"
+                   accessibleText="View and Edit My Skills Link"/>
+    </VBox>
+
+    <VBox styleClass="MenuBar"
+          accessibleText="Quit Application Links">
+        <Hyperlink text="Quit"
+                   onAction="#handleQuitAction"
+                   accessibleText="Quit Application"/>
+    </VBox>
+
+</VBox>

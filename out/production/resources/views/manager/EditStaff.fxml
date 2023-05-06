@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane  xmlns:fx="http://javafx.com/fxml/1"
+             fx:controller="controllers.EditStaffController"
+             styleClass="Window">
+    <top>
+        <HBox>
+            <Label styleClass="Heading" text="Edit Staff"/>
+        </HBox>
+    </top>
+    <left>
+        <fx:include source="NavBarManager.fxml"/>
+    </left>
+    <right>
+    </right>
+    <center>
+        <GridPane>
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="0"
+
+                   text="Current Staff Members"/>
+
+                <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="0" minWidth="200"
+                          fx:id="usersLst" onAction="#passItemToEdit"/>
+
+
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="1"
+                   text="Firstname"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1"
+                       fx:id="firstName" />
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="2"
+                   text="Surname"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2"
+                       fx:id="lastName" />
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="3"
+                   text="Username"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3"
+                       fx:id="username" />
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="4"
+                   text="Password"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4"
+                       fx:id="password" />
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="5"
+                   text="Select a Job Role:"/>
+            <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="5"
+                      fx:id="jobRoleLst" />
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="6"
+                   text="Select a System Role:"/>
+            <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="6"
+                      fx:id="systemRoleLst" />
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="7"
+                   text="Manager:"/>
+            <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="7"
+                      fx:id="manager" />
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="8"
+                   text="Skills Assigned to Staff Member:"/>
+            <ScrollPane GridPane.columnIndex="1" GridPane.rowIndex="8">
+                <content>
+                    <ListView fx:id="staffSkillLst"/>
+                </content>
+            </ScrollPane>
+
+            <HBox GridPane.rowIndex="9" GridPane.columnSpan="3">
+                <Button text="Edit"
+                        onMouseClicked="#handleEditStaff"  />
+
+            </HBox>
+        </GridPane>
+    </center>
+    <bottom>
+    </bottom>
+</BorderPane>

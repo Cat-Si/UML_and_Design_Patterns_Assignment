@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane  xmlns:fx="http://javafx.com/fxml/1"
+             fx:controller="controllers.ShowSkillController"
+             styleClass="Window">
+    <top>
+        <HBox>
+            <Label styleClass="Heading" text="Skills"/>
+        </HBox>
+    </top>
+    <left>
+        <fx:include source="NavBarManager.fxml"/>
+    </left>
+    <right>
+    </right>
+    <center>
+        <GridPane>
+            <Label GridPane.columnIndex="2" GridPane.rowIndex="1"
+
+                   text="Skills"/>
+            <ComboBox GridPane.columnIndex="2" GridPane.rowIndex="2"  minWidth="200"
+
+                fx:id="skillList"  />
+
+
+            <HBox GridPane.rowIndex="4" GridPane.columnSpan="4">
+                <Button text="Edit"
+                        onAction="#handleEditSkill"  />
+
+            </HBox>
+        </GridPane>
+    </center>
+    <bottom>
+    </bottom>
+</BorderPane>

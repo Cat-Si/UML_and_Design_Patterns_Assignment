@@ -16,7 +16,7 @@ public class UserSkill extends Validator {
 
     private SkillLevel strengthOfSkills;
 
-    public Optional<LocalDate> getExpiry() {
+    public LocalDate getExpiry() {
         return expiry;
     }
 
@@ -63,7 +63,7 @@ public class UserSkill extends Validator {
 
     public UUID getId(){ return id;}
 
-    public final Skill getMySkill() {
+    public final String getMySkill() {
         return mySkill; }
 
     public StaffUser getStaff() {

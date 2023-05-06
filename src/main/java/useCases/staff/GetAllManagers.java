@@ -7,7 +7,7 @@ import repositories.interfaces.BaseManagerRepository;
 import java.util.List;
 
 public class GetAllManagers {
-    public final BaseManagerRepository MANAGER_REPOSITORY;
+    private final BaseManagerRepository MANAGER_REPOSITORY;
 
     public GetAllManagers(BaseManagerRepository managerRepository) {
         MANAGER_REPOSITORY = managerRepository;

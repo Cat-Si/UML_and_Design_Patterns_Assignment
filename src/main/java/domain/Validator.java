@@ -15,15 +15,5 @@ public abstract class Validator {
         }
     }
 
-    public void isTooEarlyDate(LocalDate dateToCheck, LocalDate dateToCompareTo) throws IllegalArgumentException{
-       if(dateToCheck.isBefore(dateToCompareTo)){
-            throw new IllegalArgumentException("Date is too old");
-       }
-    }
 
-    public void isFutureDate(LocalDate toCheck) throws IllegalArgumentException{
-        if(toCheck.isAfter(LocalDate.now())){
-            throw new IllegalArgumentException("Date is in the future");
-        }
-    }
 }
