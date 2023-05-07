@@ -4,7 +4,6 @@ import Exceptions.EntryAlreadyExistsException;
 import controllers.interfaces.DomainObjectToEdit;
 import controllers.utility.RetrieveSkillsAssignedToStaff;
 import domain.Skill;
-import TrashFiles.SkillLevel;
 import domain.StaffUser;
 import domain.UserSkill;
 import general.AlertMessage;
@@ -22,6 +21,8 @@ import useCases.staffSkill.AddSkillToStaff;
 import useCases.staffSkill.FindSkillsAssignedToStaff;
 import useCases.staffSkill.RemoveSkillAssignedToStaff;
 
+import java.util.Arrays;
+
 public class AddSkillToUserController implements DomainObjectToEdit {
 
     private UserSkill selectedSkill;
@@ -33,12 +34,15 @@ public class AddSkillToUserController implements DomainObjectToEdit {
     private ListView<Skill> skillLst;
 
     @FXML
-    private ListView<UserSkill> staffSkillLst;
+    private ListView<Skill> staffSkillLst;
     @FXML
     private TextField skillName;
 
     @FXML
-    ComboBox<UserSkill.SkillLevel> strengthOfSkill;
+    ListView<UserSkill.SkillLevel> strengthOfSkill;
+
+    @FXML
+    ComboBox<UserSkill.SkillLevel> strengthCombo;
 
     private final GetAllStaff getAllStaff = new GetAllStaff(Ioc_Container.getStaffUserRepository());
 
@@ -52,6 +56,7 @@ public class AddSkillToUserController implements DomainObjectToEdit {
 
     public void initialize() {
         showSkillAssignedToStaff();
+        strengthCombo.getItems().setAll(Arrays.asList(UserSkill.SkillLevel.values()));
     }
 
     @Override

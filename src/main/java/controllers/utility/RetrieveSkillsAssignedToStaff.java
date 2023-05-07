@@ -13,12 +13,12 @@ import java.util.List;
 import java.util.Optional;
 
 public class RetrieveSkillsAssignedToStaff {
-    public static void retrieveSkillsAssignedToStaff(FindSkillsAssignedToStaff findSkillsAssignedToStaff, StaffUser staffLst, ListView<UserSkill> staffSkillLst) {
+    public static void retrieveSkillsAssignedToStaff(FindSkillsAssignedToStaff findSkillsAssignedToStaff, StaffUser staffLst, ListView<Skill> staffSkillLst) {
         findSkillsAssignedToStaff.requestList.add(staffLst);
         Optional<List<Skill>> staffSkill = findSkillsAssignedToStaff.execute();
 
         if (staffSkill.isPresent()) {
-            ObservableList<UserSkill> items = FXCollections.observableArrayList();
+            ObservableList<Skill> items = FXCollections.observableArrayList(staffSkill.get());
             staffSkillLst.setItems(items);
         } else {
             staffSkillLst.getItems().clear();
