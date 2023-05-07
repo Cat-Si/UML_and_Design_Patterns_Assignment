@@ -6,14 +6,20 @@ Diagrams can also be found seperately via the submission link due to potential i
 
 
 ## Class Diagram 
-![img_1.png](img_1.png)
 
+![img.png](img.png)
 
 
 ## Sequence Diagrams 
 
 ### Show Skills 
-![img.png](img.png)
-### Show Staff 
 
-### 
+![img_1.png](img_1.png)
+
+### Add Skills
+
+![img_2.png](img_2.png)
+
+### Edit Skills 
+
+![img_3.png](img_3.png)

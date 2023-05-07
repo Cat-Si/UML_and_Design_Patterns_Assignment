@@ -13,6 +13,8 @@ public class UserSkill extends Validator {
 
     private Skill mySkill;
 
+    private String skillName;
+
 
     private SkillLevel strengthOfSkills;
 
@@ -37,6 +39,16 @@ public class UserSkill extends Validator {
         addSkill(mySkill);
     }
 
+    public enum SkillLevel {
+        NONE,
+        BASIC,
+        ADVANCED,
+        EXPERT;  }
+
+    public SkillLevel getStrengthOfSkills() {
+        return strengthOfSkills;
+
+    }
     public void addSkill(Skill mySkill) {
         if (!currentSkills.contains(mySkill)) {
             currentSkills.add(mySkill);
@@ -93,5 +105,9 @@ public class UserSkill extends Validator {
     public String toString(){
         return String.format("%s: (current number of skills: %d)",
                 staff, currentSkills.size());
+    }
+
+    public String getSkillName() {
+        return skillName;
     }
 }

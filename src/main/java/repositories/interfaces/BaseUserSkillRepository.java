@@ -2,18 +2,18 @@ package repositories.interfaces;
 
 import Exceptions.EntryAlreadyExistsException;
 import domain.Skill;
-import domain.SkillLevel;
 import domain.StaffUser;
 import domain.UserSkill;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 public interface BaseUserSkillRepository {
 
-    void add(UUID UUID, StaffUser staff, Skill mySkill, SkillLevel strengthOfSkills, LocalDate expiry, String notes) throws EntryAlreadyExistsException;
+    void add(UUID UUID, StaffUser staff, Skill mySkill, UserSkill.SkillLevel strengthOfSkills, LocalDate expiry, String notes) throws EntryAlreadyExistsException;
 
     List<UserSkill> getAll();
 

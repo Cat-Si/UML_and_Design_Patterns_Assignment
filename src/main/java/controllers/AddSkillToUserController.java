@@ -1,25 +1,30 @@
 package controllers;
 
 import Exceptions.EntryAlreadyExistsException;
+import controllers.interfaces.DomainObjectToEdit;
 import controllers.utility.RetrieveSkillsAssignedToStaff;
 import domain.Skill;
+import TrashFiles.SkillLevel;
 import domain.StaffUser;
+import domain.UserSkill;
 import general.AlertMessage;
 import globals.Ioc_Container;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import useCases.skills.GetAllSkills;
 import useCases.staff.GetAllStaff;
 import useCases.staffSkill.AddSkillToStaff;
 import useCases.staffSkill.FindSkillsAssignedToStaff;
 import useCases.staffSkill.RemoveSkillAssignedToStaff;
 
-public class AddSkillToUserController {
+public class AddSkillToUserController implements DomainObjectToEdit {
 
-    //Not Working
+    private UserSkill selectedSkill;
 
     @FXML
     private ListView<StaffUser> staffLst;
@@ -28,7 +33,12 @@ public class AddSkillToUserController {
     private ListView<Skill> skillLst;
 
     @FXML
-    private ListView<Skill> staffSkillLst;
+    private ListView<UserSkill> staffSkillLst;
+    @FXML
+    private TextField skillName;
+
+    @FXML
+    ComboBox<UserSkill.SkillLevel> strengthOfSkill;
 
     private final GetAllStaff getAllStaff = new GetAllStaff(Ioc_Container.getStaffUserRepository());
 
@@ -42,6 +52,13 @@ public class AddSkillToUserController {
 
     public void initialize() {
         showSkillAssignedToStaff();
+    }
+
+    @Override
+    public void passItemToEdit(Object skillToEdit) {
+        selectedSkill = (UserSkill) skillToEdit;
+        skillName.setText(selectedSkill.getSkillName());
+        strengthOfSkill.getSelectionModel().select(selectedSkill.getStrengthOfSkills());
     }
 
     @FXML
@@ -67,6 +84,12 @@ public class AddSkillToUserController {
             AlertMessage.showMessage(Alert.AlertType.ERROR, e.getMessage());
         }
     }
+
+
+
+
+
+
 
 
 
