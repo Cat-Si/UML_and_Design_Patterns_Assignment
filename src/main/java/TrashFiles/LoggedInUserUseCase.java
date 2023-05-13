@@ -5,7 +5,8 @@ import domain.StaffUser;
 import domain.User;
 import repositories.interfaces.BaseStaffUserRepository;
 import useCases.BaseUseCase;
-
+import domain.enumerators.JobRole;
+import domain.enumerators.SystemRole;
 import java.util.UUID;
 
 public class LoggedInUserUseCase extends BaseUseCase {
@@ -22,8 +23,8 @@ public class LoggedInUserUseCase extends BaseUseCase {
         String surname = (String) getNextRequestParameter();
         String userName = (String) getNextRequestParameter();
         String password = (String) getNextRequestParameter();
-        User.SystemRole systemRole = (User.SystemRole) getNextRequestParameter();
-        StaffUser.JobRole staffRole = (StaffUser.JobRole) getNextRequestParameter();
+        SystemRole systemRole = (SystemRole) getNextRequestParameter();
+        JobRole staffRole = (JobRole) getNextRequestParameter();
         Manager manager = (Manager) getNextRequestParameter();
         StaffUser loggedInUser = new StaffUser(id, forename, surname,userName, password,
                 systemRole,staffRole,manager);

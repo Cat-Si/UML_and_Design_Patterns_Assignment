@@ -1,15 +1,18 @@
 package useCases.staff;
 
 import Exceptions.EntryAlreadyExistsException;
-import domain.Manager;
-import domain.StaffUser;
-import domain.User;
+import TrashFiles.getStaffDetails;
+import domain.*;
+import domain.enumerators.JobRole;
+import domain.enumerators.SystemRole;
 import useCases.utility.UUIDGenerator;
 import repositories.interfaces.BaseStaffUserRepository;
 import useCases.BaseUseCase;
 
 public class AddNewStaff extends BaseUseCase {
      private final BaseStaffUserRepository STAFF_REPOSITORY;
+
+     private getStaffDetails staffDetails;
 
     public AddNewStaff(BaseStaffUserRepository staffUserRepository) {
         STAFF_REPOSITORY = staffUserRepository;
@@ -20,10 +23,11 @@ public class AddNewStaff extends BaseUseCase {
         String surname = (String) getNextRequestParameter();
         String userName = (String) getNextRequestParameter();
         String password = (String) getNextRequestParameter();
-        User.SystemRole systemRole = (User.SystemRole) getNextRequestParameter();
-        StaffUser.JobRole staffRole = (StaffUser.JobRole) getNextRequestParameter();
+        SystemRole systemRole = (SystemRole) getNextRequestParameter();
+        JobRole staffRole = (JobRole) getNextRequestParameter();
         Manager manager = (Manager) getNextRequestParameter();
-        StaffUser newStaffUser = new StaffUser(UUIDGenerator.generate(), forename, surname,userName, password, systemRole, staffRole, manager);
+        StaffUser newStaffUser = new StaffUser(UUIDGenerator.generate(), forename, surname,userName, password,
+                    systemRole,staffRole,manager);
         try {
             STAFF_REPOSITORY.add(newStaffUser);
         } catch (EntryAlreadyExistsException e) {

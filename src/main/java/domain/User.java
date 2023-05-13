@@ -1,5 +1,7 @@
 package domain;
 
+import domain.enumerators.SystemRole;
+
 import java.util.Objects;
 import java.util.UUID;
 
@@ -94,12 +96,7 @@ public abstract class User extends Validator{
         isNull(fullName, "Please Enter a name");
     }
 
-    public enum SystemRole {
-        ADMINISTRATOR,
-        MANAGER,
-        STAFF_USER;
 
-    }
     @Override
     public String toString() {
         return String.format("Name: %s \n JobRole: %s", fullName, systemRole);

@@ -1,5 +1,7 @@
 package domain;
 
+import domain.enumerators.SystemRole;
+
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.UUID;

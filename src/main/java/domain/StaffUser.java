@@ -1,4 +1,7 @@
 package domain;
+import domain.enumerators.JobRole;
+import domain.enumerators.SystemRole;
+
 import java.util.Objects;
 import java.util.UUID;
 
@@ -16,6 +19,7 @@ public class StaffUser extends User {
         this.staffRole = staffRole;
         this.currentManager = currentManager;
     }
+
 
 
     public void setStaffRole(JobRole staffRole) {
@@ -36,14 +40,6 @@ public class StaffUser extends User {
     public void setCurrentManager(Manager currentManager) {
 
         this.currentManager = currentManager;
-    }
-
-    public enum JobRole {
-        JUNIOR_DEVELOPER,
-        MIDLEVEL_DEVELOPER,
-        SENIOR_DEVELOPER;
-
-
     }
 
     @Override

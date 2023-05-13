@@ -4,6 +4,7 @@ import Exceptions.EntryAlreadyExistsException;
 import controllers.interfaces.DomainObjectToEdit;
 import controllers.utility.RetrieveSkillsAssignedToStaff;
 import domain.Skill;
+import domain.enumerators.SkillLevel;
 import domain.StaffUser;
 import domain.UserSkill;
 import general.AlertMessage;
@@ -22,10 +23,12 @@ import useCases.staffSkill.FindSkillsAssignedToStaff;
 import useCases.staffSkill.RemoveSkillAssignedToStaff;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
-public class AddSkillToUserController implements DomainObjectToEdit {
+public class AddSkillToUserController {
 
-    private UserSkill selectedSkill;
+    //private UserSkill selectedSkill;
 
     @FXML
     private ListView<StaffUser> staffLst;
@@ -39,10 +42,10 @@ public class AddSkillToUserController implements DomainObjectToEdit {
     private TextField skillName;
 
     @FXML
-    ListView<UserSkill.SkillLevel> strengthOfSkill;
+    ListView<SkillLevel> strengthOfSkill;
 
     @FXML
-    ComboBox<UserSkill.SkillLevel> strengthCombo;
+    ComboBox<SkillLevel> strengthCombo;
 
     private final GetAllStaff getAllStaff = new GetAllStaff(Ioc_Container.getStaffUserRepository());
 
@@ -55,8 +58,43 @@ public class AddSkillToUserController implements DomainObjectToEdit {
     private final RemoveSkillAssignedToStaff removeSkillAssignedToStaff = new RemoveSkillAssignedToStaff(Ioc_Container.getUserSkillRepository());
 
     public void initialize() {
+        showAllSkill();
+        showAllStaff();
         showSkillAssignedToStaff();
-        strengthCombo.getItems().setAll(Arrays.asList(UserSkill.SkillLevel.values()));
+        strengthCombo.getItems().setAll(Arrays.asList(SkillLevel.values()));
+    }
+
+    @FXML
+    private void handleAddSkill() {
+        addSkillToStaff.requestList.add(staffLst.getSelectionModel().getSelectedItem());
+        addSkillToStaff.requestList.add(staffLst.getSelectionModel().getSelectedItem());
+
+        try {
+            addSkillToStaff.execute();
+            showSkillAssignedToStaff();
+        } catch (EntryAlreadyExistsException e) {
+            AlertMessage.showMessage(Alert.AlertType.ERROR, e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleRemoveSkill() {
+        removeSkillAssignedToStaff.requestList.add(staffLst.getSelectionModel().getSelectedItem());
+        removeSkillAssignedToStaff.requestList.add(staffSkillLst.getSelectionModel().getSelectedItem());
+
+        try {
+            removeSkillAssignedToStaff.execute();
+            showSkillAssignedToStaff();
+        } catch (IllegalArgumentException e) {
+            AlertMessage.showMessage(Alert.AlertType.ERROR, e.getMessage());
+        }
+    }
+
+
+
+  /*  public void initialize() {
+        showSkillAssignedToStaff();
+        strengthCombo.getItems().setAll(Arrays.asList(SkillLevel.values()));
     }
 
     @Override
@@ -87,8 +125,8 @@ public class AddSkillToUserController implements DomainObjectToEdit {
             showSkillAssignedToStaff();
         } catch (IllegalArgumentException e) {
             AlertMessage.showMessage(Alert.AlertType.ERROR, e.getMessage());
-        }
-    }
+        }*/
+
 
 
 
@@ -110,8 +148,18 @@ public class AddSkillToUserController implements DomainObjectToEdit {
         skillLst.getSelectionModel().select(0);
     }
 
+    @FXML
     private void showSkillAssignedToStaff() {
-        RetrieveSkillsAssignedToStaff.retrieveSkillsAssignedToStaff(findSkillsAssignedToStaff, staffLst.getSelectionModel().getSelectedItem(), staffSkillLst);
+        findSkillsAssignedToStaff.requestList.add(staffLst.getSelectionModel().getSelectedItem());
+        Optional<List<Skill>> staffSkill = findSkillsAssignedToStaff.execute();
+
+        if (staffSkill.isPresent()) {
+            ObservableList<Skill> items = FXCollections.observableArrayList(staffSkill.get());
+            staffSkillLst.setItems(items);
+        } else {
+            staffSkillLst.getItems().clear();
+        }
     }
 
 }
+

@@ -1,8 +1,8 @@
 package useCases.staff;
 
-import domain.Manager;
-import domain.StaffUser;
-import domain.User;
+import domain.*;
+import domain.enumerators.JobRole;
+import domain.enumerators.SystemRole;
 import repositories.interfaces.BaseStaffUserRepository;
 import useCases.BaseUseCase;
 
@@ -23,8 +23,8 @@ public class EditStaff extends BaseUseCase {
         String surname = (String) getNextRequestParameter();
         String userName = (String) getNextRequestParameter();
         String password = (String) getNextRequestParameter();
-        User.SystemRole systemRole = (User.SystemRole) getNextRequestParameter();
-        StaffUser.JobRole staffRole = (StaffUser.JobRole) getNextRequestParameter();
+        SystemRole systemRole = (SystemRole) getNextRequestParameter();
+        JobRole staffRole = (JobRole) getNextRequestParameter();
         Manager manager = (Manager) getNextRequestParameter();
         StaffUser editedStaff = new StaffUser(id, forename, surname,userName, password,
                 systemRole,staffRole,manager);
