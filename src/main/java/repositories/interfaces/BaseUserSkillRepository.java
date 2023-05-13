@@ -17,7 +17,7 @@ public interface BaseUserSkillRepository {
 
     List<UserSkill> getAll();
 
-    Optional<List<Skill>> getSkillsForStaff(StaffUser su);
+    Optional<List<Skill>> getSkillsForStaff(StaffUser u);
 
     void removeSkillFromStaff(StaffUser u, Skill s) throws IllegalArgumentException;
 }

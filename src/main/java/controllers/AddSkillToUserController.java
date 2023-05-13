@@ -125,9 +125,9 @@ public class AddSkillToUserController {
             showSkillAssignedToStaff();
         } catch (IllegalArgumentException e) {
             AlertMessage.showMessage(Alert.AlertType.ERROR, e.getMessage());
-        }*/
+        }
 
-
+*/
 
 
 

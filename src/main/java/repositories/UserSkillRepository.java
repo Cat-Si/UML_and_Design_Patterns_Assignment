@@ -45,9 +45,9 @@ public class UserSkillRepository implements BaseUserSkillRepository {
         return  Optional.empty();
     }*/
 
-    public Optional<List<Skill>> getSkillsForStaff(StaffUser su) {
+    public Optional<List<Skill>> getSkillsForStaff(StaffUser u) {
         for (UserSkill us : getAll()) {
-            if (us.getStaff().equals(su) && us.getSkill().equals(su)) {
+            if (us.getStaff().equals(u)) {
                 return Optional.of(us.getCurrentSkills());
             }
         }

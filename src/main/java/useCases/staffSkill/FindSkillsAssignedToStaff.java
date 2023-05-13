@@ -16,7 +16,7 @@ public class FindSkillsAssignedToStaff extends BaseUseCase {
     }
 
     public Optional<List<Skill>> execute() {
-        StaffUser su = (StaffUser) getNextRequestParameter();
-        return USER_SKILL_REPOSITORY.getSkillsForStaff(su);
+        StaffUser u = (StaffUser) getNextRequestParameter();
+        return USER_SKILL_REPOSITORY.getSkillsForStaff(u);
     }
 }

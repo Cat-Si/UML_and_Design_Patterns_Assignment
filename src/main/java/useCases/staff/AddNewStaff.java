@@ -1,7 +1,6 @@
 package useCases.staff;
 
 import Exceptions.EntryAlreadyExistsException;
-import TrashFiles.getStaffDetails;
 import domain.*;
 import domain.enumerators.JobRole;
 import domain.enumerators.SystemRole;
@@ -12,7 +11,6 @@ import useCases.BaseUseCase;
 public class AddNewStaff extends BaseUseCase {
      private final BaseStaffUserRepository STAFF_REPOSITORY;
 
-     private getStaffDetails staffDetails;
 
     public AddNewStaff(BaseStaffUserRepository staffUserRepository) {
         STAFF_REPOSITORY = staffUserRepository;

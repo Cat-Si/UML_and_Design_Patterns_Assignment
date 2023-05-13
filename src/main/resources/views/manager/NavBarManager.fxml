@@ -10,9 +10,6 @@
     <VBox styleClass="MenuBar"
           accessibleText="Links to Other Pages">
 
-       <!-- <Hyperlink text="View/Edit Skills"
-                   onAction="#editSkill"
-                   accessibleText="View and Edit Staff Skills Link"/>-->
 
         <Hyperlink text="Show Skills"
                    onAction="#showSkill"
