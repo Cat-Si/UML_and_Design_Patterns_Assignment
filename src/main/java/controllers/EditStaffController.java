@@ -18,6 +18,7 @@ import useCases.staff.GetAllManagers;
 import useCases.staff.GetAllStaff;
 import useCases.staffSkill.FindSkillsAssignedToStaff;
 import java.io.IOException;
+import java.lang.module.FindException;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,8 +46,6 @@ public class EditStaffController  {
     @FXML
     private  ListView<Skill> staffSkillLst;
 
-    @FXML
-    private ListView<Skill> skillLst;
 
 
     private final GetAllStaff getAllStaff = new GetAllStaff(Ioc_Container.getStaffUserRepository());
@@ -137,6 +136,7 @@ public class EditStaffController  {
         if (staffSkill.isPresent()) {
             ObservableList<Skill> items = FXCollections.observableArrayList(staffSkill.get());
             staffSkillLst.setItems(items);
+            System.out.println(staffSkillLst.getItems());
         } else {
             staffSkillLst.getItems().clear();
         }
