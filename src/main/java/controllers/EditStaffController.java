@@ -13,7 +13,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import useCases.skills.GetAllSkills;
 import useCases.staff.EditStaff;
 import useCases.staff.GetAllManagers;
 import useCases.staff.GetAllStaff;
@@ -47,14 +46,10 @@ public class EditStaffController  {
     private  ListView<Skill> staffSkillLst;
 
     @FXML
-    private ListView<StaffUser> staffLst;
-
-    @FXML
     private ListView<Skill> skillLst;
 
 
     private final GetAllStaff getAllStaff = new GetAllStaff(Ioc_Container.getStaffUserRepository());
-    private final GetAllSkills getAllSkills = new GetAllSkills(Ioc_Container.getSkillRepository());
     private final GetAllManagers getAllManagers = new GetAllManagers(Ioc_Container.getManagerRepository());
     private final EditStaff editStaff = new EditStaff(Ioc_Container.getStaffUserRepository());
     private final FindSkillsAssignedToStaff findSkillsAssignedToStaff = new FindSkillsAssignedToStaff(Ioc_Container.getUserSkillRepository());
@@ -68,8 +63,6 @@ public class EditStaffController  {
         showJobRole();
         showSystemRole();
         showManager();
-        showAllSkill();
-        showSkillAssignedToStaff();
         usersLst.setPromptText("Please Select a Staff User");
     }
 
@@ -85,6 +78,7 @@ public class EditStaffController  {
         systemRoleLst.getSelectionModel().select(selectedUser.getSystemRole());
         jobRoleLst.getSelectionModel().select(selectedUser.getStaffRole());
         manager.getSelectionModel().select(selectedUser.getCurrentManager());
+        showSkillAssignedToStaff();
 
     }
 
@@ -135,16 +129,9 @@ public class EditStaffController  {
 
     }
 
-
-    private void showAllSkill() {
-        ObservableList<Skill> items = FXCollections.observableArrayList(getAllSkills.execute());
-        skillLst.setItems(items);
-        skillLst.getSelectionModel().select(0);
-    }
-
     @FXML
     private void showSkillAssignedToStaff() {
-        findSkillsAssignedToStaff.requestList.add(staffLst.getSelectionModel().getSelectedItem());
+        findSkillsAssignedToStaff.requestList.add(usersLst.getSelectionModel().getSelectedItem());
         Optional<List<Skill>> staffSkill = findSkillsAssignedToStaff.execute();
 
         if (staffSkill.isPresent()) {
