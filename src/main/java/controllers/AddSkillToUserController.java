@@ -25,7 +25,7 @@ import java.util.Arrays;
 
 public class AddSkillToUserController implements DomainObjectToEdit {
 
-    private UserSkill selectedS
+    private UserSkill selectedSkill; 
 
     @FXML
     private ListView<StaffUser> staffLst;
