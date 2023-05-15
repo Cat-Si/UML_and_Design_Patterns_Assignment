@@ -1,12 +1,9 @@
 package controllers;
 
 import Exceptions.EntryAlreadyExistsException;
-import controllers.interfaces.DomainObjectToEdit;
-import controllers.utility.RetrieveSkillsAssignedToStaff;
 import domain.Skill;
 import domain.enumerators.SkillLevel;
 import domain.StaffUser;
-import domain.UserSkill;
 import general.AlertMessage;
 import globals.Ioc_Container;
 import javafx.collections.FXCollections;
@@ -42,10 +39,10 @@ public class AddSkillToUserController {
     private TextField skillName;
 
     @FXML
-    ListView<SkillLevel> strengthOfSkill;
+    private ListView<SkillLevel> strengthOfSkill;
 
     @FXML
-    ComboBox<SkillLevel> strengthCombo;
+    private ComboBox<SkillLevel> strengthCombo;
 
     private final GetAllStaff getAllStaff = new GetAllStaff(Ioc_Container.getStaffUserRepository());
 
@@ -150,15 +147,15 @@ public class AddSkillToUserController {
 
     @FXML
     private void showSkillAssignedToStaff() {
-        findSkillsAssignedToStaff.requestList.add(staffLst.getSelectionModel().getSelectedItem());
-        Optional<List<Skill>> staffSkill = findSkillsAssignedToStaff.execute();
-
-        if (staffSkill.isPresent()) {
+        if (staffLst.getSelectionModel().getSelectedItem()!=-1) {
+            findSkillsAssignedToStaff.requestList.add(staffLst.getSelectionModel().getSelectedItem());
+            Optional<List<Skill>> staffSkill = findSkillsAssignedToStaff.execute();
             ObservableList<Skill> items = FXCollections.observableArrayList(staffSkill.get());
             staffSkillLst.setItems(items);
         } else {
             staffSkillLst.getItems().clear();
         }
+
     }
 
 }

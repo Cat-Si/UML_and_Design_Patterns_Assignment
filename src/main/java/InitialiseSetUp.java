@@ -104,9 +104,9 @@ public class InitialiseSetUp {
         userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(1), skills.get(2), SkillLevel.NONE, expiry, "" ));
         userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(1), skills.get(3), SkillLevel.BASIC, expiry, "" ));
         userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(2), skills.get(0), SkillLevel.EXPERT, expiry, "Completed MOS exams" ));
-        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(1), skills.get(1), SkillLevel.EXPERT, expiry, "" ));
-        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(1), skills.get(2), SkillLevel.EXPERT, expiry, "" ));
-        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(1), skills.get(3), SkillLevel.EXPERT, expiry, "" ));
+        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(2), skills.get(1), SkillLevel.EXPERT, expiry, "" ));
+        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(2), skills.get(2), SkillLevel.EXPERT, expiry, "" ));
+        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(2), skills.get(3), SkillLevel.EXPERT, expiry, "" ));
 
 
 
