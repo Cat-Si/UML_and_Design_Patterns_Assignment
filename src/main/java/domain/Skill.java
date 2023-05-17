@@ -1,5 +1,6 @@
 package domain;
-import java.time.LocalDate;
+import domain.enumerators.SkillLevel;
+
 import java.util.Objects;
 import java.util.UUID;
 public class Skill extends Validator{
@@ -7,6 +8,9 @@ public class Skill extends Validator{
     private Category category;
     private UUID id;
     private String skillName;
+
+    private SkillLevel getStrengthOfSkill;
+
 
 
     public Skill(Category category, UUID id, String skillName){
@@ -40,6 +44,11 @@ public class Skill extends Validator{
     }
 
 
+
+    public SkillLevel getStrengthOfSkill() {
+        return getStrengthOfSkill;
+    }
+
     private final void validate(){
         isNull(id,"id must not be null");
         isNull(skillName,"name must not be null");
@@ -48,7 +57,7 @@ public class Skill extends Validator{
 
     @Override
     public String toString(){
-        return String.format("%s (%s)", skillName, getCategory());
+        return String.format("%s (%s) Level: %s", skillName, getCategory(), UserSkill.getStrengthOfSkill());
     }
 
     @Override

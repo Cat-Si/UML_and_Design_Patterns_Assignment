@@ -147,7 +147,7 @@ public class AddSkillToUserController {
 
     @FXML
     private void showSkillAssignedToStaff() {
-        if (staffLst.getSelectionModel().getSelectedItem()!=-1) {
+        if (staffLst.getSelectionModel().getSelectedIndex()!=-1) {
             findSkillsAssignedToStaff.requestList.add(staffLst.getSelectionModel().getSelectedItem());
             Optional<List<Skill>> staffSkill = findSkillsAssignedToStaff.execute();
             ObservableList<Skill> items = FXCollections.observableArrayList(staffSkill.get());

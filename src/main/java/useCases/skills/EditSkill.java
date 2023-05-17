@@ -2,6 +2,7 @@ package useCases.skills;
 
 import domain.Category;
 import domain.Skill;
+import domain.enumerators.SkillLevel;
 import repositories.interfaces.BaseSkillRepository;
 import useCases.BaseUseCase;
 import java.util.UUID;

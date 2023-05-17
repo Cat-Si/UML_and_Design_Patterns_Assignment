@@ -21,13 +21,13 @@
                        text="Skill name"/>
                 <ListView GridPane.columnIndex="1" GridPane.rowIndex="1"
                            fx:id="skillLst" />
-                <ListView GridPane.columnIndex="1" GridPane.rowIndex="1"
+                <ListView GridPane.columnIndex="1" GridPane.rowIndex="2"
                           fx:id="staffLst" />
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1"
+                <TextField GridPane.columnIndex="1" GridPane.rowIndex="3"
                           fx:id="skillName" />
-                <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="3"
+                <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="4"
                           fx:id="strengthCombo" />
-                <ListView GridPane.columnIndex="1" GridPane.rowIndex="1"
+                <ListView GridPane.columnIndex="1" GridPane.rowIndex="5"
                           fx:id="staffSkillLst" />
 
             </GridPane>

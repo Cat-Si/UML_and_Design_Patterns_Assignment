@@ -7,6 +7,7 @@ import globals.interfaces.DataProvider;
 import repositories.interfaces.BaseUserSkillRepository;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -46,12 +47,16 @@ public class UserSkillRepository implements BaseUserSkillRepository {
     }*/
 
     public Optional<List<Skill>> getSkillsForStaff(StaffUser u) {
+        List<Skill> userSkills = new ArrayList<>();
+
         for (UserSkill us : getAll()) {
-            if (us.getStaff().equals(u)) {
-                return Optional.of(us.getCurrentSkills());
+            if ((us.getStaff().equals(u))) {
+                userSkills.add(us.getSkill());
             }
         }
-        return  Optional.empty();
+        if(userSkills.size()==0) return Optional.empty();
+
+        return Optional.ofNullable(userSkills);
     }
 
     public void removeSkillFromStaff(StaffUser u, Skill s) throws IllegalArgumentException {

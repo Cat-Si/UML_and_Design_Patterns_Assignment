@@ -15,7 +15,8 @@ private StaffUser staff;
 
 private Skill skill;
 
-private SkillLevel strengthOfSkill;
+
+    private SkillLevel strengthOfSkill;
 
     private Optional<LocalDate> expiry;
 
@@ -31,7 +32,7 @@ private final ArrayList<Skill> currentSkills = new ArrayList<>();
         this.strengthOfSkill = strengthOfSkill;
         this.expiry = Optional.ofNullable(expiry);
         this.notes = notes;
-        addSkill(skill);
+        this.skill = skill;
     }
 
     public final void addSkill(Skill skill) {
@@ -65,6 +66,10 @@ private final ArrayList<Skill> currentSkills = new ArrayList<>();
 
     public final Skill getSkill() {
         return skill;
+    }
+
+    public SkillLevel getStrengthOfSkill() {
+        return strengthOfSkill;
     }
 
     public final ArrayList<Skill> getCurrentSkills() {

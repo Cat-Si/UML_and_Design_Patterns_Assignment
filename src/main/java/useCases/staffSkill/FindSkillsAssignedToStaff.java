@@ -2,6 +2,8 @@ package useCases.staffSkill;
 
 import domain.Skill;
 import domain.StaffUser;
+import domain.UserSkill;
+import domain.enumerators.SkillLevel;
 import repositories.interfaces.BaseUserSkillRepository;
 import useCases.BaseUseCase;
 
