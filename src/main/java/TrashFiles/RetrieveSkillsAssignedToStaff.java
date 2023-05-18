@@ -1,4 +1,4 @@
-package controllers.utility;
+package TrashFiles;
 
 import domain.Skill;
 import domain.StaffUser;

@@ -2,11 +2,12 @@ package repositories;
 
 import Exceptions.EntryAlreadyExistsException;
 import domain.*;
+import domain.enumerators.SkillLevel;
 import globals.interfaces.DataProvider;
 import repositories.interfaces.BaseUserSkillRepository;
 
-import javax.swing.text.html.Option;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -22,7 +23,7 @@ public class UserSkillRepository implements BaseUserSkillRepository {
         return IN_MEMORY_DATABASE.getUserSkill();
     }
 
-   public void add(UUID uuid, StaffUser staff, Skill mySkill, UserSkill.SkillLevel strengthOfSkills, LocalDate expiry, String notes) throws EntryAlreadyExistsException {
+   public void add(UUID uuid, StaffUser staff, Skill mySkill, SkillLevel strengthOfSkills, LocalDate expiry, String notes) throws EntryAlreadyExistsException {
         Optional<UserSkill> userSkill = doesUserExist(staff);
 
        if (userSkill.isPresent()) {
@@ -36,13 +37,26 @@ public class UserSkillRepository implements BaseUserSkillRepository {
        }
    }
 
-    public Optional<List<Skill>> getSkillsForStaff(StaffUser s) {
+/*    public Optional<List<Skill>> getSkillsForStaff(StaffUser su, Skill s) {
         for (UserSkill us : getAll()) {
-            if (us.getStaff().equals(s)) {
+            if (us.getStaff().equals(su) && us.getSkill().equals(s)) {
                 return Optional.of(us.getCurrentSkills());
             }
         }
         return  Optional.empty();
+    }*/
+
+    public Optional<List<Skill>> getSkillsForStaff(StaffUser u) {
+        List<Skill> userSkills = new ArrayList<>();
+
+        for (UserSkill us : getAll()) {
+            if ((us.getStaff().equals(u))) {
+                userSkills.add(us.getSkill());
+            }
+        }
+        if(userSkills.size()==0) return Optional.empty();
+
+        return Optional.ofNullable(userSkills);
     }
 
     public void removeSkillFromStaff(StaffUser u, Skill s) throws IllegalArgumentException {

@@ -3,7 +3,8 @@ package controllers;
 import Exceptions.EntryAlreadyExistsException;
 import domain.Manager;
 import domain.StaffUser;
-import domain.User;
+import domain.enumerators.JobRole;
+import domain.enumerators.SystemRole;
 import general.AlertMessage;
 import globals.Ioc_Container;
 import javafx.application.Platform;
@@ -12,7 +13,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import useCases.staff.AddNewStaff;
 import useCases.staff.GetAllManagers;
@@ -28,9 +28,9 @@ public class AddStaffController {
     @FXML
     private TextField password;
     @FXML
-    private  ComboBox<User.SystemRole> systemRoleLst;
+    private  ComboBox<SystemRole> systemRoleLst;
     @FXML
-    private ComboBox<StaffUser.JobRole> jobRoleLst;
+    private ComboBox<JobRole> jobRoleLst;
     @FXML
     private ComboBox<Manager> manager;
 
@@ -50,8 +50,8 @@ public class AddStaffController {
         String surname = lastName.getText();
         String user = username.getText();
         String pass = password.getText();
-        User.SystemRole selectedSystemRole = systemRoleLst.getSelectionModel().getSelectedItem();
-        StaffUser.JobRole selectedJobRole = jobRoleLst.getSelectionModel().getSelectedItem();
+        SystemRole selectedSystemRole = systemRoleLst.getSelectionModel().getSelectedItem();
+        JobRole selectedJobRole = jobRoleLst.getSelectionModel().getSelectedItem();
         Manager selectedManager = manager.getSelectionModel().getSelectedItem();
         try {
             addNewStaff.requestList.add(forname);
@@ -81,7 +81,7 @@ public class AddStaffController {
     }
 
     private void showJobRole() {
-        ObservableList<StaffUser.JobRole> items = FXCollections.observableArrayList(StaffUser.JobRole.values());
+        ObservableList<JobRole> items = FXCollections.observableArrayList(JobRole.values());
         jobRoleLst.setItems(items);
 
     }
@@ -93,7 +93,7 @@ public class AddStaffController {
     }
 
     private void showSystemRole() {
-        ObservableList<User.SystemRole> items = FXCollections.observableArrayList(User.SystemRole.values());
+        ObservableList<SystemRole> items = FXCollections.observableArrayList(SystemRole.values());
         systemRoleLst.setItems(items);
 
     }

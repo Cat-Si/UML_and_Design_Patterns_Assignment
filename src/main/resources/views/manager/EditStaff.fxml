@@ -23,7 +23,7 @@
                    text="Current Staff Members"/>
 
                 <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="0" minWidth="200"
-                          fx:id="usersLst" onAction="#passItemToEdit"/>
+                          fx:id="usersLst" onAction="#passItemToEdit" onMouseClicked="#showSkillAssignedToStaff"/>
 
 
             <Label GridPane.columnIndex="0" GridPane.rowIndex="1"
@@ -58,7 +58,7 @@
                    text="Skills Assigned to Staff Member:"/>
             <ScrollPane GridPane.columnIndex="1" GridPane.rowIndex="8">
                 <content>
-                    <ListView fx:id="staffSkillLst"/>
+                    <ListView fx:id="staffSkillLst" onMouseClicked="#showSkillAssignedToStaff"/>
                 </content>
             </ScrollPane>
 

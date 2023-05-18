@@ -2,6 +2,8 @@ package useCases.staffSkill;
 
 import domain.Skill;
 import domain.StaffUser;
+import domain.UserSkill;
+import domain.enumerators.SkillLevel;
 import repositories.interfaces.BaseUserSkillRepository;
 import useCases.BaseUseCase;
 
@@ -16,7 +18,7 @@ public class FindSkillsAssignedToStaff extends BaseUseCase {
     }
 
     public Optional<List<Skill>> execute() {
-        StaffUser s = (StaffUser) getNextRequestParameter();
-        return USER_SKILL_REPOSITORY.getSkillsForStaff(s);
+        StaffUser u = (StaffUser) getNextRequestParameter();
+        return USER_SKILL_REPOSITORY.getSkillsForStaff(u);
     }
 }

@@ -22,13 +22,13 @@ public enum RouteNames {
 
 
     private final String location;
-    private final String VIEW_PATH = "/views/";
 
     public String getLocation(){
         return location;
     }
 
    RouteNames(String location) {
-        this.location = VIEW_PATH + location;
+       String VIEW_PATH = "/views/";
+       this.location = VIEW_PATH + location;
     }
 }

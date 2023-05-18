@@ -1,24 +1,26 @@
 package controllers;
 
-import controllers.utility.RetrieveSkillsAssignedToStaff;
+
 import domain.*;
+import domain.enumerators.JobRole;
+import domain.enumerators.SystemRole;
 import general.AlertMessage;
 import globals.Ioc_Container;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import useCases.staff.EditStaff;
 import useCases.staff.GetAllManagers;
 import useCases.staff.GetAllStaff;
 import useCases.staffSkill.FindSkillsAssignedToStaff;
-
 import java.io.IOException;
+import java.lang.module.FindException;
+import java.util.List;
+import java.util.Optional;
 
 public class EditStaffController  {
 
@@ -32,9 +34,9 @@ public class EditStaffController  {
     @FXML
     private TextField password;
     @FXML
-    private ComboBox<StaffUser.JobRole> jobRoleLst;
+    private ComboBox<JobRole> jobRoleLst;
     @FXML
-    private ComboBox<User.SystemRole> systemRoleLst;
+    private ComboBox<SystemRole> systemRoleLst;
     @FXML
     private ComboBox<Manager> manager;
 
@@ -44,24 +46,28 @@ public class EditStaffController  {
     @FXML
     private  ListView<Skill> staffSkillLst;
 
-    private final FindSkillsAssignedToStaff findSkillsAssignedToStaff = new FindSkillsAssignedToStaff(Ioc_Container.getUserSkillRepository());
-    private final GetAllManagers getAllManagers = new GetAllManagers(Ioc_Container.getManagerRepository());
 
-    private final EditStaff editStaff = new EditStaff(Ioc_Container.getStaffUserRepository());
+
     private final GetAllStaff getAllStaff = new GetAllStaff(Ioc_Container.getStaffUserRepository());
+    private final GetAllManagers getAllManagers = new GetAllManagers(Ioc_Container.getManagerRepository());
+    private final EditStaff editStaff = new EditStaff(Ioc_Container.getStaffUserRepository());
+    private final FindSkillsAssignedToStaff findSkillsAssignedToStaff = new FindSkillsAssignedToStaff(Ioc_Container.getUserSkillRepository());
+
+
+
+
 
     public void initialize() {
         showAllStaff();
         showJobRole();
         showSystemRole();
-        showSkillsAssignedToStaff();
         showManager();
         usersLst.setPromptText("Please Select a Staff User");
     }
 
 
 
-    public void passItemToEdit(ActionEvent event) {//Occurs after load - via Router call
+    public void passItemToEdit() {//Occurs after load - via Router call
         selectedUser = usersLst.getSelectionModel().getSelectedItem();
         System.out.println(selectedUser);
         firstName.setText(selectedUser.getFirstName());
@@ -71,17 +77,18 @@ public class EditStaffController  {
         systemRoleLst.getSelectionModel().select(selectedUser.getSystemRole());
         jobRoleLst.getSelectionModel().select(selectedUser.getStaffRole());
         manager.getSelectionModel().select(selectedUser.getCurrentManager());
+        showSkillAssignedToStaff();
 
     }
 
     @FXML
-    private void handleEditStaff(MouseEvent mouse) throws IOException {
+    private void handleEditStaff() throws IOException {
         String forname = firstName.getText();
         String surname = lastName.getText();
         String user = username.getText();
         String pass = password.getText();
-        User.SystemRole selectedSystemRole = systemRoleLst.getSelectionModel().getSelectedItem();
-        StaffUser.JobRole selectedJobRole = jobRoleLst.getSelectionModel().getSelectedItem();
+        SystemRole selectedSystemRole = systemRoleLst.getSelectionModel().getSelectedItem();
+        JobRole selectedJobRole = jobRoleLst.getSelectionModel().getSelectedItem();
         Manager selectedManager = manager.getSelectionModel().getSelectedItem();
         try {
             editStaff.requestList.add(selectedUser.getId());
@@ -100,12 +107,12 @@ public class EditStaffController  {
     }
 
     private void showJobRole() {
-        ObservableList<StaffUser.JobRole> items = FXCollections.observableArrayList(StaffUser.JobRole.values());
+        ObservableList<JobRole> items = FXCollections.observableArrayList(JobRole.values());
         jobRoleLst.setItems(items);
     }
 
     private void showSystemRole() {
-        ObservableList<User.SystemRole> items = FXCollections.observableArrayList(User.SystemRole.values());
+        ObservableList<SystemRole> items = FXCollections.observableArrayList(SystemRole.values());
         systemRoleLst.setItems(items);
     }
 
@@ -121,10 +128,18 @@ public class EditStaffController  {
 
     }
 
-    private void showSkillsAssignedToStaff() {
-        RetrieveSkillsAssignedToStaff.retrieveSkillsAssignedToStaff(findSkillsAssignedToStaff, usersLst.getSelectionModel().getSelectedItem(), staffSkillLst);
-        System.out.println(findSkillsAssignedToStaff);
+    @FXML
+    private void showSkillAssignedToStaff() {
+        findSkillsAssignedToStaff.requestList.add(usersLst.getSelectionModel().getSelectedItem());
+        Optional<List<Skill>> staffSkill = findSkillsAssignedToStaff.execute();
 
+        if (staffSkill.isPresent()) {
+            ObservableList<Skill> items = FXCollections.observableArrayList(staffSkill.get());
+            staffSkillLst.setItems(items);
+            System.out.println(staffSkillLst.getItems());
+        } else {
+            staffSkillLst.getItems().clear();
+        }
     }
 
 }

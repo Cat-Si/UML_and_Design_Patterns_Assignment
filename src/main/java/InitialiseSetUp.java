@@ -1,6 +1,8 @@
 
 import domain.*;
 import domain.StaffUser;
+import domain.enumerators.JobRole;
+import domain.enumerators.SkillLevel;
 import useCases.utility.UUIDGenerator;
 import globals.InMemoryDatabase;
 import globals.Ioc_Container;
@@ -11,7 +13,7 @@ import repositories.interfaces.*;
 import java.time.LocalDate;
 import java.util.*;
 
-import domain.User.SystemRole;
+import domain.enumerators.SystemRole;
 
 public class InitialiseSetUp {
     private static  List<Skill> skills = new ArrayList<>();
@@ -53,17 +55,17 @@ public class InitialiseSetUp {
         staffUsers.add(new StaffUser(UUIDGenerator.generate(), "Andy","Wyatt",
                                                     "AW1", "password",
                                                              SystemRole.STAFF_USER,
-                                                             StaffUser.JobRole.MIDLEVEL_DEVELOPER,
+                                                             JobRole.MIDLEVEL_DEVELOPER,
                                                              managers.get(0 ) ));
         staffUsers.add(new StaffUser(UUIDGenerator.generate(), "Bill","Richards",
                                                             "BR1", "password",
                                                                      SystemRole.STAFF_USER,
-                                                                      StaffUser.JobRole.JUNIOR_DEVELOPER,
+                                                                      JobRole.JUNIOR_DEVELOPER,
                                                                         managers.get(0) ));
         staffUsers.add(new StaffUser(UUIDGenerator.generate(), "Jenny","Finney",
                                                                      "JF1", "password",
                                                                                SystemRole.STAFF_USER,
-                                                                                StaffUser.JobRole.SENIOR_DEVELOPER,
+                                                                                JobRole.SENIOR_DEVELOPER,
                                                                             managers.get(0) ));
         managers.get(0).addStaff(staffUsers.get(0));
         managers.get(0).addStaff(staffUsers.get(1));
@@ -93,18 +95,18 @@ public class InitialiseSetUp {
    // List<UserSkill> userSkills = new ArrayList<>();
         LocalDate expiry = LocalDate.now();
         Optional.ofNullable(expiry);
-        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(0), skills.get(0), UserSkill.SkillLevel.ADVANCED, expiry, "" ));
-        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(0), skills.get(1), UserSkill.SkillLevel.ADVANCED, expiry, "" ));
-        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(0), skills.get(2), UserSkill.SkillLevel.BASIC, expiry, "" ));
-        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(0), skills.get(3), UserSkill.SkillLevel.BASIC, expiry, "" ));
-        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(1), skills.get(0), UserSkill.SkillLevel.ADVANCED, expiry, "" ));
-        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(1), skills.get(1), UserSkill.SkillLevel.BASIC, expiry, "Minimal Knowledge in Java" ));
-        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(1), skills.get(2), UserSkill.SkillLevel.NONE, expiry, "" ));
-        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(1), skills.get(3), UserSkill.SkillLevel.BASIC, expiry, "" ));
-        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(2), skills.get(0), UserSkill.SkillLevel.EXPERT, expiry, "Completed MOS exams" ));
-        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(1), skills.get(1), UserSkill.SkillLevel.EXPERT, expiry, "" ));
-        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(1), skills.get(2), UserSkill.SkillLevel.EXPERT, expiry, "" ));
-        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(1), skills.get(3), UserSkill.SkillLevel.EXPERT, expiry, "" ));
+        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(0), skills.get(0), SkillLevel.ADVANCED, expiry, "" ));
+        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(0), skills.get(1), SkillLevel.ADVANCED, expiry, "" ));
+        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(0), skills.get(2), SkillLevel.BASIC, expiry, "" ));
+        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(0), skills.get(3), SkillLevel.BASIC, expiry, "" ));
+        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(1), skills.get(0), SkillLevel.ADVANCED, expiry, "" ));
+        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(1), skills.get(1), SkillLevel.BASIC, expiry, "Minimal Knowledge in Java" ));
+        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(1), skills.get(2), SkillLevel.NONE, expiry, "" ));
+        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(1), skills.get(3), SkillLevel.BASIC, expiry, "" ));
+        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(2), skills.get(0), SkillLevel.EXPERT, expiry, "Completed MOS exams" ));
+        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(2), skills.get(1), SkillLevel.EXPERT, expiry, "" ));
+        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(2), skills.get(2), SkillLevel.EXPERT, expiry, "" ));
+        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(2), skills.get(3), SkillLevel.EXPERT, expiry, "" ));
 
 
 

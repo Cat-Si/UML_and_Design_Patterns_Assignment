@@ -3,6 +3,8 @@ package TrashFiles;
 import domain.Manager;
 import domain.StaffUser;
 import domain.User;
+import domain.enumerators.JobRole;
+import domain.enumerators.SystemRole;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -11,9 +13,9 @@ public class LoggedInUser extends User {
 
     private Manager currentManager;
 
-    private StaffUser.JobRole staffRole;
+    private JobRole staffRole;
 
-    public LoggedInUser(UUID id, String forename, String surname, String username, String password, User.SystemRole systemRole, StaffUser.JobRole staffRole) {
+    public LoggedInUser(UUID id, String forename, String surname, String username, String password, SystemRole systemRole, JobRole staffRole) {
         super(id, forename, surname, username, password, systemRole);
         this.staffRole = staffRole;
 
@@ -21,12 +23,12 @@ public class LoggedInUser extends User {
 
 
 
-    public void setStaffRole(StaffUser.JobRole staffRole) {
+    public void setStaffRole(JobRole staffRole) {
         this.staffRole = staffRole;
     }
 
 
-    public StaffUser.JobRole getStaffRole() {
+    public JobRole getStaffRole() {
         return staffRole;
 
     }
@@ -41,13 +43,7 @@ public class LoggedInUser extends User {
         this.currentManager = currentManager;
     }
 
-    public enum JobRole {
-        JUNIOR_DEVELOPER,
-        MIDLEVEL_DEVELOPER,
-        SENIOR_DEVELOPER;
 
-
-    }
 
     @Override
     public String toString() {
