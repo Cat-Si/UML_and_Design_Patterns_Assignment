@@ -2,17 +2,17 @@ package controllers;
 
 import Exceptions.EntryAlreadyExistsException;
 import domain.Skill;
+import domain.UserSkill;
 import domain.enumerators.SkillLevel;
 import domain.StaffUser;
 import general.AlertMessage;
 import globals.Ioc_Container;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.beans.value.ObservableValue;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import useCases.skills.GetAllSkills;
 import useCases.staff.GetAllStaff;
 import useCases.staffSkill.AddSkillToStaff;
@@ -25,7 +25,8 @@ import java.util.Optional;
 
 public class AddSkillToUserController {
 
-    //private UserSkill selectedSkill;
+    @FXML
+    private UserSkill selectedSkill;
 
     @FXML
     private ListView<StaffUser> staffLst;
@@ -34,9 +35,15 @@ public class AddSkillToUserController {
     private ListView<Skill> skillLst;
 
     @FXML
-    private ListView<Skill> staffSkillLst;
+    private ListView<UserSkill> staffSkillLst;
     @FXML
     private TextField skillName;
+
+    @FXML
+    private DatePicker expiry;
+
+    @FXML
+    private TextField notes;
 
     @FXML
     private ListView<SkillLevel> strengthOfSkill;
@@ -59,6 +66,16 @@ public class AddSkillToUserController {
         showAllStaff();
         showSkillAssignedToStaff();
         strengthCombo.getItems().setAll(Arrays.asList(SkillLevel.values()));
+        staffSkillLst.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<UserSkill>() {
+            @Override
+            public void changed(ObservableValue<? extends UserSkill> observable, UserSkill oldValue, UserSkill newValue) {
+                selectedSkill = newValue;
+                skillName.setText(selectedSkill.getSkill().toString());
+                strengthCombo.setValue(selectedSkill.getStrengthOfSkill());
+                notes.setText(selectedSkill.getNotes().toString());
+                expiry.setValue(selectedSkill.getExpiry());// other text fields here
+            }
+        });
     }
 
     @FXML
@@ -87,53 +104,6 @@ public class AddSkillToUserController {
         }
     }
 
-
-
-  /*  public void initialize() {
-        showSkillAssignedToStaff();
-        strengthCombo.getItems().setAll(Arrays.asList(SkillLevel.values()));
-    }
-
-    @Override
-    public void passItemToEdit(Object skillToEdit) {
-        selectedSkill = (UserSkill) skillToEdit;
-        skillName.setText(selectedSkill.getSkillName());
-        strengthOfSkill.getSelectionModel().select(selectedSkill.getStrengthOfSkills());
-    }
-
-    @FXML
-    private void handleAssignSkill() {
-    addSkillToStaff.requestList.add(staffLst.getSelectionModel().getSelectedItem());
-        addSkillToStaff.requestList.add(skillLst.getSelectionModel().getSelectedItem());
-        try {
-            addSkillToStaff.execute();
-            showSkillAssignedToStaff();
-        } catch (EntryAlreadyExistsException e) {
-            AlertMessage.showMessage(Alert.AlertType.ERROR, e.getMessage());
-        }
-    }
-
-    @FXML
-    private void handleRemoveSkill() {
-        removeSkillAssignedToStaff.requestList.add(skillLst.getSelectionModel().getSelectedItem());
-        removeSkillAssignedToStaff.requestList.add(staffSkillLst.getSelectionModel().getSelectedItem());
-        try {
-            removeSkillAssignedToStaff.execute();
-            showSkillAssignedToStaff();
-        } catch (IllegalArgumentException e) {
-            AlertMessage.showMessage(Alert.AlertType.ERROR, e.getMessage());
-        }
-
-*/
-
-
-
-
-
-
-
-
-
     private void showAllStaff() {
         ObservableList<StaffUser> items = FXCollections.observableArrayList(getAllStaff.execute());
         staffLst.setItems(items);
@@ -149,8 +119,8 @@ public class AddSkillToUserController {
     private void showSkillAssignedToStaff() {
         if (staffLst.getSelectionModel().getSelectedIndex()!=-1) {
             findSkillsAssignedToStaff.requestList.add(staffLst.getSelectionModel().getSelectedItem());
-            Optional<List<Skill>> staffSkill = findSkillsAssignedToStaff.execute();
-            ObservableList<Skill> items = FXCollections.observableArrayList(staffSkill.get());
+            Optional<List<UserSkill>> staffSkill = findSkillsAssignedToStaff.execute();
+            ObservableList<UserSkill> items = FXCollections.observableArrayList(staffSkill.get());
             staffSkillLst.setItems(items);
         } else {
             staffSkillLst.getItems().clear();

@@ -23,35 +23,26 @@ public class UserSkillRepository implements BaseUserSkillRepository {
         return IN_MEMORY_DATABASE.getUserSkill();
     }
 
-   public void add(UUID uuid, StaffUser staff, Skill mySkill, SkillLevel strengthOfSkills, LocalDate expiry, String notes) throws EntryAlreadyExistsException {
+    public void add(UUID uuid, StaffUser staff, Skill mySkill, SkillLevel strengthOfSkills, LocalDate expiry, String notes) throws EntryAlreadyExistsException {
         Optional<UserSkill> userSkill = doesUserExist(staff);
 
-       if (userSkill.isPresent()) {
-           if (userSkill.get().getCurrentSkills().contains(mySkill)) {
-               throw new EntryAlreadyExistsException("skill already assigned to staff member");
-           } else {
-               userSkill.get().addSkill(mySkill);
-           }
-       } else {
-           getAll().add(new UserSkill(uuid, staff, mySkill, strengthOfSkills, expiry, notes));
-       }
-   }
-
-/*    public Optional<List<Skill>> getSkillsForStaff(StaffUser su, Skill s) {
-        for (UserSkill us : getAll()) {
-            if (us.getStaff().equals(su) && us.getSkill().equals(s)) {
-                return Optional.of(us.getCurrentSkills());
+        if (userSkill.isPresent()) {
+            if (userSkill.get().getCurrentSkills().contains(mySkill)) {
+                throw new EntryAlreadyExistsException("skill already assigned to staff member");
+            } else {
+                userSkill.get().addSkill(mySkill);
             }
+        } else {
+            getAll().add(new UserSkill(uuid, staff, mySkill, strengthOfSkills, expiry, notes));
         }
-        return  Optional.empty();
-    }*/
+    }
 
-    public Optional<List<Skill>> getSkillsForStaff(StaffUser u) {
-        List<Skill> userSkills = new ArrayList<>();
+    public Optional<List<UserSkill>> getSkillsForStaff(StaffUser u) {
+        List<UserSkill> userSkills = new ArrayList<>();
 
         for (UserSkill us : getAll()) {
             if ((us.getStaff().equals(u))) {
-                userSkills.add(us.getSkill());
+                userSkills.add(us);
             }
         }
         if(userSkills.size()==0) return Optional.empty();

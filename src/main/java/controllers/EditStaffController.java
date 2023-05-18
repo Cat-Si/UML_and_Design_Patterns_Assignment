@@ -44,7 +44,7 @@ public class EditStaffController  {
     private ComboBox<StaffUser> usersLst;
 
     @FXML
-    private  ListView<Skill> staffSkillLst;
+    private  ListView<UserSkill> staffSkillLst;
 
 
 
@@ -131,10 +131,10 @@ public class EditStaffController  {
     @FXML
     private void showSkillAssignedToStaff() {
         findSkillsAssignedToStaff.requestList.add(usersLst.getSelectionModel().getSelectedItem());
-        Optional<List<Skill>> staffSkill = findSkillsAssignedToStaff.execute();
+        Optional<List<UserSkill>> staffSkill = findSkillsAssignedToStaff.execute();
 
         if (staffSkill.isPresent()) {
-            ObservableList<Skill> items = FXCollections.observableArrayList(staffSkill.get());
+            ObservableList<UserSkill> items = FXCollections.observableArrayList(staffSkill.get());
             staffSkillLst.setItems(items);
             System.out.println(staffSkillLst.getItems());
         } else {

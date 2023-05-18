@@ -1,5 +1,4 @@
 package domain;
-import domain.enumerators.SkillLevel;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -9,10 +8,6 @@ public class Skill extends Validator{
     private UUID id;
     private String skillName;
 
-    private SkillLevel getStrengthOfSkill;
-
-
-
     public Skill(Category category, UUID id, String skillName){
         this.category = category;
         this.id = id;
@@ -21,9 +16,7 @@ public class Skill extends Validator{
         validate();
     }
 
-
     public UUID getId(){
-
         return id;
     }
 
@@ -37,16 +30,9 @@ public class Skill extends Validator{
         return category;
     }
 
-
     public void setSkillName(String skillName){
         this.skillName = skillName;
         validate();
-    }
-
-
-
-    public SkillLevel getStrengthOfSkill() {
-        return getStrengthOfSkill;
     }
 
     private final void validate(){
@@ -72,7 +58,5 @@ public class Skill extends Validator{
     public int hashCode() {
         return Objects.hash(id, skillName);
     }
-
-
 }
 

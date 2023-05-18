@@ -1,27 +1,26 @@
-package TrashFiles;
+/*
+package useCases.staffSkill;
 
 import domain.Skill;
 import domain.StaffUser;
 import domain.UserSkill;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.ListView;
-import useCases.staffSkill.FindSkillsAssignedToStaff;
+import domain.enumerators.SkillLevel;
+import repositories.interfaces.BaseUserSkillRepository;
+import useCases.BaseUseCase;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class RetrieveSkillsAssignedToStaff {
-    public static void retrieveSkillsAssignedToStaff(FindSkillsAssignedToStaff findSkillsAssignedToStaff, StaffUser staffLst, ListView<Skill> staffSkillLst) {
-        findSkillsAssignedToStaff.requestList.add(staffLst);
-        Optional<List<Skill>> staffSkill = findSkillsAssignedToStaff.execute();
+public class FindSkillsAssignedToStaff extends BaseUseCase {
+    private final BaseUserSkillRepository USER_SKILL_REPOSITORY;
 
-        if (staffSkill.isPresent()) {
-            ObservableList<Skill> items = FXCollections.observableArrayList(staffSkill.get());
-            staffSkillLst.setItems(items);
-        } else {
-            staffSkillLst.getItems().clear();
-        }
+    public FindSkillsAssignedToStaff(BaseUserSkillRepository userSkillRepository) {
+        USER_SKILL_REPOSITORY = userSkillRepository;
+    }
+
+    public Optional<List<UserSkill>> execute() {
+        StaffUser u = (StaffUser) getNextRequestParameter();
+        return USER_SKILL_REPOSITORY.getSkillsForStaff(u);
     }
 }
+*/
