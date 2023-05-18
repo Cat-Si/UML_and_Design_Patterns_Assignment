@@ -73,7 +73,7 @@ public class AddSkillToUserController {
                 skillName.setText(selectedSkill.getSkill().toString());
                 strengthCombo.setValue(selectedSkill.getStrengthOfSkill());
                 notes.setText(selectedSkill.getNotes().toString());
-                expiry.setValue(selectedSkill.getExpiry());// other text fields here
+                //expiry.setValue(selectedSkill.getExpiry());// other text fields here
             }
         });
     }
