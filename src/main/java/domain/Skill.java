@@ -57,7 +57,7 @@ public class Skill extends Validator{
 
     @Override
     public String toString(){
-        return String.format("%s (%s) Level: %s", skillName, getCategory(), UserSkill.getStrengthOfSkill());
+        return String.format("%s (%s)", skillName, getCategory());
     }
 
     @Override
