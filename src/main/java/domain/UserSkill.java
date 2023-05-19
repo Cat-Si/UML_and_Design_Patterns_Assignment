@@ -27,10 +27,10 @@ public class UserSkill extends Validator {
                      String notes) {
         this.id = id;
         this.staff = staff;
+        this.skill = skill;
         this.strengthOfSkill = strengthOfSkill;
         this.expiry = Optional.ofNullable(expiry);
         this.notes = notes;
-        this.skill = skill;
     }
 
     public final void addSkill(Skill skill) {
@@ -62,6 +62,10 @@ public class UserSkill extends Validator {
 
     public final StaffUser getStaff() {
         return staff;
+    }
+
+    public void setSkill(Skill skill) {
+        this.skill = skill;
     }
 
     public final Skill getSkill() {

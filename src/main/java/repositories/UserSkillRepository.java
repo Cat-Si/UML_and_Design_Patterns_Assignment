@@ -67,6 +67,13 @@ public class UserSkillRepository implements BaseUserSkillRepository {
             getAll().remove(userSkill.get());
         }
     }
+    public void edit(UserSkill userSkill) {
+        for (UserSkill us : getAll()) {
+            if (us.getId().equals(userSkill.getId())) {
+                us.setSkill(userSkill.getSkill());
+            }
+        }
+    }
 
     private Optional<UserSkill> doesUserExist(StaffUser u) {
         for (UserSkill us : getAll()) {

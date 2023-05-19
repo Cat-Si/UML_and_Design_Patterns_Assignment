@@ -16,19 +16,27 @@
     </left>
     <center>
 
-            <GridPane>
-                <Label GridPane.columnIndex="0" GridPane.rowIndex="1"
+        <GridPane>
+            <ListView GridPane.columnIndex="1" GridPane.rowIndex="1"
+                      fx:id="staffSkillLst" />
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="3"
                        text="Skill name"/>
-                <ListView GridPane.columnIndex="1" GridPane.rowIndex="1"
-                           fx:id="skillLst" />
-                <ListView GridPane.columnIndex="1" GridPane.rowIndex="2"
-                          fx:id="staffLst" />
                 <TextField GridPane.columnIndex="1" GridPane.rowIndex="3"
                           fx:id="skillName" />
                 <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="4"
                           fx:id="strengthCombo" />
-                <ListView GridPane.columnIndex="1" GridPane.rowIndex="5"
-                          fx:id="staffSkillLst" />
+                <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="5"
+                            fx:id="expiry"/>
+                <TextField GridPane.columnIndex="1" GridPane.rowIndex="6"
+                           fx:id="notes" />
+                <HBox GridPane.rowIndex="9" GridPane.columnSpan="3" />
+            <Button text="Add"
+                    onAction="#handleAddSkill"  />
+            <Button text="Delete"
+                    onAction="#handleRemoveSkill"  />
+            <Button text="Edit"
+                    onMouseClicked="#handleEditUserSkill"  />
+
 
             </GridPane>
 

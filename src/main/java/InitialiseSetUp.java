@@ -95,7 +95,7 @@ public class InitialiseSetUp {
    // List<UserSkill> userSkills = new ArrayList<>();
         LocalDate expiry = LocalDate.now();
         Optional.ofNullable(expiry);
-        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(0), skills.get(0), SkillLevel.ADVANCED, expiry, "" ));
+        userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(0), skills.get(0), SkillLevel.ADVANCED, expiry, "Professional Qualification" ));
         userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(0), skills.get(1), SkillLevel.ADVANCED, expiry, "" ));
         userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(0), skills.get(2), SkillLevel.BASIC, expiry, "" ));
         userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(0), skills.get(3), SkillLevel.BASIC, expiry, "" ));

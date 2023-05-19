@@ -20,5 +20,7 @@ public interface BaseUserSkillRepository {
     Optional<List<UserSkill>> getSkillsForStaff(StaffUser u);
 
     void removeSkillFromStaff(StaffUser u, Skill s) throws IllegalArgumentException;
+
+    void edit(UserSkill userSkill);
 }
 
