@@ -30,15 +30,21 @@
                 <TextField GridPane.columnIndex="1" GridPane.rowIndex="6"
                            fx:id="notes" />
                 <HBox GridPane.rowIndex="9" GridPane.columnSpan="3" />
-          <!--  <Button text="Add"
-                    onAction="#handleAddSkill"  />
-            <Button text="Delete"
-                    onAction="#handleRemoveSkill"  />
+       <!-- <Button text="Add"
+                    onAction="#handleAddSkill"  />-->
+<!--
             <Button text="Edit"
-                    onMouseClicked="#handleEditUserSkill"  />-->
+                    onMouseClicked="#handleEditUserSkill"  />
+-->
 
 
             </GridPane>
 
     </center>
+    <bottom>
+        <HBox>
+            <Button GridPane.columnIndex="1" GridPane.rowIndex="8" text="Delete"
+                    onAction="#handleRemoveSkill"  />
+        </HBox>
+    </bottom>
 </BorderPane>

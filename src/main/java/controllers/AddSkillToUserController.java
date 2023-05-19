@@ -35,6 +35,7 @@ public class AddSkillToUserController {
     @FXML
     private UserSkill selectedSkill;
 
+
 //    @FXML
 //    private ListView<StaffUser> staffLst;
 //
@@ -102,13 +103,13 @@ public class AddSkillToUserController {
         staffSkillLst.setItems(items);
     }
 
-/*    @Override
+  /*  @Override
     public void passItemToEdit(Object skillToEdit) {
         selectedSkill = (UserSkill) skillToEdit;
         skillName.setText(selectedSkill.getSkill().toString());
         categoryLst.getSelectionModel().select((selectedSkill.getCategory()));
     }*/
-    /*@FXML
+/*    @FXML
     private void handleEditUserSkill() throws IOException {
         StaffUser staff = selectedStaff;
         Skill skill = staffSkillLst.getSelectionModel().getSelectedItem().getSkill();
@@ -128,9 +129,9 @@ public class AddSkillToUserController {
             AlertMessage.showMessage(Alert.AlertType.ERROR, e.getMessage());
         }
 
-    }
+    }*/
 
-    @FXML
+   /* @FXML
     private void handleAddSkill() {
         addSkillToStaff.requestList.add(selectedStaff);
         addSkillToStaff.requestList.add(staffSkillLst.getSelectionModel().getSelectedItem());
@@ -141,19 +142,19 @@ public class AddSkillToUserController {
         } catch (EntryAlreadyExistsException e) {
             AlertMessage.showMessage(Alert.AlertType.ERROR, e.getMessage());
         }
-    }
+    }*/
 
     @FXML
     private void handleRemoveSkill() {
         removeSkillAssignedToStaff.requestList.add(selectedStaff);
-        removeSkillAssignedToStaff.requestList.add(staffSkillLst.getSelectionModel().getSelectedItem());
+        removeSkillAssignedToStaff.requestList.add(selectedSkill);
 
         try {
             removeSkillAssignedToStaff.execute();
             showStaffSkills();
         } catch (IllegalArgumentException e) {
             AlertMessage.showMessage(Alert.AlertType.ERROR, e.getMessage());
-        }*/
+        }
 
 
 //        @FXML
@@ -168,6 +169,7 @@ public class AddSkillToUserController {
 
 
     }
+}
 
 
 

@@ -27,10 +27,10 @@ public class UserSkillRepository implements BaseUserSkillRepository {
         Optional<UserSkill> userSkill = doesUserExist(staff);
 
         if (userSkill.isPresent()) {
-            if (userSkill.get().getCurrentSkills().contains(mySkill)) {
+            if (userSkill.get().getCurrentSkills().contains(userSkill.get())) {
                 throw new EntryAlreadyExistsException("skill already assigned to staff member");
             } else {
-                userSkill.get().addSkill(mySkill);
+                userSkill.get().addSkill(userSkill.get());
             }
         } else {
             getAll().add(new UserSkill(uuid, staff, mySkill, strengthOfSkills, expiry, notes));
@@ -50,15 +50,22 @@ public class UserSkillRepository implements BaseUserSkillRepository {
         return Optional.ofNullable(userSkills);
     }
 
-    public void removeSkillFromStaff(StaffUser u, Skill s) throws IllegalArgumentException {
+    public void edit(UserSkill userSkill) {
+        for (UserSkill us : getAll()) {
+            if (us.getId().equals(userSkill.getId())) {
+                us.setSkill(userSkill.getSkill());
+            }
+        }
+    }
+    public void removeSkillFromStaff(StaffUser u, UserSkill s) throws IllegalArgumentException {
         Optional<UserSkill> userSkill = doesUserExist(u);
 
         if (userSkill.isEmpty()) {
-            throw new IllegalArgumentException("No Staff Member Exists");
+            throw new IllegalArgumentException("No User Skill Exists");
         }
 
         if (userSkill.get().getCurrentSkills().contains(s)) {
-            userSkill.get().removeSkill(s);
+            userSkill.get().removeSkill(userSkill.get());
         } else {
             throw new IllegalArgumentException("Staff Member does not have skill to remove");
         }
@@ -67,18 +74,11 @@ public class UserSkillRepository implements BaseUserSkillRepository {
             getAll().remove(userSkill.get());
         }
     }
-    public void edit(UserSkill userSkill) {
-        for (UserSkill us : getAll()) {
-            if (us.getId().equals(userSkill.getId())) {
-                us.setSkill(userSkill.getSkill());
-            }
-        }
-    }
 
     private Optional<UserSkill> doesUserExist(StaffUser u) {
         for (UserSkill us : getAll()) {
             if (us.getStaff().equals(u)) {
-                return Optional.of(us);
+                return Optional.ofNullable(us);
             }
         }
         return Optional.empty();

@@ -21,7 +21,7 @@ public class UserSkill extends Validator {
 
     private String notes;
 
-    private final ArrayList<Skill> currentSkills = new ArrayList<>();
+    private final ArrayList<UserSkill> currentSkills = new ArrayList<>();
 
     public UserSkill(UUID id, StaffUser staff, Skill skill, SkillLevel strengthOfSkill, LocalDate expiry,
                      String notes) {
@@ -33,13 +33,13 @@ public class UserSkill extends Validator {
         this.notes = notes;
     }
 
-    public final void addSkill(Skill skill) {
+    public final void addSkill(UserSkill skill) {
         if (!currentSkills.contains(skill)) {
             currentSkills.add(skill);
         }
     }
 
-    public void removeSkill(Skill skill) {
+    public void removeSkill(UserSkill skill) {
         if (currentSkills.contains(skill)) {
             currentSkills.remove(skill);
         }
@@ -84,7 +84,7 @@ public class UserSkill extends Validator {
         return notes;
     }
 
-    public final ArrayList<Skill> getCurrentSkills() {
+    public final ArrayList<UserSkill> getCurrentSkills() {
         return currentSkills;
     }
 
