@@ -27,7 +27,7 @@ public class Manager extends User{
         staffGroup.remove(staffMember);
     }
 
-    public String toString() {
+    public  String toString() {
         return String.format("%s (%s)",
                 getFullName(), getSystemRole()) ;
     }
