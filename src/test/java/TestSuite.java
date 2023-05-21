@@ -17,9 +17,8 @@ import useCases.*;
         FullNameTests.class,
         SkillTests.class,
         StaffUserTests.class,
-        UserTests.class,
         ManagerTests.class,
-        UserSkillTest.class,
+        UserSkillTests.class,
         //GlobalsTests
         InMemoryDatabaseTests.class,
         //RepositoryTests
