@@ -16,7 +16,7 @@ public class RemoveSkillAssignedToStaff extends BaseUseCase {
 
     public void execute() throws IllegalArgumentException {
         StaffUser u = (StaffUser) getNextRequestParameter();
-        UserSkill s = (UserSkill) getNextRequestParameter();
+        Skill s = (Skill) getNextRequestParameter();
        /* SkillLevel skillStrength = (SkillLevel) getNextRequestParameter();
         LocalDate expiry = (LocalDate) getNextRequestParameter();
         String notes = (String) getNextRequestParameter();*/

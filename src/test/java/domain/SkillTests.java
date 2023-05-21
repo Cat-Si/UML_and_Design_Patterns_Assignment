@@ -17,7 +17,7 @@ public class SkillTests {
     final UUID DUMMY_CATEGORY_ID = UUID.fromString("0000-00-00-00-000001");
     private Category VALID_CATEGORY = new Category(DUMMY_CATEGORY_ID, CATEGORY_NAME);
 
-    //new Skill(VALID_CATEGORY, DUMMY_ID, VALID_SKILL_NAME)
+    final Skill skill = new Skill(VALID_CATEGORY, DUMMY_ID, VALID_SKILL_NAME);
 
 
 

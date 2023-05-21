@@ -16,5 +16,6 @@ Handout page 13
 
 Check the category Tests - rather bare 
 
-
+UserSkillTests ---- 
+test02 adding a new skill doesnt work 
 
