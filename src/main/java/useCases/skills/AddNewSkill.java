@@ -18,7 +18,6 @@ public class AddNewSkill extends BaseUseCase {
     public void execute() throws IllegalArgumentException, EntryAlreadyExistsException {
         String skillName = (String) getNextRequestParameter();
         Category category = (Category) getNextRequestParameter();
-        SkillLevel strengthOfSkills = (SkillLevel) getNextRequestParameter();
         Skill skill =new Skill(category, UUIDGenerator.generate(), skillName);
         SKILL_REPOSITORY.add(skill);
     }
