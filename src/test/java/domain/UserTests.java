@@ -1,4 +1,2 @@
-package domain;
+//ABSTRACT CLASS NOT TESTABLE - DOH
 
-public class UserTests {
-}

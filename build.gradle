@@ -16,8 +16,18 @@ javafx {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+//    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+//    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+//    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+//    testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+    testImplementation 'org.mockito:mockito-inline:5.2.0' //allow static mocks - this uses mockito-core
+    compile "org.junit.platform:junit-platform-suite-engine:1.9.2"//required for test suite
+    testImplementation 'org.junit.platform:junit-platform-runner:1.9.2'
+
+    //TestFX
+    testImplementation "org.testfx:testfx-core:4.0.16-alpha"
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testImplementation "org.testfx:testfx-junit5:4.0.16-alpha"
+    testImplementation group: 'org.hamcrest', name: 'hamcrest', version: '2.2'
 }
