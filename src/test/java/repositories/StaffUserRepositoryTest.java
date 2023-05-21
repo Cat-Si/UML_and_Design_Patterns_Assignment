@@ -29,7 +29,7 @@ public class StaffUserRepositoryTest {
 
 
     final UUID DUMMY_ID = UUID.fromString("0000-00-00-00-000000");
-    final UUID DUMMY_MANAGER_ID = UUID.fromString("0000-00-00-00-000000");
+    final UUID DUMMY_MANAGER_ID = UUID.fromString("0000-00-00-00-000001");
     final String VALID_NAME = "first name";
     static final List<StaffUser> dummyList = new ArrayList<>();
     static BaseStaffUserRepository staffUserRepository;

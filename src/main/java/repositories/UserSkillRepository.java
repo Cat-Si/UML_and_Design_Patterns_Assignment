@@ -61,7 +61,7 @@ public class UserSkillRepository implements BaseUserSkillRepository {
         Optional<UserSkill> userSkill = doesUserExist(u);
 
         if (userSkill.isEmpty()) {
-            throw new IllegalArgumentException("No User Skill Exists");
+            throw new IllegalArgumentException("No User Exists");
         }
 
         if (userSkill.get().getCurrentSkills().contains(s)) {
