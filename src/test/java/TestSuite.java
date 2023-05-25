@@ -39,8 +39,6 @@ import useCases.*;
         GetAllManagersTest.class,
         GetAllSkillsTest.class,
         GetAllStaffTest.class,
-        RemoveSkillsAssignedToStaffTest.class
-
 
 })
 

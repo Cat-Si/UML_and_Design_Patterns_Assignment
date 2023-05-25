@@ -23,10 +23,6 @@ AddNewStaffTest ----
 test03 throws correct Exception but still fails test 
 Mockito is dulled out 
 
-UserSkillRepositoryTest---
-test02 returns the skill toString and not the UserSkill toString so Expected and Actual do not match #
-Expected :[skillname (category) - NONE]    
-Actual   :[skillname (category)]
 
 cannot change in UserSkillRepository as it breaks code #
 public Optional<List<UserSkill>> getSkillsForStaff(**StaffUser u**) {

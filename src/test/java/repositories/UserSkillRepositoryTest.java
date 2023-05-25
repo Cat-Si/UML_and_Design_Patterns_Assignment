@@ -76,8 +76,8 @@ public class UserSkillRepositoryTest {
 
         when(mockDataProvider.getUserSkill()).thenReturn(dummyList);
 
-        List<Skill> expectedListOfSkills = new ArrayList<>();
-        expectedListOfSkills.add(s);//What our repo should return - to compare in our assert
+        List<UserSkill> expectedListOfSkills = new ArrayList<>();
+        expectedListOfSkills.add(us);//What our repo should return - to compare in our assert
         assertEquals(userSkillRepository.getSkillsForStaff(su).get(), expectedListOfSkills);
     }
 

@@ -94,13 +94,13 @@ public class AddNewStaffTest {
     @DisplayName("When use case is executed with an existing staff details then an EntryAlreadyExistsException is thrown")
     void test03() throws EntryAlreadyExistsException {
         final String EXISTING_USERNAME = "existingUserName";
-        StaffUser su1 = new StaffUser(DUMMY_ID, VALID_FIRSTNAME, VALID_SURNAME, EXISTING_USERNAME, VALID_PASSWORD, VALID_SYSTEMROLE, VALID_JOBROLE, VALID_MANAGER);
+        StaffUser su1 = new StaffUser(DUMMY_ID, VALID_FIRSTNAME, VALID_SURNAME, VALID_USERNAME, VALID_PASSWORD, VALID_SYSTEMROLE, VALID_JOBROLE, VALID_MANAGER);
 
         doThrow(new EntryAlreadyExistsException("Staff already exists")).when(staffUserRepository).add(su1);
 
         addNewStaff.requestList.add(VALID_FIRSTNAME);
         addNewStaff.requestList.add(VALID_SURNAME);
-        addNewStaff.requestList.add(EXISTING_USERNAME);
+        addNewStaff.requestList.add(VALID_USERNAME);
         addNewStaff.requestList.add(VALID_PASSWORD);
         addNewStaff.requestList.add(VALID_SYSTEMROLE);
         addNewStaff.requestList.add(VALID_JOBROLE);
