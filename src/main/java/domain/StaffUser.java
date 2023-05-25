@@ -18,6 +18,12 @@ public class StaffUser extends User {
         super(id, forename, surname, username, password, systemRole);
         this.staffRole = staffRole;
         this.currentManager = currentManager;
+        validate();
+    }
+
+    private final void validate(){
+        isNull(staffRole,"staff role must not be null");
+        isNull(currentManager, "manager must not be null");
     }
 
 
@@ -44,13 +50,19 @@ public class StaffUser extends User {
 
     @Override
     public String toString() {
-        return String.format("%s(%s)",
+        return String.format("%s (%s)",
                                     getFullName(), getStaffRole()) ;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof StaffUser)) return false;
+        StaffUser staff = (StaffUser) o;
+        return Objects.equals(getUsername(),staff.getUsername());
+    }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFullName(), getSystemRole());
+        return Objects.hash(getId(), getUsername());
     }
 }

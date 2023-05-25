@@ -81,7 +81,7 @@ public class AddSkillToStaffTest {
 
 
     @Test
-    @DisplayName("When use case is executed with an existing module details then an EntryAlreadyExistsException is thrown")
+    @DisplayName("When use case is executed with an existing skill details then an EntryAlreadyExistsException is thrown")
     void test02() throws EntryAlreadyExistsException {
         final UUID EXISTING_ID = UUID.fromString("0000-00-00-00-000000");
         UserSkill us = new UserSkill(EXISTING_ID, VALID_STAFF, VALID_SKILL, VALID_SKILL_LEVEL, VALID_DATE, VALID_NOTES);

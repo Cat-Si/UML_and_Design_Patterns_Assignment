@@ -91,7 +91,7 @@ public abstract class User extends Validator{
         isNull(username,"Username cannot be blank");
         isBlank(username, "username must not be empty");
         isNull(password, "Password cannot be blank");
-        isBlank(password, "password must not to empty");
+        isBlank(password, "password must not be empty");
         isNull(systemRole, "Please select a role for the user");
         isNull(fullName, "Please Enter a name");
     }

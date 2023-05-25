@@ -64,12 +64,14 @@ public class AddStaffController {
             addNewStaff.execute();
             clearForm();
             AlertMessage.showMessage(Alert.AlertType.INFORMATION, "Staff member added");
-        }  catch (EntryAlreadyExistsException e){
+        }
+        catch (EntryAlreadyExistsException e){
             AlertMessage.showMessage(Alert.AlertType.INFORMATION, e.getMessage());
         }
         catch (IllegalArgumentException e){
             AlertMessage.showMessage(Alert.AlertType.ERROR, e.getMessage());
         }
+
         firstName.requestFocus();
     }
 
@@ -83,18 +85,21 @@ public class AddStaffController {
     private void showJobRole() {
         ObservableList<JobRole> items = FXCollections.observableArrayList(JobRole.values());
         jobRoleLst.setItems(items);
+        jobRoleLst.setPromptText("Please Select");
 
     }
 
     private void showManager() {
         ObservableList<Manager> items = FXCollections.observableArrayList(getAllManagers.execute());
         manager.setItems(items);
+        manager.setPromptText("Please Select");
 
     }
 
     private void showSystemRole() {
         ObservableList<SystemRole> items = FXCollections.observableArrayList(SystemRole.values());
         systemRoleLst.setItems(items);
+        systemRoleLst.setPromptText("Please Select");
 
     }
 

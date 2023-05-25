@@ -55,7 +55,7 @@ public class SkillTests {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             new Skill(VALID_CATEGORY, DUMMY_ID, " ");
         });
-        assertEquals(exception.getMessage(), "skill name must not be blank");
+        assertEquals(exception.getMessage(), "name must not be blank");
     }
 
 //toString
