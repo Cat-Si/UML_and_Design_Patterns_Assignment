@@ -48,6 +48,13 @@ public class StaffUser extends User {
                                     getFullName(), getStaffRole()) ;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof StaffUser)) return false;
+        StaffUser staff = (StaffUser) o;
+        return Objects.equals(getUsername(), staff.getUsername());
+    }
 
     @Override
     public int hashCode() {

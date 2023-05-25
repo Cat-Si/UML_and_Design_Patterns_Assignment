@@ -62,13 +62,13 @@
                 </content>
             </ScrollPane>
 
-            <HBox GridPane.rowIndex="9" GridPane.columnSpan="3">
-                <Button text="Edit"
-                        onMouseClicked="#handleEditStaff"  />
-
-            </HBox>
         </GridPane>
     </center>
     <bottom>
+        <HBox GridPane.rowIndex="9" GridPane.columnSpan="3">
+            <Button text="Edit"
+                    onAction="#handleEditStaff"  />
+
+        </HBox>
     </bottom>
 </BorderPane>

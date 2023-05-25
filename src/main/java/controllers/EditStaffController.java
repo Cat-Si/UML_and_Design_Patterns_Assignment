@@ -8,11 +8,14 @@ import general.AlertMessage;
 import globals.Ioc_Container;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import router.RouteNames;
+import router.Router;
 import useCases.staff.EditStaff;
 import useCases.staff.GetAllManagers;
 import useCases.staff.GetAllStaff;
@@ -82,7 +85,7 @@ public class EditStaffController  {
     }
 
     @FXML
-    private void handleEditStaff() throws IOException {
+    private void handleEditStaff(ActionEvent event) throws IOException {
         String forname = firstName.getText();
         String surname = lastName.getText();
         String user = username.getText();
@@ -103,6 +106,7 @@ public class EditStaffController  {
         }catch (IllegalArgumentException e){
             AlertMessage.showMessage(Alert.AlertType.ERROR, e.getMessage());
         }
+        Router.changeRoute(RouteNames.EDIT_STAFF, event);
 
     }
 
