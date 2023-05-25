@@ -1,6 +1,6 @@
 # Code Issues 
 
-AddSkillsToStaffController 
+AddSkillsToStaffController ----
 
 Unable to add/edit/delete skills from staff. 
 
@@ -12,10 +12,19 @@ add should take the person to a new view which has empty fields to add skillname
 
 Handout page 13 
 
+
+StaffUser ---- 
+
+Want it to check if it exists based on the username
+
 # Test Issues 
 
 Check the category Tests - rather bare 
 
 UserSkillTests ---- 
 test02 adding a new skill doesnt work 
+
+AddNewStaffTest ---- 
+test03 throws correct Exception but still fails test 
+Mockito is dulled out 
 
