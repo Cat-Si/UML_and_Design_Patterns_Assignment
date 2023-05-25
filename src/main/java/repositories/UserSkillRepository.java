@@ -27,10 +27,10 @@ public class UserSkillRepository implements BaseUserSkillRepository {
         Optional<UserSkill> userSkill = doesUserExist(staff);
 
         if (userSkill.isPresent()) {
-            if (userSkill.get().getCurrentSkills().contains(userSkill.get())) {
+            if (userSkill.get().getCurrentSkills().contains(mySkill)) {
                 throw new EntryAlreadyExistsException("skill already assigned to staff member");
             } else {
-                userSkill.get().addSkill(userSkill.get());
+                userSkill.get().addSkill(mySkill);
             }
         } else {
             getAll().add(new UserSkill(uuid, staff, mySkill, strengthOfSkills, expiry, notes));
@@ -57,15 +57,15 @@ public class UserSkillRepository implements BaseUserSkillRepository {
             }
         }
     }
-    public void removeSkillFromStaff(StaffUser u, UserSkill s) throws IllegalArgumentException {
+    public void removeSkillFromStaff(StaffUser u, Skill s) throws IllegalArgumentException {
         Optional<UserSkill> userSkill = doesUserExist(u);
 
         if (userSkill.isEmpty()) {
-            throw new IllegalArgumentException("No User Skill Exists");
+            throw new IllegalArgumentException("No User Exists");
         }
 
         if (userSkill.get().getCurrentSkills().contains(s)) {
-            userSkill.get().removeSkill(userSkill.get());
+            userSkill.get().removeSkill(s);
         } else {
             throw new IllegalArgumentException("Staff Member does not have skill to remove");
         }

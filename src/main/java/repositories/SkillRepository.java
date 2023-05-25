@@ -32,6 +32,7 @@ public class SkillRepository implements BaseSkillRepository {
         for (Skill s: getAll()) {
             if (s.getId().equals(skill.getId())) {
                 s.setSkillName(skill.getSkillName());
+                s.setCategory(skill.getCategory());
             }
         }
     }

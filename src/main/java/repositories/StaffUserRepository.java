@@ -31,6 +31,11 @@ public class StaffUserRepository implements BaseStaffUserRepository {
         for (StaffUser su : getAll()) {
             if (su.getId().equals(staffUser.getId())) {
                 su.setFullName(staffUser.getFullName());
+                su.setUsername(staffUser.getUsername());
+                su.setPassword(staffUser.getPassword());
+                su.setSystemRole(staffUser.getSystemRole());
+                su.setStaffRole(staffUser.getStaffRole());
+                su.setCurrentManager(staffUser.getCurrentManager());
             }
         }
     }

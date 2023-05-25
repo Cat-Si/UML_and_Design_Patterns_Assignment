@@ -48,6 +48,7 @@ public class StaffUser extends User {
                                     getFullName(), getStaffRole()) ;
     }
 
+
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getFullName(), getSystemRole());
