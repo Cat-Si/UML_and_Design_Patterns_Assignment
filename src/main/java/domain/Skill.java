@@ -5,9 +5,9 @@ import java.util.UUID;
 public class Skill extends Validator{
 
     private Category category;
+
     private UUID id;
     private String skillName;
-
     public Skill(Category category, UUID id, String skillName){
         this.category = category;
         this.id = id;
@@ -33,6 +33,10 @@ public class Skill extends Validator{
     public void setSkillName(String skillName){
         this.skillName = skillName;
         validate();
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     private final void validate(){
