@@ -60,7 +60,7 @@ public class FindSkillsAssignedToStaffTests {
         UserSkill us = new UserSkill(DUMMY_ID, VALID_STAFF, VALID_SKILL, VALID_SKILL_LEVEL, VALID_DATE, VALID_NOTES);
 
         doThrow(new IllegalArgumentException("Staff already exists")).when(userSkillRepository).getSkillsForStaff(VALID_STAFF);
-        
+
         assertThrows(IllegalArgumentException.class, () -> {
             findSkillsAssignedToStaff.requestList.add(NEW_STAFF);
             findSkillsAssignedToStaff.execute();
