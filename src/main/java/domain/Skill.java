@@ -41,6 +41,7 @@ public class Skill extends Validator{
 
     private final void validate(){
         isNull(id,"id must not be null");
+        isNull(category, "category must not be null");
         isNull(skillName,"name must not be null");
         isBlank(skillName,"name must not be blank");
     }

@@ -123,7 +123,7 @@ public class StaffUserTests {
             Exception exception = assertThrows(IllegalArgumentException.class, () -> {
                 new StaffUser(DUMMY_ID, VALID_FIRSTNAME, VALID_SURNAME, " ", VALID_PASSWORD, VALID_SYSTEMROLE, VALID_JOBROLE, VALID_MANAGER);
             });
-            assertEquals(exception.getMessage(), "username must not be blank");
+            assertEquals(exception.getMessage(), "username must not be empty");
         }
 
         @Test
@@ -132,7 +132,7 @@ public class StaffUserTests {
             Exception exception = assertThrows(IllegalArgumentException.class, () -> {
                 new StaffUser(DUMMY_ID, VALID_FIRSTNAME, VALID_SURNAME, VALID_USERNAME, " ", VALID_SYSTEMROLE, VALID_JOBROLE, VALID_MANAGER);
             });
-            assertEquals(exception.getMessage(), "password must not be blank");
+            assertEquals(exception.getMessage(), "password must not be empty");
         }
 
 
@@ -159,10 +159,9 @@ public class StaffUserTests {
         @Test
         @DisplayName("When two staff objects with the different ids are compared the equals method works as expected")
         void test15() {
-            final UUID DUMMY_ID2 = UUID.fromString("0000-00-00-00-000001");
-
+            final String USERNAME2 = "UserName2";
             StaffUser s1 = new StaffUser(DUMMY_ID, VALID_FIRSTNAME, VALID_SURNAME, VALID_USERNAME, VALID_PASSWORD, VALID_SYSTEMROLE, VALID_JOBROLE, VALID_MANAGER);
-            StaffUser s2 = new StaffUser(DUMMY_ID2, VALID_FIRSTNAME, VALID_SURNAME, VALID_USERNAME, VALID_PASSWORD, VALID_SYSTEMROLE, VALID_JOBROLE, VALID_MANAGER);
+            StaffUser s2 = new StaffUser(DUMMY_ID, VALID_FIRSTNAME, VALID_SURNAME, USERNAME2, VALID_PASSWORD, VALID_SYSTEMROLE, VALID_JOBROLE, VALID_MANAGER);
 
             assertNotEquals(s1,s2);//Equals method works as expected
         }

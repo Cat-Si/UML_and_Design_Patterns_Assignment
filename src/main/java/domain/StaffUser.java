@@ -18,6 +18,12 @@ public class StaffUser extends User {
         super(id, forename, surname, username, password, systemRole);
         this.staffRole = staffRole;
         this.currentManager = currentManager;
+        validate();
+    }
+
+    private final void validate(){
+        isNull(staffRole,"staff role must not be null");
+        isNull(currentManager, "manager must not be null");
     }
 
 
@@ -44,7 +50,7 @@ public class StaffUser extends User {
 
     @Override
     public String toString() {
-        return String.format("%s(%s)",
+        return String.format("%s (%s)",
                                     getFullName(), getStaffRole()) ;
     }
 

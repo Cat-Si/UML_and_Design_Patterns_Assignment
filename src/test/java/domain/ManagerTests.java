@@ -112,7 +112,7 @@ public class ManagerTests {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             new Manager(DUMMY_MANAGER_ID, VALID_FIRSTNAME,VALID_SURNAME, " ",VALID_PASSWORD,VALID_SYSTEMROLE);
         });
-        assertEquals(exception.getMessage(), "username must not be blank");
+        assertEquals(exception.getMessage(), "username must not be empty");
     }
 
     @Test
@@ -121,7 +121,7 @@ public class ManagerTests {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             new Manager(DUMMY_MANAGER_ID, VALID_FIRSTNAME,VALID_SURNAME,VALID_USERNAME," ",VALID_SYSTEMROLE);
         });
-        assertEquals(exception.getMessage(), "password must not be blank");
+        assertEquals(exception.getMessage(), "password must not be empty");
     }
 
 
