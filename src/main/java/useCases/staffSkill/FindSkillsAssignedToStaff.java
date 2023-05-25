@@ -17,7 +17,7 @@ public class FindSkillsAssignedToStaff extends BaseUseCase {
         USER_SKILL_REPOSITORY = userSkillRepository;
     }
 
-    public Optional<List<UserSkill>> execute() {
+    public Optional<List<UserSkill>> execute() throws IllegalArgumentException{
         StaffUser u = (StaffUser) getNextRequestParameter();
         return USER_SKILL_REPOSITORY.getSkillsForStaff(u);
     }

@@ -47,7 +47,7 @@ public class EditUserSkillTest {
     }
 
     @Test
-    @DisplayName("When use case is executed with a valid module details then it is edited")
+    @DisplayName("When use case is executed with a valid userskill details then it is edited")
     void test01() {
 
         UserSkill us = new UserSkill(DUMMY_ID, VALID_STAFF, VALID_SKILL, VALID_SKILL_LEVEL, VALID_DATE, VALID_NOTES);

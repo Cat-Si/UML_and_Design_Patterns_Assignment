@@ -26,10 +26,7 @@ public class AddNewStaff extends BaseUseCase {
         Manager manager = (Manager) getNextRequestParameter();
         StaffUser staffUser = new StaffUser(UUIDGenerator.generate(), forename, surname,userName, password,
                     systemRole,staffRole,manager);
-        try {
             STAFF_REPOSITORY.add(staffUser);
-        } catch (EntryAlreadyExistsException e) {
-            e.printStackTrace();
-        }
+
     }
 }
