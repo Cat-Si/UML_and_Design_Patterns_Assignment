@@ -59,11 +59,11 @@ public class StaffUser extends User {
         if (this == o) return true;
         if (!(o instanceof StaffUser)) return false;
         StaffUser staff = (StaffUser) o;
-        return Objects.equals(getUsername(), staff.getUsername());
+        return Objects.equals(getUsername(),staff.getUsername());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFullName(), getSystemRole());
+        return Objects.hash(getId(), getUsername());
     }
 }
