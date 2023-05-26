@@ -4,13 +4,14 @@ import Exceptions.EntryAlreadyExistsException;
 import domain.Skill;
 import domain.enumerators.SkillLevel;
 import domain.StaffUser;
+import useCases.UseCaseCommand;
 import useCases.utility.UUIDGenerator;
 import repositories.interfaces.BaseUserSkillRepository;
 import useCases.BaseUseCase;
 
 import java.time.LocalDate;
 
-public class AddSkillToStaff extends BaseUseCase {
+public class AddSkillToStaff extends BaseUseCase implements UseCaseCommand {
     private final BaseUserSkillRepository USER_SKILL_REPOSITORY;
 
     public AddSkillToStaff(BaseUserSkillRepository userSkillRepository) {

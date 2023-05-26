@@ -54,7 +54,7 @@ public class AddSkillToStaffTest {
 
     @BeforeEach
     void resetList() {
-        addSkillToStaff.requestList.clear();
+        addSkillToStaff.clear();
     }
 
     private void executeUseCase() throws IllegalArgumentException, EntryAlreadyExistsException {
@@ -70,11 +70,11 @@ public class AddSkillToStaffTest {
     void test01() {;
         UserSkill us = new UserSkill(DUMMY_ID, VALID_STAFF, VALID_SKILL, VALID_SKILL_LEVEL, VALID_DATE, VALID_NOTES);
 
-        addSkillToStaff.requestList.add(VALID_STAFF);
-        addSkillToStaff.requestList.add(VALID_SKILL);
-        addSkillToStaff.requestList.add(VALID_SKILL_LEVEL);
-        addSkillToStaff.requestList.add(VALID_DATE);
-        addSkillToStaff.requestList.add(VALID_NOTES);
+        addSkillToStaff.add(VALID_STAFF);
+        addSkillToStaff.add(VALID_SKILL);
+        addSkillToStaff.add(VALID_SKILL_LEVEL);
+        addSkillToStaff.add(VALID_DATE);
+        addSkillToStaff.add(VALID_NOTES);
 
         assertDoesNotThrow( () ->executeUseCase());
     }
@@ -89,11 +89,11 @@ public class AddSkillToStaffTest {
 
         doThrow(new EntryAlreadyExistsException("User Skill already exists")).when(userSkillRepository).add(EXISTING_ID,VALID_STAFF, VALID_SKILL, VALID_SKILL_LEVEL, VALID_DATE, VALID_NOTES);
 
-        addSkillToStaff.requestList.add(VALID_STAFF);
-        addSkillToStaff.requestList.add(VALID_SKILL);
-        addSkillToStaff.requestList.add(VALID_SKILL_LEVEL);
-        addSkillToStaff.requestList.add(VALID_DATE);
-        addSkillToStaff.requestList.add(VALID_NOTES);
+        addSkillToStaff.add(VALID_STAFF);
+        addSkillToStaff.add(VALID_SKILL);
+        addSkillToStaff.add(VALID_SKILL_LEVEL);
+        addSkillToStaff.add(VALID_DATE);
+        addSkillToStaff.add(VALID_NOTES);
 
         assertThrows(EntryAlreadyExistsException.class, () -> {
             executeUseCase();

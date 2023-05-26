@@ -8,6 +8,7 @@ import domain.UserSkill;
 import domain.enumerators.SkillLevel;
 import repositories.interfaces.BaseUserSkillRepository;
 import useCases.BaseUseCase;
+import useCases.UseCaseCommand;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -15,7 +16,7 @@ import java.util.UUID;
 
 
 
-    public class EditUserSkill extends BaseUseCase {
+    public class EditUserSkill extends BaseUseCase implements UseCaseCommand {
 
         private final BaseUserSkillRepository USER_SKILL_REPOSITORY;
         public EditUserSkill(BaseUserSkillRepository userSkillRepository){

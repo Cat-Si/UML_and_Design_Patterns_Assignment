@@ -1,6 +1,5 @@
 package useCases;
 
-import domain.Category;
 import domain.Manager;
 import domain.enumerators.SystemRole;
 import org.junit.jupiter.api.BeforeAll;
@@ -8,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import repositories.ManagerRepository;
 import repositories.interfaces.BaseManagerRepository;
-import useCases.staff.GetAllManagers;
+import useCases.manager.GetAllManagers;
 
 import java.util.ArrayList;
 import java.util.List;

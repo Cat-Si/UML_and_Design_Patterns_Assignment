@@ -2,11 +2,9 @@ package controllers;
 
 import Exceptions.EntryAlreadyExistsException;
 import domain.Manager;
-import domain.StaffUser;
 import domain.enumerators.JobRole;
 import domain.enumerators.SystemRole;
 import general.AlertMessage;
-import globals.Ioc_Container;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,8 +12,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import useCases.staff.AddNewStaff;
-import useCases.staff.GetAllManagers;
+import useCases.UseCaseCommand;
+import useCases.manager.ManagerFactory;
+import useCases.manager.UseCaseQuery;
+import useCases.staff.staffFactory.StaffFactory;
 
 
 public class AddStaffController {
@@ -34,9 +34,8 @@ public class AddStaffController {
     @FXML
     private ComboBox<Manager> manager;
 
-    private final AddNewStaff addNewStaff = new AddNewStaff(Ioc_Container.getStaffUserRepository());
-
-    private final GetAllManagers getAllManagers = new GetAllManagers(Ioc_Container.getManagerRepository());
+    private final UseCaseCommand addNewStaff = StaffFactory.createCommand(StaffFactory.CommandType.add);
+    private final UseCaseQuery getAllManagers = ManagerFactory.createQuery(ManagerFactory.CommandType.view);
     public void initialize() {
         Platform.runLater(() -> firstName.requestFocus());
         showJobRole();
@@ -54,13 +53,13 @@ public class AddStaffController {
         JobRole selectedJobRole = jobRoleLst.getSelectionModel().getSelectedItem();
         Manager selectedManager = manager.getSelectionModel().getSelectedItem();
         try {
-            addNewStaff.requestList.add(forname);
-            addNewStaff.requestList.add(surname);
-            addNewStaff.requestList.add(user);
-            addNewStaff.requestList.add(pass);
-            addNewStaff.requestList.add(selectedSystemRole);
-            addNewStaff.requestList.add(selectedJobRole);
-            addNewStaff.requestList.add(selectedManager);
+            addNewStaff.add(forname);
+            addNewStaff.add(surname);
+            addNewStaff.add(user);
+            addNewStaff.add(pass);
+            addNewStaff.add(selectedSystemRole);
+            addNewStaff.add(selectedJobRole);
+            addNewStaff.add(selectedManager);
             addNewStaff.execute();
             clearForm();
             AlertMessage.showMessage(Alert.AlertType.INFORMATION, "Staff member added");

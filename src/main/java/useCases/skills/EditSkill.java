@@ -2,12 +2,13 @@ package useCases.skills;
 
 import domain.Category;
 import domain.Skill;
-import domain.enumerators.SkillLevel;
 import repositories.interfaces.BaseSkillRepository;
 import useCases.BaseUseCase;
+import useCases.UseCaseCommand;
+
 import java.util.UUID;
 
-public class EditSkill extends BaseUseCase {
+public class EditSkill extends BaseUseCase implements UseCaseCommand {
 
     private final BaseSkillRepository SKILL_REPOSITORY;
     public EditSkill(BaseSkillRepository skillRepository){

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import repositories.CategoryRepository;
 import repositories.interfaces.BaseCategoryRepository;
-import useCases.skills.GetAllCategories;
+import useCases.category.GetAllCategories;
 
 import java.util.ArrayList;
 import java.util.List;

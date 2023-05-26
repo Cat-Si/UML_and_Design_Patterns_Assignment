@@ -47,7 +47,7 @@ public class AddNewStaffTest {
 
     @BeforeEach
     void resetList() {
-        addNewStaff.requestList.clear();
+        addNewStaff.clear();
     }
 
     private void executeUseCase() throws IllegalArgumentException, EntryAlreadyExistsException {
@@ -62,13 +62,13 @@ public class AddNewStaffTest {
     @DisplayName("When use case is executed with valid staff details then a new staff is added")
     void test01() {
         StaffUser su = new StaffUser(DUMMY_ID, VALID_FIRSTNAME, VALID_SURNAME, VALID_USERNAME, VALID_PASSWORD, VALID_SYSTEMROLE, VALID_JOBROLE, VALID_MANAGER);
-        addNewStaff.requestList.add(VALID_FIRSTNAME);
-        addNewStaff.requestList.add(VALID_SURNAME);
-        addNewStaff.requestList.add(VALID_USERNAME);
-        addNewStaff.requestList.add(VALID_PASSWORD);
-        addNewStaff.requestList.add(VALID_SYSTEMROLE);
-        addNewStaff.requestList.add(VALID_JOBROLE);
-        addNewStaff.requestList.add(VALID_MANAGER);
+        addNewStaff.add(VALID_FIRSTNAME);
+        addNewStaff.add(VALID_SURNAME);
+        addNewStaff.add(VALID_USERNAME);
+        addNewStaff.add(VALID_PASSWORD);
+        addNewStaff.add(VALID_SYSTEMROLE);
+        addNewStaff.add(VALID_JOBROLE);
+        addNewStaff.add(VALID_MANAGER);
 
         assertDoesNotThrow( () ->executeUseCase());
     }
@@ -77,13 +77,13 @@ public class AddNewStaffTest {
     @DisplayName("When use case is executed with invalid staff details then an IllegalArgumentException is thrown")
     void test02(){
         final String EMPTY_NAME = "";
-        addNewStaff.requestList.add(EMPTY_NAME);
-        addNewStaff.requestList.add(VALID_SURNAME);
-        addNewStaff.requestList.add(VALID_USERNAME);
-        addNewStaff.requestList.add(VALID_PASSWORD);
-        addNewStaff.requestList.add(VALID_SYSTEMROLE);
-        addNewStaff.requestList.add(VALID_JOBROLE);
-        addNewStaff.requestList.add(VALID_MANAGER);
+        addNewStaff.add(EMPTY_NAME);
+        addNewStaff.add(VALID_SURNAME);
+        addNewStaff.add(VALID_USERNAME);
+        addNewStaff.add(VALID_PASSWORD);
+        addNewStaff.add(VALID_SYSTEMROLE);
+        addNewStaff.add(VALID_JOBROLE);
+        addNewStaff.add(VALID_MANAGER);
 
         assertThrows(IllegalArgumentException.class, () -> {
             executeUseCase();
@@ -99,13 +99,13 @@ public class AddNewStaffTest {
 
         doThrow(new EntryAlreadyExistsException("Staff already exists")).when(staffUserRepository).add(su);
 
-        addNewStaff.requestList.add(VALID_FIRSTNAME);
-        addNewStaff.requestList.add(VALID_SURNAME);
-        addNewStaff.requestList.add(EXISTING_USERNAME);
-        addNewStaff.requestList.add(VALID_PASSWORD);
-        addNewStaff.requestList.add(VALID_SYSTEMROLE);
-        addNewStaff.requestList.add(VALID_JOBROLE);
-        addNewStaff.requestList.add(VALID_MANAGER);
+        addNewStaff.add(VALID_FIRSTNAME);
+        addNewStaff.add(VALID_SURNAME);
+        addNewStaff.add(EXISTING_USERNAME);
+        addNewStaff.add(VALID_PASSWORD);
+        addNewStaff.add(VALID_SYSTEMROLE);
+        addNewStaff.add(VALID_JOBROLE);
+        addNewStaff.add(VALID_MANAGER);
 
         assertThrows(EntryAlreadyExistsException.class, () -> {
             executeUseCase();

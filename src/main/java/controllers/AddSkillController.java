@@ -1,23 +1,19 @@
 package controllers;
 
 import Exceptions.EntryAlreadyExistsException;
-import controllers.interfaces.DomainObjectToEdit;
 import domain.Category;
 import general.AlertMessage;
-import globals.Ioc_Container;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import useCases.skills.AddNewSkill;
-import useCases.skills.GetAllCategories;
-
-
-
+import useCases.category.categoryFactory.CategoryFactory;
+import useCases.category.categoryFactory.UseCaseQuery;
+import useCases.skills.skillFactory.SkillFactory;
+import useCases.UseCaseCommand;
 
 
 public class AddSkillController  {
@@ -27,9 +23,8 @@ public class AddSkillController  {
     @FXML
     private ComboBox<Category> category;
 
-
-    private final AddNewSkill addNewSkill = new AddNewSkill(Ioc_Container.getSkillRepository());
-    private final GetAllCategories getAllCategories = new GetAllCategories(Ioc_Container.getCategoryRepository());
+    private final UseCaseCommand addNewSkill = SkillFactory.createCommand(SkillFactory.CommandType.add);
+    private final UseCaseQuery getAllCategories = CategoryFactory.createQuery(CategoryFactory.CommandType.view);
 
     public void initialize() {
         Platform.runLater(() -> skillName.requestFocus());
@@ -42,8 +37,8 @@ public class AddSkillController  {
         String name = skillName.getText();
 
         try {
-            addNewSkill.requestList.add(name);
-            addNewSkill.requestList.add(category.getSelectionModel().getSelectedItem());
+            addNewSkill.add(name);
+            addNewSkill.add(category.getSelectionModel().getSelectedItem());
             addNewSkill.execute();
             clearForm();
             AlertMessage.showMessage(Alert.AlertType.INFORMATION, "Skill Added");

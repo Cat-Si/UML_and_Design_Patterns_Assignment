@@ -17,11 +17,10 @@ import javafx.scene.control.TextField;
 import router.RouteNames;
 import router.Router;
 import useCases.staff.EditStaff;
-import useCases.staff.GetAllManagers;
+import useCases.manager.GetAllManagers;
 import useCases.staff.GetAllStaff;
 import useCases.staffSkill.FindSkillsAssignedToStaff;
 import java.io.IOException;
-import java.lang.module.FindException;
 import java.util.List;
 import java.util.Optional;
 
@@ -94,14 +93,14 @@ public class EditStaffController  {
         JobRole selectedJobRole = jobRoleLst.getSelectionModel().getSelectedItem();
         Manager selectedManager = manager.getSelectionModel().getSelectedItem();
         try {
-            editStaff.requestList.add(selectedUser.getId());
-            editStaff.requestList.add(forname);
-            editStaff.requestList.add(surname);
-            editStaff.requestList.add(user);
-            editStaff.requestList.add(pass);
-            editStaff.requestList.add(selectedSystemRole);
-            editStaff.requestList.add(selectedJobRole);
-            editStaff.requestList.add(selectedManager);
+            editStaff.add(selectedUser.getId());
+            editStaff.add(forname);
+            editStaff.add(surname);
+            editStaff.add(user);
+            editStaff.add(pass);
+            editStaff.add(selectedSystemRole);
+            editStaff.add(selectedJobRole);
+            editStaff.add(selectedManager);
             editStaff.execute();
         }catch (IllegalArgumentException e){
             AlertMessage.showMessage(Alert.AlertType.ERROR, e.getMessage());
@@ -134,7 +133,7 @@ public class EditStaffController  {
 
     @FXML
     private void showSkillAssignedToStaff() {
-        findSkillsAssignedToStaff.requestList.add(usersLst.getSelectionModel().getSelectedItem());
+        findSkillsAssignedToStaff.add(usersLst.getSelectionModel().getSelectedItem());
         Optional<List<UserSkill>> staffSkill = findSkillsAssignedToStaff.execute();
 
         if (staffSkill.isPresent()) {

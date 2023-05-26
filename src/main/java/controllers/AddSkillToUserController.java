@@ -17,12 +17,17 @@ import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import useCases.UseCaseCommand;
 import useCases.skills.GetAllSkills;
 import useCases.staff.GetAllStaff;
+import useCases.staff.staffFactory.StaffFactory;
+import useCases.staff.staffFactory.UseCaseQuery;
 import useCases.staffSkill.AddSkillToStaff;
 import useCases.staffSkill.EditUserSkill;
 import useCases.staffSkill.FindSkillsAssignedToStaff;
 import useCases.staffSkill.RemoveSkillAssignedToStaff;
+import useCases.staffSkill.staffSkillFactory.StaffSkillFactory;
+import useCases.staffSkill.staffSkillFactory.UseCaseCommandFind;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -61,19 +66,13 @@ public class AddSkillToUserController {
 
     private StaffUser selectedStaff;
 
-    private Skill thisSkill;
 
-    private final GetAllStaff getAllStaff = new GetAllStaff(Ioc_Container.getStaffUserRepository());
+    private final UseCaseQuery getAllStaff = StaffFactory.createQuery(StaffFactory.CommandType.view);
 
-    private final GetAllSkills getAllSkills = new GetAllSkills(Ioc_Container.getSkillRepository());
-
-    private final AddSkillToStaff addSkillToStaff = new AddSkillToStaff(Ioc_Container.getUserSkillRepository());
-
-    private final FindSkillsAssignedToStaff findSkillsAssignedToStaff = new FindSkillsAssignedToStaff(Ioc_Container.getUserSkillRepository());
+    private final UseCaseCommandFind findSkillsAssignedToStaff = StaffSkillFactory.createCommandFind(StaffSkillFactory.CommandType.view);
 
     private final RemoveSkillAssignedToStaff removeSkillAssignedToStaff = new RemoveSkillAssignedToStaff(Ioc_Container.getUserSkillRepository());
 
-    private final EditUserSkill editUserSkill = new EditUserSkill(Ioc_Container.getUserSkillRepository());
 
     public void initialize() {
 
@@ -95,9 +94,9 @@ public class AddSkillToUserController {
     }
 
 
-    private void showStaffSkills() {
+    private void showStaffSkills()  {
         StaffUser selectedStaff = getAllStaff.execute().get(0);
-        findSkillsAssignedToStaff.requestList.add(selectedStaff);
+        findSkillsAssignedToStaff.add(selectedStaff);
         Optional<List<UserSkill>> staffSkill = findSkillsAssignedToStaff.execute();
         ObservableList<UserSkill> items = FXCollections.observableArrayList(staffSkill.get());
         staffSkillLst.setItems(items);
@@ -146,8 +145,8 @@ public class AddSkillToUserController {
 
     @FXML
     private void handleRemoveSkill() {
-        removeSkillAssignedToStaff.requestList.add(selectedStaff);
-        removeSkillAssignedToStaff.requestList.add(selectedSkill);
+        removeSkillAssignedToStaff.add(selectedStaff);
+        removeSkillAssignedToStaff.add(selectedSkill);
 
         try {
             removeSkillAssignedToStaff.execute();
@@ -157,15 +156,6 @@ public class AddSkillToUserController {
         }
 
 
-//        @FXML
-//        private void showSkillAssignedToStaff() {
-//            if (selectedStaff) {
-//
-//                findSkillsAssignedToStaff.requestList.add(selectedStaff);
-//                Optional<List<UserSkill>> staffSkill = findSkillsAssignedToStaff.execute();
-//                ObservableList<UserSkill> items = FXCollections.observableArrayList(staffSkill.get());
-//                staffSkillLst.setItems(items);
-//            }
 
 
     }

@@ -40,7 +40,7 @@ public class AddNewSkillTest {
 
     @BeforeEach
     void resetList() {
-        addNewSkill.requestList.clear();
+        addNewSkill.clear();
     }
 
     private void executeUseCase() throws IllegalArgumentException, EntryAlreadyExistsException{
@@ -57,8 +57,8 @@ public class AddNewSkillTest {
         final String NAME = "skill name";
         Skill VALID_SKILL = new Skill(VALID_CATEGORY, DUMMY_ID, NAME);
 
-        addNewSkill.requestList.add(NAME);
-        addNewSkill.requestList.add(VALID_CATEGORY);
+        addNewSkill.add(NAME);
+        addNewSkill.add(VALID_CATEGORY);
 
         assertDoesNotThrow( () ->executeUseCase());
     }
@@ -67,8 +67,8 @@ public class AddNewSkillTest {
     @DisplayName("When use case is executed with invalid skill details then an IllegalArgumentException is thrown")
     void test02(){
         final String EMPTY_NAME = "";
-        addNewSkill.requestList.add(EMPTY_NAME);
-        addNewSkill.requestList.add(VALID_CATEGORY);
+        addNewSkill.add(EMPTY_NAME);
+        addNewSkill.add(VALID_CATEGORY);
 
         assertThrows(IllegalArgumentException.class, () -> {
             executeUseCase();
@@ -83,8 +83,8 @@ public class AddNewSkillTest {
 
         doThrow(new EntryAlreadyExistsException("Skill already exists")).when(skillRepository).add(s);
 
-        addNewSkill.requestList.add(EXISTING_SKILL_NAME);
-        addNewSkill.requestList.add(VALID_CATEGORY);
+        addNewSkill.add(EXISTING_SKILL_NAME);
+        addNewSkill.add(VALID_CATEGORY);
 
         assertThrows(EntryAlreadyExistsException.class, () -> {
             executeUseCase();

@@ -5,7 +5,14 @@ import java.util.List;
 
 public abstract class BaseUseCase {
     private int currentIndex = 0;
-    public final List requestList = new ArrayList<>();
+    private final List requestList = new ArrayList<>();
+
+    public void clear() {
+        requestList.clear();
+    }
+    public void add(Object parameter) {
+        requestList.add(parameter);
+    }
 
     public Object getNextRequestParameter(){
         Object listItem = requestList.get(currentIndex++);

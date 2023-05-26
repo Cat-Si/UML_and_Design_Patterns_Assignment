@@ -86,14 +86,14 @@ public class UserDetailsController {
         JobRole selectedJobRole = jobRoleLst.getSelectionModel().getSelectedItem();
         Manager selectedManager = manager.getSelectionModel().getSelectedItem();
         try {
-            editStaff.requestList.add(selectedUser.getId());
-            editStaff.requestList.add(forname);
-            editStaff.requestList.add(surname);
-            editStaff.requestList.add(user);
-            editStaff.requestList.add(pass);
-            editStaff.requestList.add(selectedSystemRole);
-            editStaff.requestList.add(selectedJobRole);
-            editStaff.requestList.add(selectedManager);
+            editStaff.add(selectedUser.getId());
+            editStaff.add(forname);
+            editStaff.add(surname);
+            editStaff.add(user);
+            editStaff.add(pass);
+            editStaff.add(selectedSystemRole);
+            editStaff.add(selectedJobRole);
+            editStaff.add(selectedManager);
             editStaff.execute();
         }catch (IllegalArgumentException e){
             AlertMessage.showMessage(Alert.AlertType.ERROR, e.getMessage());

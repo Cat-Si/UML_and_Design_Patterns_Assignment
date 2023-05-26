@@ -1,4 +1,4 @@
-package useCases.staff;
+package useCases.manager;
 
 import domain.Manager;
 import repositories.interfaces.BaseManagerRepository;
@@ -6,7 +6,7 @@ import repositories.interfaces.BaseManagerRepository;
 
 import java.util.List;
 
-public class GetAllManagers {
+public class GetAllManagers implements UseCaseQuery {
     private final BaseManagerRepository MANAGER_REPOSITORY;
 
     public GetAllManagers(BaseManagerRepository managerRepository) {

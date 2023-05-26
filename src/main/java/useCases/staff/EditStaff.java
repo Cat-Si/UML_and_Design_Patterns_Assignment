@@ -5,11 +5,12 @@ import domain.enumerators.JobRole;
 import domain.enumerators.SystemRole;
 import repositories.interfaces.BaseStaffUserRepository;
 import useCases.BaseUseCase;
+import useCases.UseCaseCommand;
 
 import java.util.UUID;
 
 
-public class EditStaff extends BaseUseCase {
+public class EditStaff extends BaseUseCase implements UseCaseCommand {
 
     private final BaseStaffUserRepository STAFF_REPOSITORY;
 

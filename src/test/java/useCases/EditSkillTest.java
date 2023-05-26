@@ -36,9 +36,9 @@ public class EditSkillTest {
         final String NEW_NAME ="Valid name";
         Skill skill = new Skill(VALID_CATEGORY, existingUUID, NEW_NAME);
 
-        editSkill.requestList.add(VALID_CATEGORY);
-        editSkill.requestList.add(existingUUID);
-        editSkill.requestList.add(NEW_NAME);
+        editSkill.add(VALID_CATEGORY);
+        editSkill.add(existingUUID);
+        editSkill.add(NEW_NAME);
         editSkill.execute();
         verify(skillRepository).edit(skill); //check method was called with module det
     }
@@ -56,9 +56,9 @@ public class EditSkillTest {
         doThrow(new IllegalArgumentException("skill already exists")).when(skillRepository).edit(skill);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            editSkill.requestList.add( VALID_CATEGORY);
-            editSkill.requestList.add(differentUUID);
-            editSkill.requestList.add(NEW_NAME);
+            editSkill.add( VALID_CATEGORY);
+            editSkill.add(differentUUID);
+            editSkill.add(NEW_NAME);
             editSkill.execute();
         });
     }

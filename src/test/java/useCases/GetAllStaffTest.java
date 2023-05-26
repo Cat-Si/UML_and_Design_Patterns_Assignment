@@ -7,11 +7,8 @@ import domain.enumerators.SystemRole;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import repositories.ManagerRepository;
 import repositories.StaffUserRepository;
-import repositories.interfaces.BaseManagerRepository;
 import repositories.interfaces.BaseStaffUserRepository;
-import useCases.staff.GetAllManagers;
 import useCases.staff.GetAllStaff;
 
 import java.util.ArrayList;

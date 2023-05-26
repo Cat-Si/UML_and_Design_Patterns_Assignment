@@ -52,12 +52,12 @@ public class EditUserSkillTest {
 
         UserSkill us = new UserSkill(DUMMY_ID, VALID_STAFF, VALID_SKILL, VALID_SKILL_LEVEL, VALID_DATE, VALID_NOTES);
 
-        editUserSkill.requestList.add(DUMMY_ID);
-        editUserSkill.requestList.add(VALID_STAFF);
-        editUserSkill.requestList.add(VALID_SKILL);
-        editUserSkill.requestList.add(VALID_SKILL_LEVEL);
-        editUserSkill.requestList.add(VALID_DATE);
-        editUserSkill.requestList.add(VALID_NOTES);
+        editUserSkill.add(DUMMY_ID);
+        editUserSkill.add(VALID_STAFF);
+        editUserSkill.add(VALID_SKILL);
+        editUserSkill.add(VALID_SKILL_LEVEL);
+        editUserSkill.add(VALID_DATE);
+        editUserSkill.add(VALID_NOTES);
         editUserSkill.execute();
         verify(userSkillRepository).edit(us); //check method was called with module det
     }
@@ -74,12 +74,12 @@ public class EditUserSkillTest {
         doThrow(new IllegalArgumentException("UserSkill already exists")).when(userSkillRepository).edit(us);
 
         assertThrows(IllegalArgumentException.class, () -> { //Module equals method compares on name only
-            editUserSkill.requestList.add(differentUUID);
-            editUserSkill.requestList.add(VALID_STAFF);
-            editUserSkill.requestList.add(VALID_SKILL);
-            editUserSkill.requestList.add(VALID_SKILL_LEVEL);
-            editUserSkill.requestList.add(VALID_DATE);
-            editUserSkill.requestList.add(VALID_NOTES);
+            editUserSkill.add(differentUUID);
+            editUserSkill.add(VALID_STAFF);
+            editUserSkill.add(VALID_SKILL);
+            editUserSkill.add(VALID_SKILL_LEVEL);
+            editUserSkill.add(VALID_DATE);
+            editUserSkill.add(VALID_NOTES);
             editUserSkill.execute();
         });
     }

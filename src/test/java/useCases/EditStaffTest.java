@@ -51,14 +51,14 @@ public class EditStaffTest {
         StaffUser staff = new StaffUser(EXISTING_UUID, NEW_NAME, VALID_SURNAME, VALID_USERNAME, VALID_PASSWORD, VALID_SYSTEMROLE, VALID_JOBROLE, VALID_MANAGER);
 
 
-        editStaff.requestList.add(EXISTING_UUID);
-        editStaff.requestList.add(NEW_NAME);
-        editStaff.requestList.add(VALID_SURNAME);
-        editStaff.requestList.add(VALID_USERNAME);
-        editStaff.requestList.add(VALID_PASSWORD);
-        editStaff.requestList.add(VALID_SYSTEMROLE);
-        editStaff.requestList.add(VALID_JOBROLE);
-        editStaff.requestList.add(VALID_MANAGER);
+        editStaff.add(EXISTING_UUID);
+        editStaff.add(NEW_NAME);
+        editStaff.add(VALID_SURNAME);
+        editStaff.add(VALID_USERNAME);
+        editStaff.add(VALID_PASSWORD);
+        editStaff.add(VALID_SYSTEMROLE);
+        editStaff.add(VALID_JOBROLE);
+        editStaff.add(VALID_MANAGER);
         editStaff.execute();
         verify(staffUserRepository).edit(staff); //check method was called with module det
     }
@@ -74,14 +74,14 @@ public class EditStaffTest {
 
         assertThrows(IllegalArgumentException.class, () -> { //Module equals method compares on name only
             final String NEW_NAME = "Valid first";
-            editStaff.requestList.add(DUMMY_ID);
-            editStaff.requestList.add(NEW_NAME);
-            editStaff.requestList.add(VALID_SURNAME);
-            editStaff.requestList.add(VALID_USERNAME);
-            editStaff.requestList.add(VALID_PASSWORD);
-            editStaff.requestList.add(VALID_SYSTEMROLE);
-            editStaff.requestList.add(VALID_JOBROLE);
-            editStaff.requestList.add(VALID_MANAGER);
+            editStaff.add(DUMMY_ID);
+            editStaff.add(NEW_NAME);
+            editStaff.add(VALID_SURNAME);
+            editStaff.add(VALID_USERNAME);
+            editStaff.add(VALID_PASSWORD);
+            editStaff.add(VALID_SYSTEMROLE);
+            editStaff.add(VALID_JOBROLE);
+            editStaff.add(VALID_MANAGER);
             editStaff.execute();
         });
     }

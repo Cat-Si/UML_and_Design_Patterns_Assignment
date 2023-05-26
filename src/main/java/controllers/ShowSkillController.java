@@ -2,22 +2,16 @@ package controllers;
 
 import domain.Skill;
 import general.AlertMessage;
-import globals.Ioc_Container;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
 import router.RouteNames;
 import router.Router;
-import useCases.skills.EditSkill;
-import useCases.skills.GetAllSkills;
-import useCases.skills.SkillFactory;
-import useCases.skills.UseCaseQuery;
-import useCases.staffSkill.AddSkillToStaff;
-import useCases.staffSkill.RemoveSkillAssignedToStaff;
+import useCases.skills.skillFactory.SkillFactory;
+import useCases.skills.skillFactory.UseCaseQuery;
 
 import java.io.IOException;
 
@@ -25,7 +19,6 @@ import java.io.IOException;
 public class ShowSkillController {
 
     private final UseCaseQuery getAllSkills = SkillFactory.createQuery(SkillFactory.CommandType.view);
-   // private  final GetAllSkills getAllSkills = new GetAllSkills(Ioc_Container.getSkillRepository());
 
 
     @FXML

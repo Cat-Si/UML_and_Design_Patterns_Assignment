@@ -4,11 +4,12 @@ import Exceptions.EntryAlreadyExistsException;
 import domain.*;
 import domain.enumerators.JobRole;
 import domain.enumerators.SystemRole;
+import useCases.UseCaseCommand;
 import useCases.utility.UUIDGenerator;
 import repositories.interfaces.BaseStaffUserRepository;
 import useCases.BaseUseCase;
 
-public class AddNewStaff extends BaseUseCase {
+public class AddNewStaff extends BaseUseCase implements UseCaseCommand {
      private final BaseStaffUserRepository STAFF_REPOSITORY;
 
 

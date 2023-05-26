@@ -1,11 +1,13 @@
-package useCases.skills;
+package useCases.category;
 
 import domain.Category;
 import repositories.interfaces.BaseCategoryRepository;
 import useCases.BaseUseCase;
+import useCases.category.categoryFactory.UseCaseQuery;
+
 import java.util.List;
 
-public class GetAllCategories extends BaseUseCase {
+public class GetAllCategories extends BaseUseCase implements UseCaseQuery {
     private final BaseCategoryRepository CATEGORY_REPOSITORY;
 
     public GetAllCategories(BaseCategoryRepository categoryRepository) {
