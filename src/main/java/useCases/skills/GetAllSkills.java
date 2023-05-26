@@ -5,7 +5,7 @@ import repositories.interfaces.BaseSkillRepository;
 import useCases.BaseUseCase;
 import java.util.List;
 
-public class GetAllSkills extends BaseUseCase {
+public class GetAllSkills extends BaseUseCase implements UseCaseQuery{
 
     private final BaseSkillRepository SKILL_REPOSITORY;
 

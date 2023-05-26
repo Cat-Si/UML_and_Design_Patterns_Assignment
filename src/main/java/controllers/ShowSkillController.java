@@ -14,6 +14,8 @@ import router.RouteNames;
 import router.Router;
 import useCases.skills.EditSkill;
 import useCases.skills.GetAllSkills;
+import useCases.skills.SkillFactory;
+import useCases.skills.UseCaseQuery;
 import useCases.staffSkill.AddSkillToStaff;
 import useCases.staffSkill.RemoveSkillAssignedToStaff;
 
@@ -22,7 +24,8 @@ import java.io.IOException;
 
 public class ShowSkillController {
 
-    private  final GetAllSkills getAllSkills = new GetAllSkills(Ioc_Container.getSkillRepository());
+    private final UseCaseQuery getAllSkills = SkillFactory.createQuery(SkillFactory.CommandType.view);
+   // private  final GetAllSkills getAllSkills = new GetAllSkills(Ioc_Container.getSkillRepository());
 
 
     @FXML
