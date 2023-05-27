@@ -30,6 +30,9 @@ public class ManagerRepository implements BaseManagerRepository {
         for (Manager m : getAll()) {
             if (m.getId().equals(manager.getId())) {
                 m.setFullName(manager.getFullName());
+                m.setUsername(manager.getUsername());
+                m.setPassword(manager.getPassword());
+                m.setSystemRole(manager.getSystemRole());
             }
         }
     }

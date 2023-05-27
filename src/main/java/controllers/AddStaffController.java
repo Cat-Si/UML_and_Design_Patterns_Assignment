@@ -13,8 +13,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import useCases.UseCaseCommand;
-import useCases.manager.ManagerFactory;
-import useCases.manager.UseCaseQuery;
+import useCases.manager.managerFactory.ManagerFactory;
+import useCases.manager.managerFactory.UseCaseQuery;
 import useCases.staff.staffFactory.StaffFactory;
 
 
@@ -34,6 +34,8 @@ public class AddStaffController {
     @FXML
     private ComboBox<Manager> manager;
 
+
+    private final UseCaseCommand addNewManager = ManagerFactory.createCommand(ManagerFactory.CommandType.add);
     private final UseCaseCommand addNewStaff = StaffFactory.createCommand(StaffFactory.CommandType.add);
     private final UseCaseQuery getAllManagers = ManagerFactory.createQuery(ManagerFactory.CommandType.view);
     public void initialize() {
@@ -45,6 +47,9 @@ public class AddStaffController {
 
     @FXML
     private void handleAddStaff() {
+
+        if ( systemRoleLst.getSelectionModel().getSelectedItem() == SystemRole.STAFF_USER) {
+
         String forname = firstName.getText();
         String surname = lastName.getText();
         String user = username.getText();
@@ -72,7 +77,33 @@ public class AddStaffController {
         }
 
         firstName.requestFocus();
-    }
+        } else if (systemRoleLst.getSelectionModel().getSelectedItem() == SystemRole.MANAGER) {
+            String forname = firstName.getText();
+            String surname = lastName.getText();
+            String user = username.getText();
+            String pass = password.getText();
+            SystemRole selectedSystemRole = systemRoleLst.getSelectionModel().getSelectedItem();
+            try {
+                addNewManager.add(forname);
+                addNewManager.add(surname);
+                addNewManager.add(user);
+                addNewManager.add(pass);
+                addNewManager.add(selectedSystemRole);
+                addNewManager.execute();
+                clearForm();
+                AlertMessage.showMessage(Alert.AlertType.INFORMATION, "Manager member added");
+            }
+            catch (EntryAlreadyExistsException e){
+                AlertMessage.showMessage(Alert.AlertType.INFORMATION, e.getMessage());
+            }
+            catch (IllegalArgumentException e){
+                AlertMessage.showMessage(Alert.AlertType.ERROR, e.getMessage());
+            }
+
+            firstName.requestFocus();
+        }
+        }
+
 
     private void clearForm() {
         firstName.clear();

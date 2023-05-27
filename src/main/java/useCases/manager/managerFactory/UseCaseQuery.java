@@ -1,4 +1,4 @@
-package useCases.manager;
+package useCases.manager.managerFactory;
 
 import domain.Manager;
 

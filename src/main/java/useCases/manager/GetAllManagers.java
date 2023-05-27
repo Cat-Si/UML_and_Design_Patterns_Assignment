@@ -2,6 +2,7 @@ package useCases.manager;
 
 import domain.Manager;
 import repositories.interfaces.BaseManagerRepository;
+import useCases.manager.managerFactory.UseCaseQuery;
 
 
 import java.util.List;

@@ -15,3 +15,8 @@ composite - use to view a manager and all staff belonging to the manager - allow
 Facade Where you have a controller that interacts with more than one use case (e.g. the EnrolStudentOnModuleController) you could implement a Facade to interact with that rather than the 5 use cases - reducing coupling.
 
 Observer - You could amend your code so that if you delete a Skill that the SkillRepository is observed by UserSkills observer and that deletes any user skills with that skill.
+
+Chain of Responsibility - Could be used with the user to determine whether the manager or staffUser manages the object 
+
+
+### Create a addNewManager useCase = Adding new staff should use either AddNewManager or AddNewStaff depending on the systemRole selected 
