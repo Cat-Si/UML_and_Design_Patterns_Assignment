@@ -1,11 +1,12 @@
 package globals.interfaces;
 
 import domain.*;
+import domain.iterators.SkillCollection;
 
 import java.util.List;
 
 public interface DataProvider {
-    List<Skill> getSkill();
+    SkillCollection getSkill();
 
     List<Category> getCategory();
 

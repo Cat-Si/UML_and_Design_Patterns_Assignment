@@ -2,6 +2,9 @@ package repositories;
 
 import Exceptions.EntryAlreadyExistsException;
 import domain.Skill;
+import domain.iterators.Iterator;
+import domain.iterators.SkillCollection;
+import domain.iterators.SkillIterator;
 import globals.interfaces.DataProvider;
 import repositories.interfaces.BaseSkillRepository;
 
@@ -15,26 +18,37 @@ public class SkillRepository implements BaseSkillRepository {
         IN_MEMORY_DATABASE = dataProvider;
     }
 
-    public List<Skill> getAll() {
+    public SkillCollection getAll() {
         return IN_MEMORY_DATABASE.getSkill();
     }
 
 
     public void add(Skill skill) throws EntryAlreadyExistsException {
-        if (getAll().contains(skill)) {
-            throw new EntryAlreadyExistsException("Skill already exists");
-        } else {
-            getAll().add(skill);
-        }
+        SkillCollection skillCollection = getAll();
+        SkillIterator skillIterator = skillCollection.getIterator();
+
+        while (skillIterator.hasNext()) {
+            Skill currentSkill = skillIterator.next();
+            if (currentSkill.equals(skill)) { //check if currentSkill equals skill
+                throw new EntryAlreadyExistsException("Skill already exists"); //throw exception
+            }
+            }
+        skillCollection.add(skill); //add skill to collection
     }
 
-    public void edit(Skill skill){
-        for (Skill s: getAll()) {
-            if (s.getId().equals(skill.getId())) {
-                s.setSkillName(skill.getSkillName());
-                s.setCategory(skill.getCategory());
+
+    public void edit(Skill skill) {
+        SkillCollection skillCollection = getAll();
+        SkillIterator skillIterator = skillCollection.getIterator();
+
+        while (skillIterator.hasNext()) {
+            Skill currentSkill = skillIterator.next();
+            if (currentSkill.getId().equals(skill.getId())) {
+                currentSkill.setSkillName(skill.getSkillName());
+                currentSkill.setCategory(skill.getCategory());
             }
         }
     }
+
 
 }
