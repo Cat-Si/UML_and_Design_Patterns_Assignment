@@ -5,6 +5,7 @@ import domain.*;
 import domain.enumerators.JobRole;
 import domain.enumerators.SkillLevel;
 import domain.enumerators.SystemRole;
+import domain.validationStrategy.ValidationFactory;
 import globals.InMemoryDatabase;
 import globals.interfaces.DataProvider;
 import org.junit.jupiter.api.BeforeAll;
@@ -45,7 +46,7 @@ public class UserSkillRepositoryTest {
     static String SKILL_NAME = "skillname";
     final UUID DUMMY_CATEGORY_ID = UUID.fromString("0000-00-00-00-000001");
     private Category VALID_CATEGORY = new Category(DUMMY_CATEGORY_ID, CATEGORY_NAME);
-    final Skill VALID_SKILL = new Skill(VALID_CATEGORY, DUMMY_SKILL_ID, SKILL_NAME);
+    final Skill VALID_SKILL = ValidationFactory.createSkill(VALID_CATEGORY, DUMMY_SKILL_ID, SKILL_NAME);
     final Manager VALID_MANAGER = new Manager(DUMMY_MANAGER_ID, "man1", "ager1", "username2", "password2", SystemRole.MANAGER);
     final StaffUser VALID_STAFF = new StaffUser(DUMMY_STAFF_ID, "staff1", "user1", "username1", "password1", SystemRole.STAFF_USER, JobRole.MIDLEVEL_DEVELOPER, VALID_MANAGER);
 
@@ -125,7 +126,7 @@ public class UserSkillRepositoryTest {
 
         when(mockDataProvider.getUserSkill()).thenReturn(dummyList);
 
-        Skill s2 = new Skill(VALID_CATEGORY, DUMMY_SKILL_ID2, "skill2");
+        Skill s2 = ValidationFactory.createSkill(VALID_CATEGORY, DUMMY_SKILL_ID2, "skill2");
         assertDoesNotThrow( () -> userSkillRepository.add(DUMMY_US_ID, VALID_STAFF, s2, SkillLevel.NONE, VALID_DATE, "notes"));
     }
 
@@ -165,7 +166,7 @@ public class UserSkillRepositoryTest {
 
 
 
-        Skill s2 = new Skill(VALID_CATEGORY, DUMMY_SKILL_ID2, "skill2");
+        Skill s2 = ValidationFactory.createSkill(VALID_CATEGORY, DUMMY_SKILL_ID2, "skill2");
 
         assertThrows(IllegalArgumentException.class, () -> {
            userSkillRepository.removeSkillFromStaff(VALID_STAFF, s2);

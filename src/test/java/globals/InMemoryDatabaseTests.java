@@ -4,6 +4,8 @@ import domain.*;
 import domain.enumerators.JobRole;
 import domain.enumerators.SkillLevel;
 import domain.enumerators.SystemRole;
+import domain.iterators.SkillCollection;
+import domain.validationStrategy.ValidationFactory;
 import globals.interfaces.DataProvider;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -34,13 +36,13 @@ public class InMemoryDatabaseTests {
     static LocalDate VALID_DATE = LocalDate.now();
 
     static List<Category> categoryList = new ArrayList<>();
-    static List<Skill> skillList  = new ArrayList<>();
+    static SkillCollection skillList  = new SkillCollection();
     static List<Manager> managerList = new ArrayList<>();
     static List<StaffUser> staffUserList = new ArrayList<>();
     static List<UserSkill> userSkillList = new ArrayList<>();
 
     static Category VALID_CATEGORY = new Category(DUMMY_CATEGORY_ID, DUMMY_CATEGORY_NAME);
-    static Skill VALID_SKILL = new Skill(VALID_CATEGORY, DUMMY_SKILL_ID, DUMMY_SKILL_NAME);
+    static Skill VALID_SKILL = ValidationFactory.createSkill(VALID_CATEGORY, DUMMY_SKILL_ID, DUMMY_SKILL_NAME);
     static Manager VALID_MANAGER = new Manager(DUMMY_MANAGER_ID, DUMMY_Manager_NAME, "ager1", "username2", "password2", SystemRole.MANAGER);
     static StaffUser VALID_STAFF = new StaffUser(DUMMY_STAFF_ID, DUMMY_STAFF_NAME, "user1", "username1", "password1", SystemRole.STAFF_USER, JobRole.MIDLEVEL_DEVELOPER, VALID_MANAGER);
     static UserSkill VALID_USER_SKILL = new UserSkill(DUMMY_US_ID, VALID_STAFF, VALID_SKILL, SkillLevel.EXPERT, VALID_DATE, "VALID_NOTES");
@@ -71,14 +73,14 @@ public class InMemoryDatabaseTests {
 
     //Skill
     @Test
-    @DisplayName("When getSkill is called then it returns 1 category")
+    @DisplayName("When getSkill is called then it returns 1 skill")
     void test03() {
         assertEquals(dataProvider.getSkill().size(),1);
     }
     @Test
     @DisplayName("When the first Skill is retrieved it has the correct name")
     void test04() {
-        List<Skill> skills = dataProvider.getSkill();
+        SkillCollection skills = dataProvider.getSkill();
         assertEquals(skills.get(0).getSkillName(), DUMMY_SKILL_NAME);
     }
 

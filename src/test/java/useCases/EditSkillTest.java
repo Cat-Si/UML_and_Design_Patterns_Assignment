@@ -2,6 +2,7 @@ package useCases;
 
 import domain.Category;
 import domain.Skill;
+import domain.validationStrategy.ValidationFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,7 +35,7 @@ public class EditSkillTest {
     void test01() {
         final UUID existingUUID = UUID.fromString("0000-00-00-00-000000");
         final String NEW_NAME ="Valid name";
-        Skill skill = new Skill(VALID_CATEGORY, existingUUID, NEW_NAME);
+        Skill skill = ValidationFactory.createSkill(VALID_CATEGORY, existingUUID, NEW_NAME);
 
         editSkill.add(VALID_CATEGORY);
         editSkill.add(existingUUID);
@@ -51,7 +52,7 @@ public class EditSkillTest {
         final UUID differentUUID = UUID.fromString("0000-00-00-00-000001");
 
         final String NEW_NAME ="Valid name";
-        Skill skill = new Skill(VALID_CATEGORY, existingUUID, NEW_NAME);
+        Skill skill = ValidationFactory.createSkill(VALID_CATEGORY, existingUUID, NEW_NAME);
 
         doThrow(new IllegalArgumentException("skill already exists")).when(skillRepository).edit(skill);
 

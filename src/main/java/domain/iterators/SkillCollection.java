@@ -24,4 +24,13 @@ public class SkillCollection implements Container {
     public Skill get(int i) {
         return skills.get(i);
     };
+
+    public int size() {
+        return skills.size();
+    }
+
+    public void clear() {
+       skills.clear();
+    }
+
 }

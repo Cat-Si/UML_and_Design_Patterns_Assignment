@@ -5,6 +5,8 @@ import domain.Category;
 import domain.Manager;
 import domain.Skill;
 import domain.enumerators.SystemRole;
+import domain.iterators.SkillCollection;
+import domain.validationStrategy.ValidationFactory;
 import globals.InMemoryDatabase;
 import globals.interfaces.DataProvider;
 import org.junit.jupiter.api.BeforeAll;
@@ -27,14 +29,14 @@ import static org.mockito.Mockito.when;
 public class SkillRepositoryTest {
     final UUID DUMMY_ID = UUID.fromString("0000-00-00-00-000000");
     final String VALID_NAME = "skillname";
-    static final List<Skill> dummyList = new ArrayList<>();
+    static final SkillCollection dummyList = new SkillCollection();
     static BaseSkillRepository skillRepository;
 
     private static String CATEGORY_NAME = "category";
     final UUID DUMMY_CATEGORY_ID = UUID.fromString("0000-00-00-00-000001");
     private Category VALID_CATEGORY = new Category(DUMMY_CATEGORY_ID, CATEGORY_NAME);
 
-    final Skill skill = new Skill(VALID_CATEGORY, DUMMY_ID, VALID_NAME);
+    final Skill skill = ValidationFactory.createSkill(VALID_CATEGORY, DUMMY_ID, VALID_NAME);
     @BeforeAll
     static void setup() {
         DataProvider mockDataProvider = mock(InMemoryDatabase.class);
@@ -80,7 +82,7 @@ public class SkillRepositoryTest {
         Skill s = skill;;
         dummyList.add(s);
 
-        Skill newSkill = new Skill(VALID_CATEGORY, DUMMY_ID, NEW_NAME);
+        Skill newSkill =ValidationFactory.createSkill(VALID_CATEGORY, DUMMY_ID, NEW_NAME);
 
         skillRepository.edit(newSkill);
 

@@ -3,6 +3,7 @@ package domain;
 import domain.enumerators.JobRole;
 import domain.enumerators.SkillLevel;
 import domain.enumerators.SystemRole;
+import domain.validationStrategy.ValidationFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +28,7 @@ public class UserSkillTests {
     final LocalDate VALID_DATE = LocalDate.now();
 
     final Category VALID_CATEGORY = new Category(DUMMY_CATEGORY_ID, "category");
-    final Skill VALID_SKILL = new Skill(VALID_CATEGORY, DUMMY_SKILL_ID, "skillName");
+    final Skill VALID_SKILL = ValidationFactory.createSkill(VALID_CATEGORY, DUMMY_SKILL_ID, "skillName");
     final Manager VALID_MANAGER = new Manager(DUMMY_MANAGER_ID, "man1", "ager1", "username2", "password2", SystemRole.MANAGER);
     final StaffUser VALID_STAFF = new StaffUser(DUMMY_STAFF_ID, "staff1", "user1", "username1", "password1", SystemRole.STAFF_USER, JobRole.MIDLEVEL_DEVELOPER, VALID_MANAGER);
 
@@ -49,7 +50,7 @@ public class UserSkillTests {
     void test02() {
         UserSkill us = new UserSkill(DUMMY_ID, VALID_STAFF, VALID_SKILL, VALID_SKILL_LEVEL, VALID_DATE, VALID_NOTES);
 
-        Skill s2 = new Skill(VALID_CATEGORY, DUMMY_SKILL_ID2, "skill");
+        Skill s2 = ValidationFactory.createSkill(VALID_CATEGORY, DUMMY_SKILL_ID2, "skill");
         us.addSkill(s2);
         assertTrue(us.getCurrentSkills().size()==2);
     }
@@ -58,7 +59,7 @@ public class UserSkillTests {
     @DisplayName("When a Skill is already present in an UserSkills object then attempting to add it will not be successful")
     void test03() {
         UserSkill us = new UserSkill(DUMMY_ID, VALID_STAFF, VALID_SKILL, VALID_SKILL_LEVEL, VALID_DATE, VALID_NOTES);
-        Skill s = new Skill(VALID_CATEGORY, DUMMY_SKILL_ID, "skillName");
+        Skill s = ValidationFactory.createSkill(VALID_CATEGORY, DUMMY_SKILL_ID, "skillName");
         us.addSkill(s);
         assertTrue(us.getCurrentSkills().size()==1);
     }
@@ -82,7 +83,7 @@ public class UserSkillTests {
 
         assertTrue(us.getCurrentSkills().size()==1);
 
-        Skill s = new Skill(VALID_CATEGORY, DUMMY_SKILL_ID2, "skill");
+        Skill s = ValidationFactory.createSkill(VALID_CATEGORY, DUMMY_SKILL_ID2, "skill");
 
         us.removeSkill(s);
         assertTrue(us.getCurrentSkills().size()==1);

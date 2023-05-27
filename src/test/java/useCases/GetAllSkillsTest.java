@@ -2,6 +2,8 @@ package useCases;
 
 import domain.Category;
 import domain.Skill;
+import domain.iterators.SkillCollection;
+import domain.validationStrategy.ValidationFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,9 +37,9 @@ public class GetAllSkillsTest {
     @Test
     @DisplayName("When use case is executed one or more valid skills will be returned")
     void test01() {
-        List<Skill> list = new ArrayList<>();
+        SkillCollection list = new SkillCollection();
         final UUID DUMMY_UUID = UUID.fromString("0000-00-00-00-000000");
-        Skill skill = new Skill(VALID_CATEGORY, DUMMY_UUID,"New skill");
+        Skill skill = ValidationFactory.createSkill(VALID_CATEGORY, DUMMY_UUID,"New skill");
         list.add(skill);
 
         when(skillRepository.getAll()).thenReturn(list);

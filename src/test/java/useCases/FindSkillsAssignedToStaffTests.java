@@ -5,6 +5,7 @@ import domain.*;
 import domain.enumerators.JobRole;
 import domain.enumerators.SkillLevel;
 import domain.enumerators.SystemRole;
+import domain.validationStrategy.ValidationFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,7 +40,7 @@ public class FindSkillsAssignedToStaffTests {
     final static UUID DUMMY_ID = UUID.fromString("0000-00-00-00-000000");
 
     final Category VALID_CATEGORY = new Category(DUMMY_CATEGORY_ID, "category");
-    final Skill VALID_SKILL = new Skill(VALID_CATEGORY, DUMMY_SKILL_ID, "skillName");
+    final Skill VALID_SKILL = ValidationFactory.createSkill(VALID_CATEGORY, DUMMY_SKILL_ID, "skillName");
     final Manager VALID_MANAGER = new Manager(DUMMY_MANAGER_ID, "man1", "ager1", "username2", "password2", SystemRole.MANAGER);
     final StaffUser VALID_STAFF = new StaffUser(DUMMY_STAFF_ID, "staff1", "user1", "username1", "password1", SystemRole.STAFF_USER, JobRole.MIDLEVEL_DEVELOPER, VALID_MANAGER);
 
