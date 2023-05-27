@@ -9,6 +9,7 @@ import useCases.skills.GetAllSkills;
 public class SkillFactory {
     public enum CommandType{add, edit, view}
 
+
     public static UseCaseCommand createCommand(CommandType commandType) {
         switch (commandType) {
             case add:

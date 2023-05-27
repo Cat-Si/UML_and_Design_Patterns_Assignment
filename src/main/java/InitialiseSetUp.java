@@ -4,6 +4,7 @@ import domain.StaffUser;
 import domain.enumerators.JobRole;
 import domain.enumerators.SkillLevel;
 import domain.iterators.SkillCollection;
+import domain.validationStrategy.ValidationFactory;
 import useCases.utility.UUIDGenerator;
 import globals.InMemoryDatabase;
 import globals.Ioc_Container;
@@ -45,10 +46,10 @@ public class InitialiseSetUp {
     }
 
     public static SkillCollection populateSkills() {
-        skills.add(new Skill(catagories.get(0), UUID.randomUUID(), "Word"));
-        skills.add(new Skill(catagories.get(1), UUID.randomUUID(), "Java"));
-        skills.add(new Skill(catagories.get(2), UUID.randomUUID(), "Junit"));
-        skills.add(new Skill(catagories.get(3), UUID.randomUUID(), "Git"));
+        skills.add(ValidationFactory.createSkill(catagories.get(0), UUID.randomUUID(), "Word"));
+        skills.add(ValidationFactory.createSkill(catagories.get(1), UUID.randomUUID(), "Java"));
+        skills.add(ValidationFactory.createSkill(catagories.get(2), UUID.randomUUID(), "Junit"));
+        skills.add(ValidationFactory.createSkill(catagories.get(3), UUID.randomUUID(), "Git"));
         return skills;
     }
 

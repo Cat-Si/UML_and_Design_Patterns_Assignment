@@ -1,5 +1,7 @@
 package domain;
 
+import domain.validationStrategy.ValidationStrategy;
+
 import java.util.Objects;
 import java.util.UUID;
 public class Skill extends Validator{
@@ -8,12 +10,14 @@ public class Skill extends Validator{
 
     private UUID id;
     private String skillName;
-    public Skill(Category category, UUID id, String skillName){
+    private ValidationStrategy strategy;
+    public Skill(Category category, UUID id, String skillName, ValidationStrategy strategy){
         this.category = category;
         this.id = id;
+        this.strategy = strategy;
         this.skillName = skillName;
 
-        validate();
+        strategy.validate(category, id, skillName);
     }
 
     public UUID getId(){
@@ -32,11 +36,12 @@ public class Skill extends Validator{
 
     public void setSkillName(String skillName){
         this.skillName = skillName;
-        validate();
+        strategy.validate(category, id, skillName);
     }
 
     public void setCategory(Category category) {
         this.category = category;
+        strategy.validate(category, id, skillName);
     }
 
     private final void validate(){

@@ -3,6 +3,7 @@ package useCases.skills;
 import Exceptions.EntryAlreadyExistsException;
 import domain.Category;
 import domain.Skill;
+import domain.validationStrategy.ValidationFactory;
 import useCases.UseCaseCommand;
 import useCases.utility.UUIDGenerator;
 import repositories.interfaces.BaseSkillRepository;
@@ -18,7 +19,7 @@ public class AddNewSkill extends BaseUseCase implements UseCaseCommand {
     public void execute() throws IllegalArgumentException, EntryAlreadyExistsException {
         String skillName = (String) getNextRequestParameter();
         Category category = (Category) getNextRequestParameter();
-        Skill skill =new Skill(category, UUIDGenerator.generate(), skillName);
+        Skill skill = ValidationFactory.createSkill(category, UUIDGenerator.generate(), skillName);
         SKILL_REPOSITORY.add(skill);
     }
 }

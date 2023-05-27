@@ -23,13 +23,7 @@ public abstract class User extends Validator{
         return fullName;
     }
 
-    public void setForename(String forename) {
-        this.forename = forename;
-    }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
 
     public User(UUID id, String forename, String surname, String username, String password, SystemRole systemRole) {
         this.id = id;
