@@ -1,6 +1,7 @@
 package controllers;
 
 
+import controllers.facade.EditStaffUseCaseFacade;
 import domain.*;
 import domain.enumerators.JobRole;
 import domain.enumerators.SystemRole;
@@ -49,14 +50,7 @@ public class EditStaffController  {
     private  ListView<UserSkill> staffSkillLst;
 
 
-
-    private final GetAllStaff getAllStaff = new GetAllStaff(Ioc_Container.getStaffUserRepository());
-    private final GetAllManagers getAllManagers = new GetAllManagers(Ioc_Container.getManagerRepository());
-    private final EditStaff editStaff = new EditStaff(Ioc_Container.getStaffUserRepository());
-    private final FindSkillsAssignedToStaff findSkillsAssignedToStaff = new FindSkillsAssignedToStaff(Ioc_Container.getUserSkillRepository());
-
-
-
+    private final EditStaffUseCaseFacade editStaffUseCaseFacade = new EditStaffUseCaseFacade();
 
 
     public void initialize() {
@@ -93,15 +87,8 @@ public class EditStaffController  {
         JobRole selectedJobRole = jobRoleLst.getSelectionModel().getSelectedItem();
         Manager selectedManager = manager.getSelectionModel().getSelectedItem();
         try {
-            editStaff.add(selectedUser.getId());
-            editStaff.add(forname);
-            editStaff.add(surname);
-            editStaff.add(user);
-            editStaff.add(pass);
-            editStaff.add(selectedSystemRole);
-            editStaff.add(selectedJobRole);
-            editStaff.add(selectedManager);
-            editStaff.execute();
+            editStaffUseCaseFacade.editStaff(selectedUser, forname,  surname,  user,  pass,  selectedSystemRole,  selectedJobRole,  selectedManager);
+
         }catch (IllegalArgumentException e){
             AlertMessage.showMessage(Alert.AlertType.ERROR, e.getMessage());
         }
@@ -120,21 +107,21 @@ public class EditStaffController  {
     }
 
     private void showAllStaff() {
-        ObservableList<StaffUser> items = FXCollections.observableArrayList(getAllStaff.execute());
+        ObservableList<StaffUser> items = FXCollections.observableArrayList(editStaffUseCaseFacade.getAllStaff());
         usersLst.setItems(items);
         usersLst.setPromptText("Please select a staff User");
     }
 
     private void showManager() {
-        ObservableList<Manager> items = FXCollections.observableArrayList(getAllManagers.execute());
+        ObservableList<Manager> items = FXCollections.observableArrayList(editStaffUseCaseFacade.getAllManagers());
         manager.setItems(items);
 
     }
 
     @FXML
     private void showSkillAssignedToStaff() {
-        findSkillsAssignedToStaff.add(usersLst.getSelectionModel().getSelectedItem());
-        Optional<List<UserSkill>> staffSkill = findSkillsAssignedToStaff.execute();
+       // findSkillsAssignedToStaff.add(usersLst.getSelectionModel().getSelectedItem());
+        Optional<List<UserSkill>> staffSkill = editStaffUseCaseFacade.findSkillsAssignedToStaff(usersLst.getSelectionModel().getSelectedItem());
 
         if (staffSkill.isPresent()) {
             ObservableList<UserSkill> items = FXCollections.observableArrayList(staffSkill.get());

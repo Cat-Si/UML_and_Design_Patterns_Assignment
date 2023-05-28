@@ -1,6 +1,8 @@
 package controllers;
 
 import Exceptions.EntryAlreadyExistsException;
+import controllers.facade.AddSkillUseCaseFacade;
+import controllers.facade.EditStaffUseCaseFacade;
 import domain.Category;
 import general.AlertMessage;
 import javafx.application.Platform;
@@ -23,8 +25,9 @@ public class AddSkillController  {
     @FXML
     private ComboBox<Category> category;
 
-    private final UseCaseCommand addNewSkill = SkillFactory.createCommand(SkillFactory.CommandType.add);
-    private final UseCaseQuery getAllCategories = CategoryFactory.createQuery(CategoryFactory.CommandType.view);
+    private final AddSkillUseCaseFacade addSkillUseCaseFacade = new AddSkillUseCaseFacade();
+//    private final UseCaseCommand addNewSkill = SkillFactory.createCommand(SkillFactory.CommandType.add);
+//    private final UseCaseQuery getAllCategories = CategoryFactory.createQuery(CategoryFactory.CommandType.view);
 
     public void initialize() {
         Platform.runLater(() -> skillName.requestFocus());
@@ -37,9 +40,10 @@ public class AddSkillController  {
         String name = skillName.getText();
 
         try {
-            addNewSkill.add(name);
-            addNewSkill.add(category.getSelectionModel().getSelectedItem());
-            addNewSkill.execute();
+            addSkillUseCaseFacade.addNewSkill(name, category.getSelectionModel().getSelectedItem() );
+////            addNewSkill.add(name);
+////            addNewSkill.add(category.getSelectionModel().getSelectedItem());
+//            addNewSkill.execute();
             clearForm();
             AlertMessage.showMessage(Alert.AlertType.INFORMATION, "Skill Added");
         } catch (EntryAlreadyExistsException e) {
@@ -55,7 +59,7 @@ public class AddSkillController  {
     }
 
     private void showAllCatagories() {
-        ObservableList<Category> items = FXCollections.observableArrayList(getAllCategories.execute());
+        ObservableList<Category> items = FXCollections.observableArrayList(addSkillUseCaseFacade.getAllCategories());
         category.setItems(items);
         category.getSelectionModel().select(0);
     }
