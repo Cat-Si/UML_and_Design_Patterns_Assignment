@@ -13,9 +13,9 @@ public class SkillFactory {
     public static UseCaseCommand createCommand(CommandType commandType) {
         switch (commandType) {
             case add:
-                return new AddNewSkill(Ioc_Container.getSkillRepository());
+                return new AddNewSkill(Ioc_Container.getInstance().getSkillRepository());
             case edit:
-                return new EditSkill(Ioc_Container.getSkillRepository());
+                return new EditSkill(Ioc_Container.getInstance().getSkillRepository());
             default:
                 throw new IllegalArgumentException();
         }
@@ -26,7 +26,7 @@ public class SkillFactory {
     public static UseCaseQuery createQuery(CommandType commandType) {
         switch (commandType) {
             case view:
-                return new GetAllSkills(Ioc_Container.getSkillRepository());
+                return new GetAllSkills(Ioc_Container.getInstance().getSkillRepository());
             default:
                 throw new IllegalArgumentException();
         }

@@ -34,7 +34,11 @@ public class InitialiseSetUp {
         BaseUserSkillRepository userSkillRepository = new UserSkillRepository(dataProvider);
         BaseStaffUserRepository staffUserRepository = new StaffUserRepository(dataProvider);
 
-        new Ioc_Container(skillRepository, categoryRepository, userSkillRepository, managerRepository, staffUserRepository);
+        Ioc_Container iocContainer = new Ioc_Container.Ioc_ContainerBuilder( skillRepository,
+                categoryRepository,
+               userSkillRepository,
+                managerRepository,
+                 staffUserRepository).build();
     }
 
     public static List<Category> populateCategory(){

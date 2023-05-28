@@ -16,10 +16,10 @@ import java.util.Optional;
 
 public class EditStaffUseCaseFacade {
 
-    private final GetAllStaff getAllStaff = new GetAllStaff(Ioc_Container.getStaffUserRepository());
-    private final GetAllManagers getAllManagers = new GetAllManagers(Ioc_Container.getManagerRepository());
-    private final EditStaff editStaff = new EditStaff(Ioc_Container.getStaffUserRepository());
-    private final FindSkillsAssignedToStaff findSkillsAssignedToStaff = new FindSkillsAssignedToStaff(Ioc_Container.getUserSkillRepository());
+    private final GetAllStaff getAllStaff = new GetAllStaff(Ioc_Container.getInstance().getStaffUserRepository());
+    private final GetAllManagers getAllManagers = new GetAllManagers(Ioc_Container.getInstance().getManagerRepository());
+    private final EditStaff editStaff = new EditStaff(Ioc_Container.getInstance().getStaffUserRepository());
+    private final FindSkillsAssignedToStaff findSkillsAssignedToStaff = new FindSkillsAssignedToStaff(Ioc_Container.getInstance().getUserSkillRepository());
 
     public List<StaffUser> getAllStaff() {
         return getAllStaff.execute();

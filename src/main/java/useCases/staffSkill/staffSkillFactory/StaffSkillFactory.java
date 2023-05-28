@@ -13,9 +13,9 @@ public class StaffSkillFactory {
     public static UseCaseCommand createCommand(StaffSkillFactory.CommandType commandType) {
         switch (commandType) {
             case add:
-                return new AddSkillToStaff(Ioc_Container.getUserSkillRepository());
+                return new AddSkillToStaff(Ioc_Container.getInstance().getUserSkillRepository());
             case edit:
-                return new EditUserSkill(Ioc_Container.getUserSkillRepository());
+                return new EditUserSkill(Ioc_Container.getInstance().getUserSkillRepository());
              default:
                 throw new IllegalArgumentException();
         }
@@ -25,7 +25,7 @@ public class StaffSkillFactory {
     public static UseCaseCommandFind createCommandFind(StaffSkillFactory.CommandType commandType) {
         switch (commandType) {
             case view:
-                return new FindSkillsAssignedToStaff(Ioc_Container.getUserSkillRepository());
+                return new FindSkillsAssignedToStaff(Ioc_Container.getInstance().getUserSkillRepository());
 
             default:
                 throw new IllegalArgumentException();

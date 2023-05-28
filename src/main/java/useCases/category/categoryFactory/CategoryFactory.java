@@ -10,7 +10,7 @@ public class CategoryFactory {
     public static UseCaseQuery createQuery (CommandType commandType) {
         switch (commandType) {
             case view:
-                return new GetAllCategories(Ioc_Container.getCategoryRepository());
+                return new GetAllCategories(Ioc_Container.getInstance().getCategoryRepository());
             default:
                 throw new IllegalArgumentException();
         }

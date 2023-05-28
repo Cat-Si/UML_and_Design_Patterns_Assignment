@@ -71,7 +71,7 @@ public class AddSkillToUserController {
 
     private final UseCaseCommandFind findSkillsAssignedToStaff = StaffSkillFactory.createCommandFind(StaffSkillFactory.CommandType.view);
 
-    private final RemoveSkillAssignedToStaff removeSkillAssignedToStaff = new RemoveSkillAssignedToStaff(Ioc_Container.getUserSkillRepository());
+    private final RemoveSkillAssignedToStaff removeSkillAssignedToStaff = new RemoveSkillAssignedToStaff(Ioc_Container.getInstance().getUserSkillRepository());
 
 
     public void initialize() {

@@ -13,9 +13,9 @@ public class StaffFactory {
     public static UseCaseCommand createCommand(StaffFactory.CommandType commandType) {
         switch (commandType) {
             case add:
-                return new AddNewStaff(Ioc_Container.getStaffUserRepository());
+                return new AddNewStaff(Ioc_Container.getInstance().getStaffUserRepository());
             case edit:
-                return new EditStaff(Ioc_Container.getStaffUserRepository());
+                return new EditStaff(Ioc_Container.getInstance().getStaffUserRepository());
             default:
                 throw new IllegalArgumentException();
         }
@@ -26,7 +26,7 @@ public class StaffFactory {
     public static UseCaseQuery createQuery(StaffFactory.CommandType commandType) {
         switch (commandType) {
             case view:
-                return new GetAllStaff(Ioc_Container.getStaffUserRepository());
+                return new GetAllStaff(Ioc_Container.getInstance().getStaffUserRepository());
             default:
                 throw new IllegalArgumentException();
         }

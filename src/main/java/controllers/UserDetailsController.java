@@ -50,9 +50,9 @@ public class UserDetailsController {
 
 
 
-    private final EditStaff editStaff = new EditStaff(Ioc_Container.getStaffUserRepository());
+    private final EditStaff editStaff = new EditStaff(Ioc_Container.getInstance().getStaffUserRepository());
 
-    private final GetAllStaff getAllStaff = new GetAllStaff(Ioc_Container.getStaffUserRepository());
+    private final GetAllStaff getAllStaff = new GetAllStaff(Ioc_Container.getInstance().getStaffUserRepository());
     public void initialize() {
         showJobRole();
         showAllStaff();

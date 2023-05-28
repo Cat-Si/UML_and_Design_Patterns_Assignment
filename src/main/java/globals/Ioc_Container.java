@@ -4,42 +4,74 @@ import repositories.interfaces.*;
 
 public class Ioc_Container {
 
-    private static BaseSkillRepository skillRepository;
 
-    private static BaseCategoryRepository categoryRepository;
+    private  BaseSkillRepository skillRepository;
+    private  BaseCategoryRepository categoryRepository;
+    private  BaseUserSkillRepository userSkillRepository;
+    private  BaseManagerRepository managerRepository;
+    private   BaseStaffUserRepository staffUserRepository;
 
-    private static BaseUserSkillRepository userSkillRepository;
 
-    private static BaseManagerRepository managerRepository;
-
-    private static  BaseStaffUserRepository staffUserRepository;
-
-    public Ioc_Container(BaseSkillRepository skillRepository, BaseCategoryRepository categoryRepository, BaseUserSkillRepository userSkillRepository, BaseManagerRepository managerRepository, BaseStaffUserRepository staffUserRepository) {
-        this.skillRepository= skillRepository;
-        this.categoryRepository = categoryRepository;
-        this.userSkillRepository = userSkillRepository;
-        this.managerRepository = managerRepository;
-        this.staffUserRepository = staffUserRepository;
-
+    private static final Ioc_Container INSTANCE = new Ioc_Container();
+    private Ioc_Container() {
+        // Private constructor to prevent direct instantiation
     }
 
-    public static final BaseSkillRepository getSkillRepository() {
+    public static  Ioc_Container getInstance() {
+        return INSTANCE;
+    }
+
+    private Ioc_Container build(Ioc_ContainerBuilder builder) {
+        this.skillRepository = builder.skillRepository;
+        this.categoryRepository = builder.categoryRepository;
+        this.userSkillRepository = builder.userSkillRepository;
+        this.managerRepository = builder.managerRepository;
+        this.staffUserRepository = builder.staffUserRepository;
+        return this;
+    }
+
+    public  final BaseSkillRepository getSkillRepository() {
         return skillRepository;
     }
 
-    public static final BaseCategoryRepository getCategoryRepository() {
+    public  final BaseCategoryRepository getCategoryRepository() {
         return categoryRepository;
     }
 
-    public static final BaseUserSkillRepository getUserSkillRepository() {
+    public  final BaseUserSkillRepository getUserSkillRepository() {
         return userSkillRepository;
     }
 
-    public static final BaseManagerRepository getManagerRepository() {
+    public  final BaseManagerRepository getManagerRepository() {
         return managerRepository;
     }
 
-    public static final BaseStaffUserRepository getStaffUserRepository() {
+    public  final BaseStaffUserRepository getStaffUserRepository() {
         return staffUserRepository;
     }
+
+    public static class  Ioc_ContainerBuilder {
+        private BaseSkillRepository skillRepository;
+        private BaseCategoryRepository categoryRepository;
+        private BaseUserSkillRepository userSkillRepository;
+        private BaseManagerRepository managerRepository;
+        private BaseStaffUserRepository staffUserRepository;
+
+        private Ioc_ContainerBuilder(){};
+
+        public Ioc_ContainerBuilder(BaseSkillRepository skillRepository, BaseCategoryRepository categoryRepository, BaseUserSkillRepository userSkillRepository, BaseManagerRepository managerRepository, BaseStaffUserRepository staffUserRepository) {
+            this.skillRepository = skillRepository;
+            this.categoryRepository = categoryRepository;
+            this.userSkillRepository = userSkillRepository;
+            this.managerRepository = managerRepository;
+            this.staffUserRepository = staffUserRepository;
+        }
+
+        public Ioc_Container build() {
+            return Ioc_Container.INSTANCE.build(this);
+        }
+    }
+
+
+
 }

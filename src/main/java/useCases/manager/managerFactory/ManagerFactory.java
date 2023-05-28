@@ -13,7 +13,7 @@ public class ManagerFactory {
     public static UseCaseCommand createCommand(ManagerFactory.CommandType commandType) {
         switch (commandType) {
             case add:
-                return new AddNewManager(Ioc_Container.getManagerRepository());
+                return new AddNewManager(Ioc_Container.getInstance().getManagerRepository());
             default:
                 throw new IllegalArgumentException();
         }
@@ -22,7 +22,7 @@ public class ManagerFactory {
     public static UseCaseQuery createQuery (ManagerFactory.CommandType commandType) {
         switch (commandType) {
             case view:
-                return new GetAllManagers(Ioc_Container.getManagerRepository());
+                return new GetAllManagers(Ioc_Container.getInstance().getManagerRepository());
             default:
                 throw new IllegalArgumentException();
         }
