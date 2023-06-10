@@ -4,10 +4,10 @@ import Exceptions.EntryAlreadyExistsException;
 import domain.Category;
 import domain.Skill;
 import domain.validationStrategy.ValidationFactory;
-import useCases.UseCaseCommand;
-import useCases.utility.UUIDGenerator;
 import repositories.interfaces.BaseSkillRepository;
 import useCases.BaseUseCase;
+import useCases.UseCaseCommand;
+import useCases.utility.UUIDGenerator;
 
 public class AddNewSkill extends BaseUseCase implements UseCaseCommand {
 

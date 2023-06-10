@@ -2,12 +2,12 @@ package useCases.staffSkill;
 
 import Exceptions.EntryAlreadyExistsException;
 import domain.Skill;
-import domain.enumerators.SkillLevel;
 import domain.StaffUser;
-import useCases.UseCaseCommand;
-import useCases.utility.UUIDGenerator;
+import domain.enumerators.SkillLevel;
 import repositories.interfaces.BaseUserSkillRepository;
 import useCases.BaseUseCase;
+import useCases.UseCaseCommand;
+import useCases.utility.UUIDGenerator;
 
 import java.time.LocalDate;
 

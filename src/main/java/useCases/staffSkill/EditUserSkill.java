@@ -1,8 +1,6 @@
 package useCases.staffSkill;
 
-import domain.Category;
 import domain.Skill;
-
 import domain.StaffUser;
 import domain.UserSkill;
 import domain.enumerators.SkillLevel;
@@ -11,7 +9,6 @@ import useCases.BaseUseCase;
 import useCases.UseCaseCommand;
 
 import java.time.LocalDate;
-import java.util.Optional;
 import java.util.UUID;
 
 

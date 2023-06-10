@@ -1,7 +1,6 @@
 package useCases.skills;
 
 import domain.Skill;
-import domain.iterators.Iterator;
 import domain.iterators.SkillCollection;
 import domain.iterators.SkillIterator;
 import repositories.interfaces.BaseSkillRepository;

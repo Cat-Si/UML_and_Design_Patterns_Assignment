@@ -1,6 +1,5 @@
 package useCases;
 
-import Exceptions.EntryAlreadyExistsException;
 import domain.Manager;
 import domain.StaffUser;
 import domain.enumerators.JobRole;

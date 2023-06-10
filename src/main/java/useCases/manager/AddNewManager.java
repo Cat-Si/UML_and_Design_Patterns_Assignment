@@ -2,11 +2,8 @@ package useCases.manager;
 
 import Exceptions.EntryAlreadyExistsException;
 import domain.Manager;
-import domain.StaffUser;
-import domain.enumerators.JobRole;
 import domain.enumerators.SystemRole;
 import repositories.interfaces.BaseManagerRepository;
-import repositories.interfaces.BaseStaffUserRepository;
 import useCases.BaseUseCase;
 import useCases.UseCaseCommand;
 import useCases.utility.UUIDGenerator;

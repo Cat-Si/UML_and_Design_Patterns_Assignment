@@ -1,10 +1,12 @@
 package globals;
 
-import domain.*;
+import domain.Category;
+import domain.Manager;
+import domain.StaffUser;
+import domain.UserSkill;
 import domain.iterators.SkillCollection;
 import globals.interfaces.DataProvider;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryDatabase implements DataProvider {

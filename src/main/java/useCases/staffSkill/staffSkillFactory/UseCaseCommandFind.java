@@ -1,6 +1,5 @@
 package useCases.staffSkill.staffSkillFactory;
 
-import Exceptions.EntryAlreadyExistsException;
 import domain.UserSkill;
 
 import java.util.List;

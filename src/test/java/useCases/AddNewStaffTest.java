@@ -2,7 +2,6 @@ package useCases;
 
 import Exceptions.EntryAlreadyExistsException;
 import domain.Manager;
-import domain.Skill;
 import domain.StaffUser;
 import domain.enumerators.JobRole;
 import domain.enumerators.SystemRole;

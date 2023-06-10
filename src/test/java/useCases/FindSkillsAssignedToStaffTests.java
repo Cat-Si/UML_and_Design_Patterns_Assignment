@@ -11,12 +11,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import repositories.UserSkillRepository;
 import repositories.interfaces.BaseUserSkillRepository;
-import useCases.staffSkill.EditUserSkill;
 import useCases.staffSkill.FindSkillsAssignedToStaff;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;

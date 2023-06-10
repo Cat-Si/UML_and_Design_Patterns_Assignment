@@ -11,8 +11,6 @@ import repositories.SkillRepository;
 import repositories.interfaces.BaseSkillRepository;
 import useCases.skills.GetAllSkills;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;

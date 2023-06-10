@@ -2,11 +2,12 @@ package controllers;
 
 
 import controllers.facade.EditStaffUseCaseFacade;
-import domain.*;
+import domain.Manager;
+import domain.StaffUser;
+import domain.UserSkill;
 import domain.enumerators.JobRole;
 import domain.enumerators.SystemRole;
 import general.AlertMessage;
-import globals.Ioc_Container;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,10 +18,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import router.RouteNames;
 import router.Router;
-import useCases.staff.EditStaff;
-import useCases.manager.GetAllManagers;
-import useCases.staff.GetAllStaff;
-import useCases.staffSkill.FindSkillsAssignedToStaff;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;

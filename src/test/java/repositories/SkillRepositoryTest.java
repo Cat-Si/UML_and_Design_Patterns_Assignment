@@ -2,9 +2,7 @@ package repositories;
 
 import Exceptions.EntryAlreadyExistsException;
 import domain.Category;
-import domain.Manager;
 import domain.Skill;
-import domain.enumerators.SystemRole;
 import domain.iterators.SkillCollection;
 import domain.validationStrategy.ValidationFactory;
 import globals.InMemoryDatabase;
@@ -13,11 +11,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import repositories.interfaces.BaseManagerRepository;
 import repositories.interfaces.BaseSkillRepository;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;

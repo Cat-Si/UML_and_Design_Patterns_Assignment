@@ -4,7 +4,6 @@ import domain.Manager;
 import repositories.interfaces.BaseManagerRepository;
 import useCases.manager.managerFactory.UseCaseQuery;
 
-
 import java.util.List;
 
 public class GetAllManagers implements UseCaseQuery {

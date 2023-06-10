@@ -1,5 +1,4 @@
 import domain.*;
-
 import globals.InMemoryDatabaseTests;
 import org.junit.platform.suite.api.SelectClasses;
 import org.junit.platform.suite.api.SelectPackages;

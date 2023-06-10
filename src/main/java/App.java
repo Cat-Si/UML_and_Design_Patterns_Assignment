@@ -30,18 +30,6 @@ public class App extends Application {
             e.printStackTrace();
         }
     }
-    //This is my original start by tried the edited version incase that would run
-   /* public void start(Stage stage) *//*throws Exception *//*{
-        new InitialiseSetUp();
-        Parent root = FXMLLoader.load(getClass().getResource("/views/Home.fxml"));
-        root.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
-        stage.initStyle(StageStyle.UNDECORATED); //Remove min, max and close buttons
-        Scene scene = new Scene(root, 620, 440);
-
-        stage.setScene(scene);
-        stage.show();
-    }*/
-
     public static void main(String[] args) {
         launch(args);
     }

@@ -4,8 +4,6 @@ import Exceptions.EntryAlreadyExistsException;
 import domain.Skill;
 import domain.iterators.SkillCollection;
 
-import java.util.List;
-
 public interface BaseSkillRepository {
         SkillCollection getAll();
 

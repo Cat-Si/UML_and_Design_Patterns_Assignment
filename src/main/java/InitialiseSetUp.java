@@ -1,21 +1,24 @@
-
-import domain.*;
+import domain.Category;
+import domain.Manager;
 import domain.StaffUser;
+import domain.UserSkill;
 import domain.enumerators.JobRole;
 import domain.enumerators.SkillLevel;
+import domain.enumerators.SystemRole;
 import domain.iterators.SkillCollection;
 import domain.validationStrategy.ValidationFactory;
-import useCases.utility.UUIDGenerator;
 import globals.InMemoryDatabase;
 import globals.Ioc_Container;
 import globals.interfaces.DataProvider;
 import repositories.*;
 import repositories.interfaces.*;
+import useCases.utility.UUIDGenerator;
 
 import java.time.LocalDate;
-import java.util.*;
-
-import domain.enumerators.SystemRole;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 public class InitialiseSetUp {
     private static  SkillCollection skills = new SkillCollection();
@@ -83,22 +86,10 @@ public class InitialiseSetUp {
         Manager st = new Manager(UUIDGenerator.generate(), "Ben", "Smith", "BS1m", "password", SystemRole.MANAGER);
         managers.add(st);
 
-
-/*        Map<Manager, List<StaffUser>> staffByManager = staffUsers.stream()
-                .collect(Collectors.groupingBy(StaffUser::getCurrentManager));
-
-        // Add staffUsers to their respective managers
-        staffByManager.forEach((manager, staffUsers) -> {
-            manager.addStaff((StaffUser) staffUsers);
-            managers.add(manager);
-        });*/
-
-        //managers.add(new Manager(UUIDGenerator.generate(), "Manager1", "password", "Ben", "Smith", SystemRole.MANAGER, staffUsers.get(0)));
         return managers;
     }
 
     public static List<UserSkill> populateUserSkill() {
-   // List<UserSkill> userSkills = new ArrayList<>();
         LocalDate expiry = LocalDate.now();
         Optional.ofNullable(expiry);
         userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(0), skills.get(0), SkillLevel.ADVANCED, expiry, "Professional Qualification" ));
@@ -113,8 +104,6 @@ public class InitialiseSetUp {
         userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(2), skills.get(1), SkillLevel.EXPERT, expiry, "" ));
         userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(2), skills.get(2), SkillLevel.EXPERT, expiry, "" ));
         userSkills.add(new UserSkill(UUIDGenerator.generate(), staffUsers.get(2), skills.get(3), SkillLevel.EXPERT, expiry, "" ));
-
-
 
         return userSkills;
     }

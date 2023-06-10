@@ -1,6 +1,7 @@
 package useCases.staff;
 
-import domain.*;
+import domain.Manager;
+import domain.StaffUser;
 import domain.enumerators.JobRole;
 import domain.enumerators.SystemRole;
 import repositories.interfaces.BaseStaffUserRepository;

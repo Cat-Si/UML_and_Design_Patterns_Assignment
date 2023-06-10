@@ -1,9 +1,13 @@
 package useCases;
+
 import Exceptions.EntryAlreadyExistsException;
 import domain.Category;
 import domain.Skill;
 import domain.validationStrategy.ValidationFactory;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import repositories.SkillRepository;
@@ -11,11 +15,8 @@ import repositories.interfaces.BaseSkillRepository;
 import useCases.skills.AddNewSkill;
 import useCases.utility.UUIDGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;

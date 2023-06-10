@@ -2,13 +2,10 @@ package repositories;
 
 import Exceptions.EntryAlreadyExistsException;
 import domain.Skill;
-import domain.iterators.Iterator;
 import domain.iterators.SkillCollection;
 import domain.iterators.SkillIterator;
 import globals.interfaces.DataProvider;
 import repositories.interfaces.BaseSkillRepository;
-
-import java.util.List;
 
 public class SkillRepository implements BaseSkillRepository {
 

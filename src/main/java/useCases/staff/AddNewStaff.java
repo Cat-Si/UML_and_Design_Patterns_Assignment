@@ -1,13 +1,14 @@
 package useCases.staff;
 
 import Exceptions.EntryAlreadyExistsException;
-import domain.*;
+import domain.Manager;
+import domain.StaffUser;
 import domain.enumerators.JobRole;
 import domain.enumerators.SystemRole;
-import useCases.UseCaseCommand;
-import useCases.utility.UUIDGenerator;
 import repositories.interfaces.BaseStaffUserRepository;
 import useCases.BaseUseCase;
+import useCases.UseCaseCommand;
+import useCases.utility.UUIDGenerator;
 
 public class AddNewStaff extends BaseUseCase implements UseCaseCommand {
      private final BaseStaffUserRepository STAFF_REPOSITORY;

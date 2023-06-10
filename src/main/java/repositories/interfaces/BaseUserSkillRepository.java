@@ -2,9 +2,9 @@ package repositories.interfaces;
 
 import Exceptions.EntryAlreadyExistsException;
 import domain.Skill;
-import domain.enumerators.SkillLevel;
 import domain.StaffUser;
 import domain.UserSkill;
+import domain.enumerators.SkillLevel;
 
 import java.time.LocalDate;
 import java.util.List;

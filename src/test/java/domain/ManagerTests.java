@@ -1,13 +1,9 @@
 package domain;
 
-import domain.enumerators.JobRole;
 import domain.enumerators.SystemRole;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;

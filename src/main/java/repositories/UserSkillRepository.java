@@ -1,7 +1,9 @@
 package repositories;
 
 import Exceptions.EntryAlreadyExistsException;
-import domain.*;
+import domain.Skill;
+import domain.StaffUser;
+import domain.UserSkill;
 import domain.enumerators.SkillLevel;
 import globals.interfaces.DataProvider;
 import repositories.interfaces.BaseUserSkillRepository;

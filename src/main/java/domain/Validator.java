@@ -1,6 +1,5 @@
 package domain;
 
-import java.time.LocalDate;
 
 public abstract class Validator {
     public void isNull(Object attributeToCheck, String messageIfError) throws IllegalArgumentException{

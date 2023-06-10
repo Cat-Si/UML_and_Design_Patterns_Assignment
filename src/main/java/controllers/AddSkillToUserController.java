@@ -1,36 +1,22 @@
 package controllers;
 
-import Exceptions.EntryAlreadyExistsException;
-import domain.Manager;
-import domain.Skill;
-import domain.UserSkill;
-import domain.enumerators.JobRole;
-import domain.enumerators.SkillLevel;
 import domain.StaffUser;
-import domain.enumerators.SystemRole;
+import domain.UserSkill;
+import domain.enumerators.SkillLevel;
 import general.AlertMessage;
 import globals.Ioc_Container;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.beans.value.ObservableValue;
-import javafx.beans.value.ChangeListener;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import useCases.UseCaseCommand;
-import useCases.skills.GetAllSkills;
-import useCases.staff.GetAllStaff;
 import useCases.staff.staffFactory.StaffFactory;
 import useCases.staff.staffFactory.UseCaseQuery;
-import useCases.staffSkill.AddSkillToStaff;
-import useCases.staffSkill.EditUserSkill;
-import useCases.staffSkill.FindSkillsAssignedToStaff;
 import useCases.staffSkill.RemoveSkillAssignedToStaff;
 import useCases.staffSkill.staffSkillFactory.StaffSkillFactory;
 import useCases.staffSkill.staffSkillFactory.UseCaseCommandFind;
 
-import java.io.IOException;
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -102,7 +88,7 @@ public class AddSkillToUserController {
         staffSkillLst.setItems(items);
     }
 
-  /*  @Override
+/*    @Override
     public void passItemToEdit(Object skillToEdit) {
         selectedSkill = (UserSkill) skillToEdit;
         skillName.setText(selectedSkill.getSkill().toString());
