@@ -2,6 +2,8 @@
 
 Completed in L5 of the Digital & Technological Solutions Professional apprenticeship, Software Engineer Route at Staffordshire University 
 
+*Design Patterns in Object Oritented Programming* contains powerpoint slides from a presentation completed on the code and highlights design patterns used with code examplars from the project. 
+
 As a means of testing your understanding of object orientated principles and good practice, you have been asked to build a prototype skills auditor application.
 This application is required to identify the current skill sets of all staff for two reasons:
 1.	Quickly match staff to meet a particular job/task skills requirement(s)
